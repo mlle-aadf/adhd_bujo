@@ -1,13 +1,22 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  list-style: none;
+  font: normal 300 1rem/1.2 "Montserrat", 'Courier New' ;
+  font-optical-sizing: auto;
+  background-color: black;
+  color: white;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  --pink: rgb(255, 132, 232);
+  --blue: rgb(123, 201, 255);
+  --mint: rgb(163, 255, 214);
 }
