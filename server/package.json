@@ -1,0 +1,17 @@
+{
+  "name": "adhd_bujo_server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "twiggy",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.6.1"
+  }
+}
