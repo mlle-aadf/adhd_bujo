@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "twiggy",
@@ -13,6 +14,7 @@
     "express": "^4.19.2",
     "mongodb": "^6.6.1",
     "morgan": "^1.10.0",
+    "nodemon": "^3.1.0",
     "react-scripts": "5.0.1",
     "uuid": "^9.0.1"
   }

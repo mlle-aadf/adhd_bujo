@@ -6,7 +6,6 @@ const {MONGO_URI} = process.env
 const dbName = 'adhd_bujo'
 
 const mongoConnect = async (connected) => {
-
     const client = new MongoClient(MONGO_URI)
     const db = client.db(dbName)
 
@@ -25,5 +24,4 @@ const mongoConnect = async (connected) => {
     }
 }
 
-
-module.exports = {mongoConnect}
+module.exports = mongoConnect

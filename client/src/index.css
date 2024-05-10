@@ -19,5 +19,15 @@ body {
   --pink: rgb(255, 132, 232);
   --blue: rgb(123, 201, 255);
   --mint: rgb(163, 255, 214);
-  --faded: rgba(255, 255, 255, 0.5)
+  --faded: rgba(255, 255, 255, 0.3);
+  --priority0: rgb(255, 255, 255);
+  --priority1: rgb(249, 216, 81);
+  --priority2: rgb(246, 170, 88);
+  --priority3: rgb(243, 106, 166);
+
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 300;
 }

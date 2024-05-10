@@ -1,4 +1,4 @@
-const {mongoConnect} = require('./mongoConnect')
+const mongoConnect = require('./mongoConnect')
 
 
 const createTaskHandlder = async (req, res) => {
@@ -35,4 +35,4 @@ const createTaskHandlder = async (req, res) => {
 }
 
 
-module.exports = {createTaskHandlder}
+module.exports = createTaskHandlder

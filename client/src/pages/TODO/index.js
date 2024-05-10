@@ -1,18 +1,17 @@
 // To-Do page index
 import { useContext } from "react";
-import NewTask from "./components/NewTask";
-import TaskList from "./components/TaskList";
+import NewTask from "./NewTask";
+import TaskList from "./TaskList";
 import { TaskContext } from "../../contexts/TasksContext";
 
 const Todo = () => {
-    
-    const {tasks, setTasks} = useContext(TaskContext)
 
-    // console.log(tasks)
+    const {tasks, updateTasks} = useContext(TaskContext)
 
     return (
         <div>
-            <NewTask tasks={tasks} setTasks={setTasks}/>
+            <h3>TO DO</h3>
+            <NewTask updateTasks={updateTasks}/>
             <TaskList tasks={tasks}/>
         </div>
     );

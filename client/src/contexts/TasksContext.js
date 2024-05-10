@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 // const { v4: uuidv4 } = require('uuid');
 
 export const TaskContext = createContext();
@@ -7,6 +7,33 @@ export const TaskContext = createContext();
 const TaskContexttProvider = ({ children }) => {
 
   const [tasks, setTasks] = useState([])
+
+  useEffect(()=> {
+    const getTasks = async () => {
+      try{
+        const res = await fetch("/todo")
+        // console.log("RES: ",res)
+        const {tasks} = await res.json()
+        // const allTasks = await res.json()
+        
+        
+        console.log("CONTEXT tasks: ", tasks)
+        setTasks(tasks)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getTasks()
+  }, [])
+// add new task to list
+// update existing task 
+// delete task from list
+
+  const updateTasks = (newTask) => {
+    setTasks([...tasks, newTask])
+  }
+
+
 
 //   const createNewTask = (task) => {
 //     // const newTask = Object.create(
@@ -36,7 +63,7 @@ const TaskContexttProvider = ({ children }) => {
 // } 
 
   return (
-    <TaskContext.Provider value={{tasks, setTasks}}>
+    <TaskContext.Provider value={{tasks, updateTasks}}>
       {children}
     </TaskContext.Provider>
   );
