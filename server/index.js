@@ -3,11 +3,16 @@
 const express = require("express");
 const morgan = require("morgan");
 
+// require('dotenv').config()
+
+
 const PORT = 4000;
 
 // //require the handlers
 
-// const listUpcomingEvents = require("./importCalendar");
+const createTaskHandlder = require("./handlers/createTaskHandler")
+const getTasksHandler = require("./handlers/getTasksHandler")
+
 
 express()
   .use(function (req, res, next) {
@@ -27,6 +32,21 @@ express()
   .use(express.urlencoded({ extended: false }))
   .use("/", express.static(__dirname + "/"))
 
-//   .get("/daily", listUpcomingEvents)
+
+
+  // get tasks from DB
+  .get("/todo", getTasksHandler)
+
+  // adds new task object to DB
+  .post("/todo", createTaskHandlder)
+
+
+
+
+
+
+
+
+
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

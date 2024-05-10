@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Day from "./components/Day";
 import FutureLog from "./components/FutureLog";
 // import Login from "./components/Login"
-import ToDo from "./pages/TODO/components/NewTask"
+
+import Todo from "./pages/TODO/index"
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
         {/* <Route path="/" element={<Login />} /> */}
         <Route path="/day" element={<Day />} />
         <Route path="/futureLog" element={<FutureLog />} />
-        <Route path="/todo" element={<ToDo />} />
+        <Route path="/todo" element={<Todo />} />
       </Routes>
     </Router>
   );
