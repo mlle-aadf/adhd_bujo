@@ -6,12 +6,12 @@ import { TaskContext } from "../../contexts/TasksContext";
 
 const Todo = () => {
 
-    const {tasks, updateTasks} = useContext(TaskContext)
+    const {tasks, addNewTask} = useContext(TaskContext)
 
     return (
         <div>
             <h3>TO DO</h3>
-            <NewTask updateTasks={updateTasks}/>
+            <NewTask addNewTask={addNewTask}/>
             <TaskList tasks={tasks}/>
         </div>
     );
