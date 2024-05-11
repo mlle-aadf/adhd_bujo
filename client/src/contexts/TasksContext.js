@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-// const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 export const TaskContext = createContext();
 
@@ -7,15 +7,24 @@ export const TaskContext = createContext();
 const TaskContexttProvider = ({ children }) => {
 
   const [tasks, setTasks] = useState([])
+//   const [task, setTask] = useState(
+//     {
+//       _id: uuidv4(),
+//       description: "",
+//       importance: 0,
+//       urgency: 0,
+//       priority: 0,
+//       completed: false,
+//       deleted: false,
+//    }
+// )
 
+// retrieve tasks from db
   useEffect(()=> {
     const getTasks = async () => {
       try{
         const res = await fetch("/todo")
-        // console.log("RES: ",res)
         const {tasks} = await res.json()
-        // const allTasks = await res.json()
-        
         
         console.log("CONTEXT tasks: ", tasks)
         setTasks(tasks)
@@ -25,14 +34,17 @@ const TaskContexttProvider = ({ children }) => {
     }
     getTasks()
   }, [])
+
 // add new task to list
+const addNewTask = (newTask) => {
+  // console.log(newTask)
+}
 // update existing task 
 // delete task from list
 
-  const updateTasks = (newTask) => {
-    setTasks([...tasks, newTask])
-  }
 
+
+ 
 
 
 //   const createNewTask = (task) => {
@@ -63,7 +75,7 @@ const TaskContexttProvider = ({ children }) => {
 // } 
 
   return (
-    <TaskContext.Provider value={{tasks, updateTasks}}>
+    <TaskContext.Provider value={{tasks, addNewTask}}>
       {children}
     </TaskContext.Provider>
   );
