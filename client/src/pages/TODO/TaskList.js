@@ -29,23 +29,25 @@ export default TaskList;
 
 const TasksContainer = styled.div`
     color: white;
-    height: 50vh;
-    width: 50vw;
-    margin: 0 auto;
+    /* height: 50vh; */
+    /* width: 50vw; */
+    /* margin: 0 auto; */
     /* border: 1px solid fuchsia; */
-    font-size: 1rem;
+    font-size: 1.5rem;
     `
 
 const Task = styled.div`
     display: flex;
     align-items: center;
-    height: 1.5rem;
+    height: 2.5vw;
+    margin: 0.5rem 0;
     /* border: 2px solid aqua; */
 `
 
 const Tick = styled.div`
-    height: 1rem;
-    width: 1rem;
+    height: 2vw;
+    width: 2vw;
     margin-right: 0.5rem;
     border-radius: 5px;
+    cursor: pointer;
 `
