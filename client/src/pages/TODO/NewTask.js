@@ -141,21 +141,21 @@ const NewTask = ({addNewTask}) => {
 export default NewTask;
 
 const NewTaskContainer = styled.div`
-    width: 50vw;
-    margin: 0 auto 1rem auto;
-    height: 4vw;
+    margin-bottom: 2rem;
     display: flex;
+    align-items: center;
 ` 
 
 const PriorityInputs = styled.div`
-    width: 93%;
+    width: 90%;
+    height: fit-content;
     background-color: var(--faded);
     border: none;
     padding: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 50px;
 `
 
 const Desc = styled.input`
@@ -163,35 +163,34 @@ const Desc = styled.input`
     color: white;
     border: none;
     width: 90%;
-    height: 100%;
-    padding: 0.25rem 0.5rem;
+    padding: 0 0.5rem;
 `
 
 
 const Importance = styled.div`
     background-color: white;
-    width: 5vw;
-    height: 4vw;
+    /* height: 100%; */
+    height: 3vw;
+    width: 3vw;
     margin: 0 0.5rem;
-    border-radius: 20px;
+    border-radius: 50%;
 `
 
 const Urgency = styled.div`
     background-color: white;
     border: none;
-    width: 5vw;
-    height: 4vw;
-    border-radius: 20px;
+    height: 3vw;
+    width: 3vw;
+    border-radius: 50%;
 `
 
 const Add = styled.div`
     background-color: black;
     color: white;
     height: 4vw;
-    margin-left: 0.25rem;
-    font-size: 2rem;
+    margin-left: 1rem;
+    font-size: 2.5rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
 `
