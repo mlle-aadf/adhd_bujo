@@ -9,16 +9,16 @@ const getTasksHandler = async (req, res) => {
 
         const allTasks = await db
             .collection('tasks')
-            .find({})
+            // .find({})
             
-            // .aggregate([
-            //     {$match : {test: "task"}}
-            // ], {
-            //     collation: {
-            //       locale: "en_US",
-            //     //   numericOrdering: true,
-            //     },
-            //   })
+            .aggregate([
+                {$sort : {priority: -1}}
+            ], {
+                collation: {
+                  locale: "en_US",
+                //   numericOrdering: true,
+                },
+              })
             .toArray()
 
         if (!allTasks || allTasks.length === 0) {
