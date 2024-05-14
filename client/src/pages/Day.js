@@ -1,7 +1,10 @@
+import NavBar from "../components/NavBarMobile";
+
+
 const Day = () => {
     return (
         <div>
-            DAY
+            <NavBar/>
         </div>
     );
 };

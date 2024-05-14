@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Day from "./components/Day";
-import FutureLog from "./components/FutureLog";
 // import Login from "./components/Login"
 
+import Home from "./pages/Home";
+import Day from "./pages/Day";
+import Month from "./pages/Month";
+import Year from "./pages/Year";
 import Todo from "./pages/TODO/index"
 
 const App = () => {
@@ -10,10 +12,12 @@ const App = () => {
     <Router>
       <Routes>
         {/* <Route path="/index" element={<Index />} /> */}
-        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/" element={<Home />} />
         <Route path="/day" element={<Day />} />
-        <Route path="/futureLog" element={<FutureLog />} />
+        <Route path="/month" element={<Month />} />
+        <Route path="/year" element={<Year />} />
         <Route path="/todo" element={<Todo />} />
+        {/* <Route path="/notes" element={<Notes />} /> */}
       </Routes>
     </Router>
   );
