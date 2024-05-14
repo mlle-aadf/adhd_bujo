@@ -5,9 +5,7 @@ import { DayContext } from "../contexts/DayContext";
 const NavBarMobile = () => {
     
     const {thisDayNum, thisDayStr, thisMonth, thisYear} = useContext(DayContext)
-    
-    console.log(thisDayNum, thisDayStr, thisMonth, thisYear)
-    
+        
     return (
         <NavContainer>
             <DayLink to={'/day'}>{thisDayNum}</DayLink>

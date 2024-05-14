@@ -65,7 +65,8 @@ const NewTask = ({addNewTask}) => {
 
     const saveNewTask =() => {
         setPriority()
-        console.log(newTask)
+        addNewTask(newTask)
+        console.log("saved: ", newTask)
     }
 //     const saveNewTask = async () => {
         
@@ -124,7 +125,7 @@ const NewTask = ({addNewTask}) => {
 
         return (
             <NewTaskContainer>
-                    <PriorityInputs  onSubmit={handleSubmit} id="newTaskForm" onChange={console.log(newTask)}>
+                    <PriorityInputs  onSubmit={handleSubmit} id="newTaskForm">
                         <Desc type="text" name="Desc"   onChange={handleDesc} required/>
                         <Importance name="importance" onClick={handleImportance} style={{ backgroundColor: `var(--priority${newTask.importance})` }}/>
                     

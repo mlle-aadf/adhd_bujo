@@ -37,7 +37,7 @@ const TaskContexttProvider = ({ children }) => {
 
 // add new task to list
 const addNewTask = (newTask) => {
-  // console.log(newTask)
+  console.log("new: ", newTask)
 }
 // update existing task 
 // delete task from list
