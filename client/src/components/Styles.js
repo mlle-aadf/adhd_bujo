@@ -21,7 +21,7 @@ const DayLink = styled(Link)`
     margin: 0 0.5rem 0.75rem 0;
     width: 90%;
     
-    @media  (max-width: 500px) {
+    @media  (max-width: 500pgit stahx) {
         grid-column: 1 / span 1;
         grid-row: 1 / span 2;
     } 

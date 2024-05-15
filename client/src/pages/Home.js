@@ -1,10 +1,13 @@
-import { DayLink } from "../components/Styles";
+import DayLink from "../components/DayLink";
+import HomeLink from "../components/HomeLink";
 
 const Home = () => {
+    
     return (
         <div>
-            HOME
-            {/* <NavBar/> */}
+            <p>hello twiggy</p>
+            <HomeLink/><br/>
+            <DayLink/>
         </div>
     );
 };
