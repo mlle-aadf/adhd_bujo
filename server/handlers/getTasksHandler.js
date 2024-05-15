@@ -2,7 +2,7 @@ const mongoConnect = require('./mongoConnect')
 
 const getTasksHandler = async (req, res) => {
 
-    console.log(req)
+    console.log("REQ: ", req)
 
     try {
         const db = await mongoConnect(true)
@@ -15,8 +15,7 @@ const getTasksHandler = async (req, res) => {
                 {$sort : {priority: -1}}
             ], {
                 collation: {
-                  locale: "en_US",
-                //   numericOrdering: true,
+                    locale: "en_US",
                 },
               })
             .toArray()
