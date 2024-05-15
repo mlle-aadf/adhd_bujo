@@ -2,6 +2,19 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom"
 
+// DayLink.js
+const DayBTN = styled(Link)`
+    text-decoration: none;
+    color: white;
+    font-size: 5rem;
+`
+
+// HomeLink.js
+const HomeBTN = styled(Link)`
+    text-decoration: none;
+    color: white;
+`
+
 // NavBarMobile.js
 const NavContainer = styled.div`
     @media  (max-width: 500px) {
@@ -59,4 +72,4 @@ const YearLink = styled(Link)`
     }
 `
 
-export {NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, YearLink}
+export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, YearLink}

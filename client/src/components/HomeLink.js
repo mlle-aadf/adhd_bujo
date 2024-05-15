@@ -2,7 +2,7 @@ import { HomeBTN } from "./Styles";
 
 const HomeLink = () => {
     return (
-        <HomeBTN>٩(◕‿◕)۶</HomeBTN>
+        <HomeBTN to={"/"}>٩(◕‿◕)۶</HomeBTN>
     );
 };
 
