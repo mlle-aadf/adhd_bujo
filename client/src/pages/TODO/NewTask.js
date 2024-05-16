@@ -22,7 +22,7 @@ const NewTask = ({addNewTask}) => {
     useEffect(()=> {
         const checkCompletion = (e) => {
             
-            console.log(newTask)
+            // console.log(newTask)
 
             const hasDescription = newTask.description.length > 0
             const hasImportance = newTask.importance !== 0
@@ -57,6 +57,16 @@ const NewTask = ({addNewTask}) => {
     }
     
     // set task priority
+    useEffect(()=>{
+        const setPriority = async () => {
+            const newPriority = newTask.importance+newTask.urgency
+            await setNewTask({...newTask, priority: newPriority})
+
+            console.log("newPriority: ", newPriority, "new: ", newTask)
+        }
+        setPriority()
+    }, [newTask.importance, newTask.urgency])
+
     // const setPriority = () => {
     //     const newPriority = newTask.importance+newTask.urgency
     //     setNewTask({...newTask, priority: newPriority})
@@ -66,7 +76,7 @@ const NewTask = ({addNewTask}) => {
     const saveNewTask =() => {
         // setPriority()
         setNewTask({...newTask, priority: newTask.importance+newTask.urgency})
-        // addNewTask(newTask)
+        addNewTask(newTask)
         console.log("newTask: 2", newTask)
     }
 

@@ -21,7 +21,7 @@ const TaskContexttProvider = ({ children }) => {
         const {tasks} = await res.json()
         
         setTasks(tasks)
-        console.log("CONTEXT tasks: ", tasks)
+        // console.log("CONTEXT tasks: ", tasks)
 
         defaultPriorities = tasks.slice(0, 3)
         console.log("default: ", defaultPriorities)
@@ -49,10 +49,7 @@ const TaskContexttProvider = ({ children }) => {
       })
       
       if (response.ok) {
-      console.log(response.json())
       setTasks([...tasks, newTask])
-
-
 
   }
   
