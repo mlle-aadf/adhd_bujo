@@ -17,7 +17,7 @@ const getTasksHandler = async (req, res) => {
                 collation: {
                     locale: "en_US",
                 },
-              })
+            })
             .toArray()
 
         if (!allTasks || allTasks.length === 0) {
@@ -28,15 +28,8 @@ const getTasksHandler = async (req, res) => {
             status: 200,
             tasks: allTasks,
             });}
-            // console.log("gettaskshandler: ",  allTasks)
-            // console.log("response: ", res)
-            // return res.status(200).json({
-            //     status: 200,
-            //     allTasks: allTasks
-            // })
     } catch (error) {
         console.log(error.message);
-        // res.status(500).json({ status: 500, message: error.message });
     } finally {
         await mongoConnect(false)
     }

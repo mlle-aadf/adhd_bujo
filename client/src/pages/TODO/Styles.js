@@ -60,7 +60,7 @@ const Urgency = styled.div`
 `
 
 const Add = styled.div`
-    background-color: black;
+    background-color: var(--faded);
     color: white;
     height: 4vw;
     margin-left: 1rem;

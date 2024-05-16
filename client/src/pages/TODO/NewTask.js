@@ -1,6 +1,6 @@
 import {NewTaskContainer, PriorityInputs, Desc, Importance, Urgency, Add} from "./Styles"
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 const { v4: uuidv4 } = require('uuid');
 
 const NewTask = ({addNewTask}) => {
@@ -18,26 +18,26 @@ const NewTask = ({addNewTask}) => {
     
     
     // disable button if new task field is empty or importance === 0 || urgency === 0 
-    // const [allCompleted, setAllCompleted] = useState()
-    // useEffect(()=> {
-    //     const checkCompletion = (e) => {
+    const [allCompleted, setAllCompleted] = useState(true)
+    useEffect(()=> {
+        const checkCompletion = (e) => {
             
-    //         console.log(updatedTask)
+            // console.log(newTask)
 
-    //         const hasDescription = updatedTask.description.length > 0
-    //         const hasImportance = updatedTask.importance !== 0
-    //         const hasUrgency = updatedTask.urgency !== 0
+            const hasDescription = newTask.description.length > 0
+            const hasImportance = newTask.importance !== 0
+            const hasUrgency = newTask.urgency !== 0
+
             
-    //         // console.log("1: ", hasDescription, "2: ", hasImportance, "3: ",hasUrgency )
-            
-            
-    // // ** complete is working, setAllCompleted isn't???
-    //         const complete = hasDescription && (hasImportance && hasUrgency)
-    //         // complete === true ?   setAllCompleted(true) : setAllCompleted(false)
-    //         setAllCompleted(complete)
-    //         // console.log("completed? : ", complete, allCompleted)
-    //     }
-    // }, [updatedTask])
+    // ** complete is working, setAllCompleted isn't???
+            const complete = hasDescription && (hasImportance && hasUrgency)
+            // complete === true ?   setAllCompleted(true) : setAllCompleted(false)
+            setAllCompleted(complete)
+            console.log("completed? : ", complete, allCompleted)
+        }
+
+        checkCompletion()
+    }, [newTask])
     
     // set task description
     const handleDesc =(e) => {
@@ -57,83 +57,41 @@ const NewTask = ({addNewTask}) => {
     }
     
     // set task priority
-    const setPriority = () => {
-        const priority = newTask.importance+newTask.urgency
-        setNewTask({...newTask, priority: priority})
-        console.log("pri: ", priority)
-    }
+    useEffect(()=>{
+        const setPriority = async () => {
+            const newPriority = newTask.importance+newTask.urgency
+            await setNewTask({...newTask, priority: newPriority})
 
-    const saveNewTask =() => {
+            console.log("newPriority: ", newPriority, "new: ", newTask)
+        }
         setPriority()
-        addNewTask(newTask)
-        console.log("saved: ", newTask)
-    }
-//     const saveNewTask = async () => {
-        
-//         // console.log("save: ", updatedTask)
+    }, [newTask.importance, newTask.urgency])
 
-//         // try{
-//         //         const response = await fetch("/todo", {
-//         //             method: "POST",
-//         //             headers: {"Content-Type": "application/json"},
-//         //             // body: JSON.stringify({updatedTask})
-//         //         })
+    // const setPriority = () => {
+    //     const newPriority = newTask.importance+newTask.urgency
+    //     setNewTask({...newTask, priority: newPriority})
+    //     // console.log("newPriority: ", newPriority, "new: ", newTask)
+    // }
     
-//         //         if (response.ok) {
-//         //         console.log(await response.json())
-//         //         addNewTask(newTask)
-//         //         } else {
-//         //             throw Error
-//         //         }
-//         //     } catch (error) {
-//         //         console.log(error.message)
-//         //     }
-
-//         // addNewTask()
-
-
-//         // try{
-//         //     const response = await fetch("/todo", {
-//         //         method: "POST",
-//         //         headers: {"Content-Type": "application/json"},
-//         //         // body: "helloooo"
-//         //         body: JSON.stringify({newTask})
-//         //     })
-
-//         //     if (response.ok) {
-//         //     console.log(await response.json())
-//         //     updateTasks(newTask)
-//         //     } else {
-//         //         throw Error
-//         //     }
-//         // } catch (error) {
-//         //     console.log(error.message)
-//         // }
-
-
-// //         // // reset inputs when save new task res.ok
-
-//     }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        // saveNewTask(updatedTask)
-        console.log("submitted")
-        // document.getElementById("newTaskForm").reset()
-
+    const saveNewTask =() => {
+        // setPriority()
+        setNewTask({...newTask, priority: newTask.importance+newTask.urgency})
+        addNewTask(newTask)
+        console.log("newTask: 2", newTask)
     }
+
 
         return (
             <NewTaskContainer>
-                    <PriorityInputs  onSubmit={handleSubmit} id="newTaskForm">
+                    <PriorityInputs id="newTaskForm">
                         <Desc type="text" name="Desc"   onChange={handleDesc} required/>
                         <Importance name="importance" onClick={handleImportance} style={{ backgroundColor: `var(--priority${newTask.importance})` }}/>
                     
                         <Urgency name="urgency" onClick={handleUrgency} style={{ backgroundColor: `var(--priority${newTask.urgency})` }}/>
                     </PriorityInputs>
-                    <Add type="submit" disabled={false} onClick={saveNewTask}>+</Add>
+                    <Add type="submit" onClick={saveNewTask} disabled={!allCompleted}>+</Add>
                 
-                {/* <button onClick={saveNewTask} disabled={!allCompleted}>+</button> */}
+            
             </NewTaskContainer>
         );
 //     };
