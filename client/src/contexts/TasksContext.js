@@ -10,7 +10,6 @@ const TaskContexttProvider = ({ children }) => {
   const [priorities, setPriorities] = useState()
 
 
-
 // retrieve tasks from db
   useEffect(()=> {
     const getTasks = async () => {
@@ -40,41 +39,46 @@ const TaskContexttProvider = ({ children }) => {
   }, [])
 
 // add new task to list
-const addNewTask = (newTask) => {
-  console.log("new: ", newTask)
+  const addNewTask = async (newTask) => {
+    console.log("addNew: ", newTask)
+
+    const response = await fetch("./todo", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(newTask)
+      })
+      
+      if (response.ok) {
+      console.log(response.json())
+      setTasks([...tasks, newTask])
 
 
 
-}
-// update existing task 
-// delete task from list
+  }
+  
+  
+  // update existing task 
+  // delete task from list
 
+  //     // const response = await fetch("./todo", {
+  //     //   method: "POST",
+  //     //   headers: {"Content-Type": "application/json"},
+  //     //   body: JSON.stringify(newTask)
+  //     // })
 
+  //     // if (response.ok) {
+  //     //   console.log(response.json())
+  //     //   setTasks([...tasks, newTask])
 
- 
+  //     // }
 
+  // } 
 
-
-
-//     // const response = await fetch("./todo", {
-//     //   method: "POST",
-//     //   headers: {"Content-Type": "application/json"},
-//     //   body: JSON.stringify(newTask)
-//     // })
-
-//     // if (response.ok) {
-//     //   console.log(response.json())
-//     //   setTasks([...tasks, newTask])
-
-//     // }
-
-// } 
-
+};
   return (
     <TaskContext.Provider value={{tasks, addNewTask}}>
       {children}
     </TaskContext.Provider>
   );
-};
-
-export default TaskContexttProvider;
+}
+export default TaskContexttProvider
