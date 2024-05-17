@@ -12,6 +12,7 @@ const PORT = 4000;
 
 const createTaskHandlder = require("./handlers/createTaskHandler")
 const getTasksHandler = require("./handlers/getTasksHandler")
+const getCompletedHandler = require("./handlers/getCompletedHandler")
 const updateTaskHandler = require("./handlers/updateTaskHandler")
 
 
@@ -37,6 +38,9 @@ express()
 
   // get tasks from DB
   .get("/todo", getTasksHandler)
+  
+  // get completed tasks from DB
+  .get("/todo", getCompletedHandler)
 
   // adds new task object to DB
   .post("/todo", createTaskHandlder)

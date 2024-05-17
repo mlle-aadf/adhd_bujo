@@ -1,6 +1,6 @@
 const mongoConnect = require('./mongoConnect')
 
-const getTasksHandler = async (req, res) => {
+const getCompletedHandler = async (req, res) => {
 
     // console.log("REQ: ", req)
     
@@ -8,11 +8,11 @@ const getTasksHandler = async (req, res) => {
     try {
         const db = await mongoConnect(true)
 
-        const allTasks = await db
+        const allCompleted = await db
             .collection('tasks')
-    // return all tasks in database not marked "completed" or "deleted"
+    // return all tasks in database marked "completed"
             .aggregate([
-                // {$match :  {$and: [{completed : false}, {deleted : false}] }},
+                {$match :  {completed : true}},
                 {$sort : {priority: -1}}
             ], {
                 collation: {
@@ -21,13 +21,13 @@ const getTasksHandler = async (req, res) => {
             })
             .toArray()
 
-        if (!allTasks || allTasks.length === 0) {
+        if (!allCompleted || allCompleted.length === 0) {
             return res.status(404).send("No tasks found")
         } else {
-            console.log("alltasks: ", allTasks)
+            console.log("allCompleted: ", allCompleted)
             return res.status(200).json({
             status: 200,
-            tasks: allTasks,
+            completed: allCompleted,
             });}
     } catch (error) {
         console.log(error.message);
@@ -36,4 +36,4 @@ const getTasksHandler = async (req, res) => {
     }
 }
 
-module.exports = getTasksHandler
+module.exports = getCompletedHandler

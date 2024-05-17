@@ -1,6 +1,20 @@
 import styled from "styled-components";
 // TO-DO page styled components
 
+
+// Completed.js
+const CompletedContainer = styled.div`
+    @media  (max-width: 500px) {
+        display: flex;
+        flex-direction: column;
+        width: 75vw;
+    }
+    `
+const CompletedTitle = styled.h3`
+        
+`
+
+
 // Index.js
 const TodoTitle = styled.h3`
     
@@ -103,4 +117,4 @@ const Tick = styled.li`
 
 
 //_______________________________________________________________
-export {TodoTitle, TodoContainer, NewTaskContainer, PriorityInputs, Desc, Importance, Urgency, Add, TasksContainer, Task, Tick}
+export {CompletedTitle, CompletedContainer, TodoTitle, TodoContainer, NewTaskContainer, PriorityInputs, Desc, Importance, Urgency, Add, TasksContainer, Task, Tick}

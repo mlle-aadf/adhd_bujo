@@ -7,60 +7,63 @@ export const TaskContext = createContext();
 const TaskContexttProvider = ({ children }) => {
 
   const [tasks, setTasks] = useState([])
+  const [completed, setCompleted] = useState([])
+  const [deleted, setDeleted] = useState([])
   const [priorities, setPriorities] = useState()
 
+  const [refresh, setRefresh] = useState(false)
 
-// retrieve tasks from db
+// retrieve active tasks from db
 const getTasks = async () => {
-      
-  let defaultPriorities
+  
   
   try{
     const res = await fetch("/todo")
     const {tasks} = await res.json()
     
-    setTasks(tasks)
-    // console.log("CONTEXT tasks: ", tasks)
+    // triage tasks ->
 
-    defaultPriorities = tasks.slice(0, 3)
-    // console.log("default: ", defaultPriorities)
-    
-    /// 
-    setPriorities(defaultPriorities)
-    // console.log("priorities: ", priorities)
-    
-    
+    // filter() task.complete !== true && task.delete !== true
+    const activeTasks = tasks.filter((task) => 
+        task.completed !== true && task.deleted !== true
+      )
+
+
+    // filter() task.complete === true
+    const completeFiltered = tasks.filter((task) => 
+        task.completed === true
+      )
+
+      // console.log("completed: ", completeFiltered)
+    // filter() task.delete === true
+
+    setTasks(activeTasks)
+    setCompleted(completeFiltered)
+
+
+
   } catch (err) {
     console.log(err)
   }
 }  
 
-useEffect(()=> {
-    // const getTasks = async () => {
-      
-    //   let defaultPriorities
-      
-    //   try{
-    //     const res = await fetch("/todo")
-    //     const {tasks} = await res.json()
-        
-    //     setTasks(tasks)
-    //     // console.log("CONTEXT tasks: ", tasks)
+// const getCompleted = async () => {
+//   try{
+//     const res = await fetch("/todo")
+//     const {completed} = await res.json()
+    
+//     console.log("context getCompleted: ", completed)
+//     setCompleted(completed)
+//   } catch (err) {
+//     console.log(err)
+  
+//   }
+// }
 
-    //     defaultPriorities = tasks.slice(0, 3)
-    //     console.log("default: ", defaultPriorities)
-        
-    //     /// 
-    //     setPriorities(defaultPriorities)
-    //     console.log("priorities: ", priorities)
-        
-        
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
+
+useEffect(()=> {
     getTasks()
-  }, [])
+  }, [refresh])
 
 // add new task to list
   const addNewTask = async (newTask) => {
@@ -73,15 +76,15 @@ useEffect(()=> {
       })
       
       if (response.ok) {
-      
-      getTasks()
-      }
+      setRefresh(!refresh)
+      // getTasks()
+    }
   }
   
   
   // update existing task 
   const updateTask = async (opt, taskId) => {
-
+    
     const updateInfo = {
       option: opt,
       taskID: taskId
@@ -92,10 +95,11 @@ useEffect(()=> {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(updateInfo)
     })
-
+    
     
     if (response.ok) {
-      console.log("RESPONSE: ", response)
+      // console.log("RESPONSE: ", response)
+      setRefresh(!refresh)
       // getTasks()
     }
   }
@@ -119,7 +123,7 @@ useEffect(()=> {
 
 // };
   return (
-    <TaskContext.Provider value={{tasks, addNewTask, updateTask}}>
+    <TaskContext.Provider value={{tasks, completed, addNewTask, updateTask}}>
       {children}
     </TaskContext.Provider>
   );
