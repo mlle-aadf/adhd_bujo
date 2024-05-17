@@ -2,7 +2,7 @@ const mongoConnect = require('./mongoConnect')
 
 const getTasksHandler = async (req, res) => {
 
-    console.log("REQ: ", req)
+    // console.log("REQ: ", req)
 
     try {
         const db = await mongoConnect(true)
@@ -12,6 +12,7 @@ const getTasksHandler = async (req, res) => {
             // .find({})
             
             .aggregate([
+                {$match :  {$and: [{completed : false}, {deleted : false}] }},
                 {$sort : {priority: -1}}
             ], {
                 collation: {

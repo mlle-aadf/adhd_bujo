@@ -2,17 +2,14 @@ import styled from "styled-components";
 import checkIcon from "../../icons/complete.png";
 import deleteIcon from "../../icons/delete.png";
 
-import { useContext } from "react";
-import { TaskContext } from "../../contexts/TasksContext";
-
 const CheckBoxMenu = ({updateTask, taskId}) => {
     
     const completeHandler = () => {        
-        updateTask("complete ", taskId )
+        updateTask("complete", taskId )
     }
     
     const deleteHandler = () => {        
-        updateTask("delete ", taskId)
+        updateTask("delete", taskId)
     }
     
     return (

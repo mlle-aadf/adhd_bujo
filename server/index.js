@@ -12,7 +12,7 @@ const PORT = 4000;
 
 const createTaskHandlder = require("./handlers/createTaskHandler")
 const getTasksHandler = require("./handlers/getTasksHandler")
-const deleteTaskHandler = require("./handlers/deleteTaskHandler")
+const updateTaskHandler = require("./handlers/updateTaskHandler")
 
 
 express()
@@ -41,8 +41,8 @@ express()
   // adds new task object to DB
   .post("/todo", createTaskHandlder)
   
-  // deletes a task object from DB
-  .patch("/todo", deleteTaskHandler)
+  // updates a task object from DB
+  .patch("/todo", updateTaskHandler)
   
   
   // deletes all tasks marked "deleted"
