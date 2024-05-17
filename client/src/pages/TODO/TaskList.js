@@ -1,10 +1,19 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 import { useContext } from "react";
 import { TaskContext } from "../../contexts/TasksContext";
 
+import { TasksContainer, Task, Tick} from "./Styles";
+
+import CheckBoxMenu from "./CheckBoxMenu";
+
 const TaskList = () => {
 
-    const {tasks} = useContext(TaskContext)
+    const {tasks, updateTask} = useContext(TaskContext)
+
+    const tickHandler = () => {
+        console.log("you clicked me")
+    // expand checkBox menu
+    }
 
     return (
         
@@ -14,7 +23,8 @@ const TaskList = () => {
                 tasks.map(
                     (task) => 
                         <Task key={task._id}>
-                            <Tick style={{background: `linear-gradient(90deg, var(--priority${task.importance}) 0%, var(--priority${task.urgency}` }}></Tick>
+                            <Tick onClick={tickHandler} style={{background: `linear-gradient(90deg, var(--priority${task.importance}) 0%, var(--priority${task.urgency}`} }/>
+                            <CheckBoxMenu updateTask={updateTask} taskId={task._id}/>
                             <p style={{maxWidth:"85%"}}>{task.description}</p>
                         </Task>
                     
@@ -27,28 +37,28 @@ const TaskList = () => {
 
 export default TaskList;
 
-const TasksContainer = styled.ul`
-    list-style-type: none;
-    color: white;
-    margin: 0;
-    padding: 0;
-    font-size: 1.5rem;
-    `
+// const TasksContainer = styled.ul`
+//     list-style-type: none;
+//     color: white;
+//     margin: 0;
+//     padding: 0;
+//     font-size: 1.5rem;
+//     `
 
-const Task = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    height: fit-content;
-    margin: -1rem 0;
-    `
+// const Task = styled.div`
+//     display: flex;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     height: fit-content;
+//     margin: -1rem 0;
+//     `
 
-const Tick = styled.li`
-    align-items: start;
-    align-self: center;
-    height: 4vw;
-    width: 4vw;
-    margin-right: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-`
+// const Tick = styled.li`
+//     align-items: start;
+//     align-self: center;
+//     height: 4vw;
+//     width: 4vw;
+//     margin-right: 1rem;
+//     border-radius: 5px;
+//     cursor: pointer;
+// `

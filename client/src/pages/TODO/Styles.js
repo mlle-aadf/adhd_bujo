@@ -59,17 +59,48 @@ const Urgency = styled.div`
     border-radius: 50%;
 `
 
-const Add = styled.div`
-    background-color: var(--faded);
+const Add = styled.button`
+    /* background-color: var(--faded); */
     color: white;
-    height: 4vw;
+    /* height: 4vw; */
+    height: fit-content;
+    border: none;
+    border-radius: 20px;
     margin-left: 1rem;
-    font-size: 2.5rem;
-    cursor: pointer;
+    font-size: 1.5rem;
+    /* cursor: pointer; */
     display: flex;
     align-items: center;
 `
 
+// TaskList.js
+const TasksContainer = styled.ul`
+    list-style-type: none;
+    color: white;
+    margin: 0;
+    padding: 0;
+    /* font-size: 1.5rem; */
+    `
+
+const Task = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: fit-content;
+    margin: -1rem 0;
+    `
+
+const Tick = styled.li`
+    align-items: start;
+    align-self: center;
+    height: 4vw;
+    width: 4vw;
+    margin-right: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+`
+
+
 
 //_______________________________________________________________
-export {TodoTitle, TodoContainer, NewTaskContainer, PriorityInputs, Desc, Importance, Urgency, Add}
+export {TodoTitle, TodoContainer, NewTaskContainer, PriorityInputs, Desc, Importance, Urgency, Add, TasksContainer, Task, Tick}

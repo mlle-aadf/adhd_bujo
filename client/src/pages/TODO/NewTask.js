@@ -18,9 +18,11 @@ const NewTask = ({addNewTask}) => {
     
     
     // disable button if new task field is empty or importance === 0 || urgency === 0 
-    const [allCompleted, setAllCompleted] = useState(true)
+    const [allCompleted, setAllCompleted] = useState(false)
+    
+    
     useEffect(()=> {
-        const checkCompletion = (e) => {
+        // const checkCompletion = (e) => {
             
             // console.log(newTask)
 
@@ -34,14 +36,15 @@ const NewTask = ({addNewTask}) => {
             // complete === true ?   setAllCompleted(true) : setAllCompleted(false)
             setAllCompleted(complete)
             console.log("completed? : ", complete, allCompleted)
-        }
+        
 
-        checkCompletion()
+        // checkCompletion()
     }, [newTask])
     
     // set task description
     const handleDesc =(e) => {
         setNewTask({...newTask, description: e.target.value})
+        // checkCompletion()
     }
     
     // set task importance
@@ -76,6 +79,7 @@ const NewTask = ({addNewTask}) => {
     const saveNewTask =() => {
         // setPriority()
         setNewTask({...newTask, priority: newTask.importance+newTask.urgency})
+        
         addNewTask(newTask)
         console.log("newTask: 2", newTask)
     }
@@ -89,7 +93,7 @@ const NewTask = ({addNewTask}) => {
                     
                         <Urgency name="urgency" onClick={handleUrgency} style={{ backgroundColor: `var(--priority${newTask.urgency})` }}/>
                     </PriorityInputs>
-                    <Add type="submit" onClick={saveNewTask} disabled={!allCompleted}>+</Add>
+                    <Add type="submit" onClick={saveNewTask} disabled={!allCompleted} style={allCompleted? EnabledStyle : DisabledStyle}>+</Add>
                 
             
             </NewTaskContainer>
@@ -100,3 +104,12 @@ const NewTask = ({addNewTask}) => {
 export default NewTask;
 
 
+const DisabledStyle = {
+    backgroundColor: "transparent",
+    cursor: "not-allowed"
+}
+
+const EnabledStyle = {
+    backgroundColor: "var(--faded)",
+    cursor: "pointer"
+}
