@@ -19,8 +19,10 @@ const NewTask = ({addNewTask}) => {
     
     // disable button if new task field is empty or importance === 0 || urgency === 0 
     const [allCompleted, setAllCompleted] = useState(true)
+    
+    
     useEffect(()=> {
-        const checkCompletion = (e) => {
+        // const checkCompletion = (e) => {
             
             // console.log(newTask)
 
@@ -34,14 +36,15 @@ const NewTask = ({addNewTask}) => {
             // complete === true ?   setAllCompleted(true) : setAllCompleted(false)
             setAllCompleted(complete)
             console.log("completed? : ", complete, allCompleted)
-        }
+        
 
-        checkCompletion()
+        // checkCompletion()
     }, [newTask])
     
     // set task description
     const handleDesc =(e) => {
         setNewTask({...newTask, description: e.target.value})
+        // checkCompletion()
     }
     
     // set task importance
@@ -76,6 +79,7 @@ const NewTask = ({addNewTask}) => {
     const saveNewTask =() => {
         // setPriority()
         setNewTask({...newTask, priority: newTask.importance+newTask.urgency})
+        
         addNewTask(newTask)
         console.log("newTask: 2", newTask)
     }

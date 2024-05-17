@@ -11,30 +11,54 @@ const TaskContexttProvider = ({ children }) => {
 
 
 // retrieve tasks from db
-  useEffect(()=> {
-    const getTasks = async () => {
+const getTasks = async () => {
       
-      let defaultPriorities
-      
-      try{
-        const res = await fetch("/todo")
-        const {tasks} = await res.json()
-        
-        setTasks(tasks)
-        // console.log("CONTEXT tasks: ", tasks)
+  let defaultPriorities
+  
+  try{
+    const res = await fetch("/todo")
+    const {tasks} = await res.json()
+    
+    setTasks(tasks)
+    // console.log("CONTEXT tasks: ", tasks)
 
-        defaultPriorities = tasks.slice(0, 3)
-        console.log("default: ", defaultPriorities)
+    defaultPriorities = tasks.slice(0, 3)
+    console.log("default: ", defaultPriorities)
+    
+    /// 
+    setPriorities(defaultPriorities)
+    console.log("priorities: ", priorities)
+    
+    
+  } catch (err) {
+    console.log(err)
+  }
+}  
+
+useEffect(()=> {
+    // const getTasks = async () => {
+      
+    //   let defaultPriorities
+      
+    //   try{
+    //     const res = await fetch("/todo")
+    //     const {tasks} = await res.json()
         
-        /// 
-        setPriorities(defaultPriorities)
-        console.log("priorities: ", priorities)
+    //     setTasks(tasks)
+    //     // console.log("CONTEXT tasks: ", tasks)
+
+    //     defaultPriorities = tasks.slice(0, 3)
+    //     console.log("default: ", defaultPriorities)
+        
+    //     /// 
+    //     setPriorities(defaultPriorities)
+    //     console.log("priorities: ", priorities)
         
         
-      } catch (err) {
-        console.log(err)
-      }
-    }
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
     getTasks()
   }, [])
 
@@ -42,19 +66,42 @@ const TaskContexttProvider = ({ children }) => {
   const addNewTask = async (newTask) => {
     console.log("addNew: ", newTask)
 
-    const response = await fetch("./todo", {
+    const response = await fetch("/todo", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newTask)
       })
       
       if (response.ok) {
-      setTasks([...tasks, newTask])
-
+      
+        getTasks()
+        // setTasks([...tasks, newTask])
+      }
   }
   
-  
   // update existing task 
+  const updateTask = async (opt, taskId) => {
+
+    console.log(`task ${opt}:  ${taskId}`)
+
+    const updateInfo = {
+      option: opt,
+      taskID: taskId
+    }
+
+    const response = await fetch("/todo", {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(updateInfo)
+    })
+
+    if (response.ok) {
+      //
+    }
+
+  }
+
+
   // delete task from list
 
   //     // const response = await fetch("./todo", {
@@ -71,9 +118,9 @@ const TaskContexttProvider = ({ children }) => {
 
   // } 
 
-};
+// };
   return (
-    <TaskContext.Provider value={{tasks, addNewTask}}>
+    <TaskContext.Provider value={{tasks, addNewTask, updateTask}}>
       {children}
     </TaskContext.Provider>
   );

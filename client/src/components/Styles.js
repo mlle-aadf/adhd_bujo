@@ -71,5 +71,9 @@ const YearLink = styled(Link)`
     
     }
 `
+// TodoLink.js
+const CheckBox = styled(Link)`
 
-export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, YearLink}
+`
+
+export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, YearLink, CheckBox}
