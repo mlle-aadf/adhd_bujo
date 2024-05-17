@@ -1,4 +1,5 @@
 // To-Do page index
+import NavBarMobile from "../../components/NavBarMobile"
 import {TodoTitle, TodoContainer} from "./Styles"
 import NewTask from "./NewTask";
 import TaskList from "./TaskList";
@@ -11,6 +12,7 @@ const Todo = () => {
 
     return (
         <>
+            <NavBarMobile/>
             <TodoContainer>
                 <TodoTitle>TO DO</TodoTitle>
                 <NewTask addNewTask={addNewTask}/>

@@ -84,11 +84,11 @@ const TasksContainer = styled.ul`
 
 const Task = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     align-items: center;
     height: fit-content;
-    margin: -1rem 0;
-    `
+    margin: -0.5rem 0;
+`
 
 const Tick = styled.li`
     align-items: start;
