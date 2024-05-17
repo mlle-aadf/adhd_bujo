@@ -18,7 +18,7 @@ const NewTask = ({addNewTask}) => {
     
     
     // disable button if new task field is empty or importance === 0 || urgency === 0 
-    const [allCompleted, setAllCompleted] = useState(true)
+    const [allCompleted, setAllCompleted] = useState(false)
     
     
     useEffect(()=> {
@@ -93,7 +93,7 @@ const NewTask = ({addNewTask}) => {
                     
                         <Urgency name="urgency" onClick={handleUrgency} style={{ backgroundColor: `var(--priority${newTask.urgency})` }}/>
                     </PriorityInputs>
-                    <Add type="submit" onClick={saveNewTask} disabled={!allCompleted}>+</Add>
+                    <Add type="submit" onClick={saveNewTask} disabled={!allCompleted} style={allCompleted? EnabledStyle : DisabledStyle}>+</Add>
                 
             
             </NewTaskContainer>
@@ -104,3 +104,12 @@ const NewTask = ({addNewTask}) => {
 export default NewTask;
 
 
+const DisabledStyle = {
+    backgroundColor: "transparent",
+    cursor: "not-allowed"
+}
+
+const EnabledStyle = {
+    backgroundColor: "var(--faded)",
+    cursor: "pointer"
+}

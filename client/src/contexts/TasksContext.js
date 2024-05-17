@@ -74,8 +74,7 @@ useEffect(()=> {
       
       if (response.ok) {
       
-        getTasks()
-        // setTasks([...tasks, newTask])
+      getTasks()
       }
   }
   

@@ -59,13 +59,16 @@ const Urgency = styled.div`
     border-radius: 50%;
 `
 
-const Add = styled.div`
-    background-color: var(--faded);
+const Add = styled.button`
+    /* background-color: var(--faded); */
     color: white;
-    height: 4vw;
+    /* height: 4vw; */
+    height: fit-content;
+    border: none;
+    border-radius: 20px;
     margin-left: 1rem;
-    font-size: 2.5rem;
-    cursor: pointer;
+    font-size: 1.5rem;
+    /* cursor: pointer; */
     display: flex;
     align-items: center;
 `
