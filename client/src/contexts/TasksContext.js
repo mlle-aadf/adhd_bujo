@@ -93,10 +93,10 @@ useEffect(()=> {
       body: JSON.stringify(updateInfo)
     })
 
-    console.log("RESPONSE: ", response)
-
+    
     if (response.ok) {
-      getTasks()
+      console.log("RESPONSE: ", response)
+      // getTasks()
     }
   }
 
