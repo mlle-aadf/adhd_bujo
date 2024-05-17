@@ -23,11 +23,11 @@ const getTasks = async () => {
     // console.log("CONTEXT tasks: ", tasks)
 
     defaultPriorities = tasks.slice(0, 3)
-    console.log("default: ", defaultPriorities)
+    // console.log("default: ", defaultPriorities)
     
     /// 
     setPriorities(defaultPriorities)
-    console.log("priorities: ", priorities)
+    // console.log("priorities: ", priorities)
     
     
   } catch (err) {
@@ -82,8 +82,6 @@ useEffect(()=> {
   // update existing task 
   const updateTask = async (opt, taskId) => {
 
-    console.log(`task ${opt}:  ${taskId}`)
-
     const updateInfo = {
       option: opt,
       taskID: taskId
@@ -95,10 +93,11 @@ useEffect(()=> {
       body: JSON.stringify(updateInfo)
     })
 
-    if (response.ok) {
-      //
-    }
+    console.log("RESPONSE: ", response)
 
+    if (response.ok) {
+      getTasks()
+    }
   }
 
 

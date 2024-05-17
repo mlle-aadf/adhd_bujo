@@ -8,11 +8,11 @@ import { TaskContext } from "../../contexts/TasksContext";
 const CheckBoxMenu = ({updateTask, taskId}) => {
     
     const completeHandler = () => {        
-        updateTask("complete ", taskId )
+        updateTask("complete", taskId )
     }
     
     const deleteHandler = () => {        
-        updateTask("delete ", taskId)
+        updateTask("delete", taskId)
     }
     
     return (
