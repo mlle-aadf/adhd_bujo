@@ -88,7 +88,7 @@ const NewTask = ({addNewTask}) => {
         return (
             <NewTaskContainer>
                     <PriorityInputs id="newTaskForm">
-                        <Desc type="text" name="Desc"   onChange={handleDesc} required/>
+                        <Desc type="text" name="Desc" onChange={handleDesc} />
                         <Importance name="importance" onClick={handleImportance} style={{ backgroundColor: `var(--priority${newTask.importance})` }}/>
                     
                         <Urgency name="urgency" onClick={handleUrgency} style={{ backgroundColor: `var(--priority${newTask.urgency})` }}/>
