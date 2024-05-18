@@ -2,9 +2,6 @@ const mongoConnect = require('./mongoConnect')
 
 const getTasksHandler = async (req, res) => {
 
-    // console.log("REQ: ", req)
-    
-
     try {
         const db = await mongoConnect(true)
 
@@ -24,7 +21,7 @@ const getTasksHandler = async (req, res) => {
         if (!allTasks || allTasks.length === 0) {
             return res.status(404).send("No tasks found")
         } else {
-            console.log("alltasks: ", allTasks)
+            // console.log("alltasks: ", allTasks)
             return res.status(200).json({
             status: 200,
             tasks: allTasks,

@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Day from "./pages/Day";
 import Month from "./pages/Month";
 import Year from "./pages/Year";
-import Todo from "./pages/TODO/index"
+import TodoPage from "./pages/TODO/index"
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/day" element={<Day />} />
         <Route path="/month" element={<Month />} />
         <Route path="/year" element={<Year />} />
-        <Route path="/todo" element={<Todo />} />
+        <Route path="/todo" element={<TodoPage />} />
         {/* <Route path="/notes" element={<Notes />} /> */}
       </Routes>
     </Router>
