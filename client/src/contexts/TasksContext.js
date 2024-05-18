@@ -32,13 +32,17 @@ const getTasks = async () => {
     // filter() task.complete === true
     const completeFiltered = tasks.filter((task) => 
         task.completed === true
-      )
-
-      // console.log("completed: ", completeFiltered)
-    // filter() task.delete === true
+  )
+  
+  // console.log("completed: ", completeFiltered)
+  // filter() task.delete === true
+  const deleteFiltered = tasks.filter((task) => 
+      task.deleted === true
+  )
 
     setTasks(activeTasks)
     setCompleted(completeFiltered)
+    setDeleted(deleteFiltered)
 
 
 
@@ -123,7 +127,7 @@ useEffect(()=> {
 
 // };
   return (
-    <TaskContext.Provider value={{tasks, completed, addNewTask, updateTask}}>
+    <TaskContext.Provider value={{tasks, completed, deleted, addNewTask, updateTask}}>
       {children}
     </TaskContext.Provider>
   );
