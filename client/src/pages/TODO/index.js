@@ -14,7 +14,7 @@ import { TaskContext } from "../../contexts/TasksContext";
 
 const TodoPage = () => {
 
-    const {tasks, addNewTask} = useContext(TaskContext)
+    const {tasks, completed, deleted, addNewTask} = useContext(TaskContext)
 
     return (
         <>
