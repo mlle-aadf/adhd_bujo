@@ -3,6 +3,9 @@ import NavBarMobile from "../../components/NavBarMobile"
 import {TodoTitle, TodoContainer} from "./Styles"
 import NewTask from "./NewTask";
 import TaskList from "./TaskList";
+
+import Completed from "./Completed";
+
 import { useContext } from "react";
 import { TaskContext } from "../../contexts/TasksContext";
 
@@ -18,6 +21,7 @@ const Todo = () => {
                 <NewTask addNewTask={addNewTask}/>
                 <TaskList tasks={tasks}/>
             </TodoContainer>
+            <Completed/>
         </>
     );
 };

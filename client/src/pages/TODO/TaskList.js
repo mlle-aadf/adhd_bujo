@@ -24,7 +24,7 @@ const TaskList = () => {
                     (task) => 
                         <Task key={task._id}>
                             <Tick onClick={tickHandler} style={{background: `linear-gradient(90deg, var(--priority${task.importance}) 0%, var(--priority${task.urgency}`} }/>
-                            <CheckBoxMenu updateTask={updateTask} taskId={task._id}/>
+                            {/* <CheckBoxMenu updateTask={updateTask} taskId={task._id}/> */}
                             <p style={{maxWidth:"85%"}}>{task.description}</p>
                         </Task>
                     
