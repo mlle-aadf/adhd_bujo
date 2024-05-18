@@ -98,14 +98,14 @@ useEffect(()=> {
     
     
     if (response.ok) {
-      // console.log("RESPONSE: ", response)
-      setRefresh(!refresh)
+console.log("TASK con 105: ", response)
+      setRefresh(refresh)
       // getTasks()
     }
   }
 
 
-  // delete task from list
+  // empty DELETED bin
 
   //     // const response = await fetch("./todo", {
   //     //   method: "POST",

@@ -1,12 +1,14 @@
-import HomeLink from "../components/HomeLink";
 import NavBar from "../components/NavBarMobile";
-import Todo from "./TODO";
+import Priorities from "../components/Priorities";
+import ToDo from "./TODO/ToDo";
+import HomeLink from "../components/HomeLink";
 
 const Day = () => {
     return (
         <div>
             <NavBar/>
-            <Todo/>
+            <Priorities/>
+            <ToDo/>
             <HomeLink/>
         </div>
     );

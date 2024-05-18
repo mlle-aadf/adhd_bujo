@@ -13,6 +13,9 @@ const DayBTN = styled(Link)`
 const HomeBTN = styled(Link)`
     text-decoration: none;
     color: white;
+    position: fixed;
+    bottom: 5%;
+    right: 5%
 `
 
 // NavBarMobile.js
@@ -71,9 +74,21 @@ const YearLink = styled(Link)`
     
     }
 `
+
+// Priorities.js
+const PrioritiesContainer = styled.div`
+    background-color: var(--faded);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-right: 1rem;
+    line-height: 1rem;
+`
+
 // TodoLink.js
 const CheckBox = styled(Link)`
 
 `
 
-export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, YearLink, CheckBox}
+export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, YearLink, PrioritiesContainer, CheckBox}
