@@ -5,13 +5,14 @@ import NewTask from "./NewTask";
 import TaskList from "./TaskList";
 
 import Completed from "./Completed";
+import Deleted from "./Deleted";
 
 import { useContext } from "react";
 import { TaskContext } from "../../contexts/TasksContext";
 
 const Todo = () => {
 
-    const {tasks, addNewTask} = useContext(TaskContext)
+    const {tasks, completed, deleted, addNewTask} = useContext(TaskContext)
 
     return (
         <>
@@ -21,7 +22,8 @@ const Todo = () => {
                 <NewTask addNewTask={addNewTask}/>
                 <TaskList tasks={tasks}/>
             </TodoContainer>
-            <Completed/>
+            <Completed completed={completed}/>
+            <Deleted deleted={deleted}/>
         </>
     );
 };
