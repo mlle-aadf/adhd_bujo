@@ -17,12 +17,12 @@ const ToDo = ({addNewTask, tasks}) => {
     
     return (
         <TodoContainer>
-            <TodoTitle to={"/todo"} style={{display:"flex", alignItems:"center"}}>
+            {/* <TodoTitle  style={{display:"flex", alignItems:"center"}}> */}
                 <h3 style={{height:"1.5rem"}}>
                     <MdOutlineCheckBoxOutlineBlank style={{marginRight:"1rem", color:`${isExpanded? "var(--mint)" : "white"}`}} {...getToggleProps({onClick:clickHandler})}></MdOutlineCheckBoxOutlineBlank>
+                <TodoTitle to={"/todo"} style={{height:"2rem"} }>TO DO</TodoTitle>
                 </h3>
-                <h3 style={{height:"2rem"} }>TO DO</h3>
-            </TodoTitle>
+            {/* </TodoTitle> */}
             <div {...getCollapseProps()}>
                 <NewTask addNewTask={addNewTask}/>
                 <TaskList tasks={tasks}/>
