@@ -7,14 +7,16 @@ import ToDo from "./ToDo";
 
 import Completed from "./Completed";
 import Deleted from "./Deleted";
+
 import HomeLink from "../../components/HomeLink";
+
 
 import { useContext } from "react";
 import { TaskContext } from "../../contexts/TasksContext";
 
 const TodoPage = () => {
 
-    const {tasks, addNewTask} = useContext(TaskContext)
+    const {tasks, completed, deleted, addNewTask} = useContext(TaskContext)
 
     return (
         <>
@@ -23,6 +25,7 @@ const TodoPage = () => {
                 <TodoTitle>TO DO</TodoTitle>
                 <NewTask addNewTask={addNewTask}/>
                 <TaskList tasks={tasks}/>
+
             </TodoContainer> */}
             <ToDo addNewTask={addNewTask} tasks={tasks}/>
             <Completed completed={completed}/>
