@@ -9,7 +9,7 @@ import { PrioritiesContainer } from "./Styles";
 
 const Priorities = () => {
     
-    const [isExpanded, setExpanded] = useState(false);
+    const [isExpanded, setExpanded] = useState(true);
     const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
 
     const clickHandler = () => {
