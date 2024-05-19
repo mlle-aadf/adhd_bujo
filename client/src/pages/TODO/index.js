@@ -7,7 +7,9 @@ import ToDo from "./ToDo";
 
 import Completed from "./Completed";
 import Deleted from "./Deleted";
+
 import HomeLink from "../../components/HomeLink";
+
 
 import { useContext } from "react";
 import { TaskContext } from "../../contexts/TasksContext";
