@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 // TO-DO page styled components
 
@@ -27,7 +28,9 @@ const DeletedTitle = styled.h3`
 `
 
 // Index.js
-const TodoTitle = styled.h3`
+const TodoTitle = styled(Link)`
+    text-decoration: none;
+    color: white;
     
 `
 const TodoContainer = styled.div`
