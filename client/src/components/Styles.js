@@ -1,6 +1,7 @@
 // component styles
 import styled from "styled-components";
 import { Link } from "react-router-dom"
+import { FaRegStar } from "react-icons/fa";
 
 // DayLink.js
 const DayBTN = styled(Link)`
@@ -76,19 +77,46 @@ const YearLink = styled(Link)`
 `
 
 // Priorities.js
+const PrioriTitleCont = styled.div`
+  /* text-decoration: none;
+  color: white; */
+
+  @media (max-width: 500px) {
+    display: flex;
+    width: 75vw;
+    align-items: center;
+    margin: 1rem 0;
+    font-size: 2rem;
+  }
+`;
+
+const StarIcon = styled(FaRegStar)`
+  margin-right: 1rem;
+  /* font-size: 2rem; */
+`;
+
+const PriorityTitle = styled.h3`
+  color: white;
+
+  @media (max-width: 500px) {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+  }
+`;
+
 const PrioritiesContainer = styled.div`
     background-color: var(--faded);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    align-items: end;
-    padding-right: 1rem;
-    line-height: 1rem;
+    align-items: start;
+    padding: 0.5rem 1rem;
+    /* line-height: 1rem; */
 `
 
 // TodoLink.js
-const CheckBox = styled(Link)`
+const TasksLink = styled(Link)`
 
 `
 
-export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, YearLink, PrioritiesContainer, CheckBox}
+export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, TasksLink, YearLink, PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer}

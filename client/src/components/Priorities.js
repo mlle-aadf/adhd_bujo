@@ -1,10 +1,10 @@
-// import { useContext } from "react";
-// import { TaskContext } from "../../contexts/TasksContext";
-import { FaRegStar } from "react-icons/fa";
+import { useContext } from "react";
+import { TaskContext } from "../contexts/TasksContext";
+// import { FaRegStar } from "react-icons/fa";
 import { useState } from "react";
 import {useCollapse} from 'react-collapsed';
 
-import { PrioritiesContainer } from "./Styles";
+import { PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer } from "./Styles";
 
 
 const Priorities = () => {
@@ -15,18 +15,26 @@ const Priorities = () => {
     const clickHandler = () => {
         setExpanded((prevExpanded) => !prevExpanded)
     }
-    // const {priorities, updatePriorities} = useContext(TaskContext)
+    
+    const {priorities} = useContext(TaskContext)
 
     return (
-        <div>
-            
-            <h3><FaRegStar {...getToggleProps({onClick:clickHandler})} style={{marginRight:"1rem", color:`${isExpanded? "var(--priority1)" : "white"}`, height:"1.75rem"}}/>PRIORITIES</h3>
+        <>
+            <PrioriTitleCont>
+                <StarIcon {...getToggleProps({onClick:clickHandler})} style={{color:`${isExpanded? "var(--priority1)" : "white"}`}}/>
+                <PriorityTitle>PRIORITIES</PriorityTitle>
+            </PrioriTitleCont>
+
             <PrioritiesContainer {...getCollapseProps()}>
-                <p>i am important</p>
-                <p>i am also important</p>
-                <p>and so am i</p>
+                {priorities.length > 0 ?
+                <div>
+                    <p>{`${priorities[0].description}`}</p>
+                    <p>{`${priorities[1].description}`}</p>
+                    <p>{`${priorities[2].description}`}</p>
+                </div>
+                : <p>...</p>}
             </PrioritiesContainer>
-        </div>
+        </>
     );
 };
 

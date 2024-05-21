@@ -1,5 +1,5 @@
 // import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TaskContext } from "../../contexts/TasksContext";
 
 import { TasksContainer, Task, Tick} from "./Styles";
@@ -9,6 +9,7 @@ import CheckBoxMenu from "./CheckBoxMenu";
 const TaskList = () => {
 
     const {tasks, updateTask} = useContext(TaskContext)
+    // const [taskID, setTaskID] = useState
 
     const tickHandler = () => {
         console.log("you clicked me")
@@ -23,8 +24,9 @@ const TaskList = () => {
                 tasks.map(
                     (task) => 
                         <Task key={task._id}>
+                            <CheckBoxMenu updateTask={updateTask} taskId={task._id} />
                             <Tick onClick={tickHandler} style={{background: `linear-gradient(90deg, var(--priority${task.importance}) 0%, var(--priority${task.urgency}`} }/>
-                            <CheckBoxMenu updateTask={updateTask} taskId={task._id}/>
+                            {/* <CheckBoxMenu updateTask={updateTask} taskId={task._id}/> */}
                             <p style={{maxWidth:"85%"}}>{task.description}</p>
                         </Task>
                     

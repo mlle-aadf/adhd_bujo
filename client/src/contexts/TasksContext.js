@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-// const { v4: uuidv4 } = require('uuid');
 
 export const TaskContext = createContext();
 
@@ -9,60 +8,44 @@ const TaskContexttProvider = ({ children }) => {
   const [tasks, setTasks] = useState([])
   const [completed, setCompleted] = useState([])
   const [deleted, setDeleted] = useState([])
-  const [priorities, setPriorities] = useState()
+  const [priorities, setPriorities] = useState([])
 
   const [refresh, setRefresh] = useState(false)
 
 // retrieve active tasks from db
 const getTasks = async () => {
-  
-  
   try{
     const res = await fetch("/todo")
     const {tasks} = await res.json()
     
     // triage tasks ->
-
     // filter() task.complete !== true && task.delete !== true
     const activeTasks = tasks.filter((task) => 
         task.completed !== true && task.deleted !== true
       )
 
-
     // filter() task.complete === true
     const completeFiltered = tasks.filter((task) => 
         task.completed === true
   )
-  
-  // console.log("completed: ", completeFiltered)
+
   // filter() task.delete === true
   const deleteFiltered = tasks.filter((task) => 
       task.deleted === true
   )
 
+  // set default priorities  
+  // const defaultPriorities = tasks.slice(0,3)
+
     setTasks(activeTasks)
     setCompleted(completeFiltered)
     setDeleted(deleteFiltered)
-
-
+    setPriorities(tasks.slice(0,3))
 
   } catch (err) {
     console.log(err)
   }
 }  
-
-// const getCompleted = async () => {
-//   try{
-//     const res = await fetch("/todo")
-//     const {completed} = await res.json()
-    
-//     console.log("context getCompleted: ", completed)
-//     setCompleted(completed)
-//   } catch (err) {
-//     console.log(err)
-  
-//   }
-// }
 
 
 useEffect(()=> {
@@ -71,7 +54,7 @@ useEffect(()=> {
 
 // add new task to list
   const addNewTask = async (newTask) => {
-    console.log("addNew: ", newTask)
+    // console.log("addNew: ", newTask)
 
     const response = await fetch("/todo", {
       method: "POST",
@@ -81,7 +64,6 @@ useEffect(()=> {
       
       if (response.ok) {
       setRefresh(!refresh)
-      // getTasks()
     }
   }
   
@@ -102,32 +84,27 @@ useEffect(()=> {
     
     
     if (response.ok) {
-console.log("TASK con 105: ", response)
       setRefresh(refresh)
-      // getTasks()
     }
   }
 
 
   // empty DELETED bin
 
-  //     // const response = await fetch("./todo", {
-  //     //   method: "POST",
-  //     //   headers: {"Content-Type": "application/json"},
-  //     //   body: JSON.stringify(newTask)
-  //     // })
 
-  //     // if (response.ok) {
-  //     //   console.log(response.json())
-  //     //   setTasks([...tasks, newTask])
+// update priorities
+const updatePriorities = ({task}) => {
+  
+  
+  const updated = priorities.pop().unshift(task)
+  
+  console.log("pick me! ", updated)
+}
 
-  //     // }
+updatePriorities("top priority")
 
-  // } 
-
-// };
   return (
-    <TaskContext.Provider value={{tasks, completed, deleted, addNewTask, updateTask}}>
+    <TaskContext.Provider value={{tasks, completed, deleted, addNewTask, updateTask, priorities, updatePriorities}}>
       {children}
     </TaskContext.Provider>
   );

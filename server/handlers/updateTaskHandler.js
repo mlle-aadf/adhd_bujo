@@ -9,6 +9,11 @@ const updateTaskHandler = async (req, res) =>  {
         let mongoSET
         option === "complete" ? mongoSET = {"completed":true} : mongoSET = {"deleted":true} 
 
+        // switch option 
+        // case complete : mongoSET = {"completed":true}
+        // case delete : mongoSET = {"deleted":true}
+        // case pinned : mongoSET = {"pinned":true}
+
         console.log("MONGOSET: ", mongoSET)
 
         try{
