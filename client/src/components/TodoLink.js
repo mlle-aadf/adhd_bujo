@@ -1,11 +1,11 @@
-import { CheckBox } from "./Styles";
+import { TasksLink } from "./Styles";
 import check from "../icons/checkbox.png"
 
 const TodoLink = () => {
     return (
-        <CheckBox to={"/todo"}>
+        <TasksLink to={"/todo"}>
             <img src={check}/>
-        </CheckBox>
+        </TasksLink>
     );
 };
 

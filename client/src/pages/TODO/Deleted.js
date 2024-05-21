@@ -1,5 +1,5 @@
 import { DeletedContainer, DeletedTitle } from "./Styles";
-import { CgCloseR } from "react-icons/cg";
+import { MdDelete } from "react-icons/md";
 
 import { useState } from "react";
 import {useCollapse} from 'react-collapsed';
@@ -17,7 +17,7 @@ const Deleted = ({deleted}) => {
     return (
         <DeletedContainer>
             <DeletedTitle style={{display:"flex", alignItems:"center"}}>
-                <CgCloseR {...getToggleProps({onClick:clickHandler})} style={{marginRight:"1rem", color:`${isExpanded? "var(--mint)" : "white"}`, height:"1.75rem"}}/> DELETED
+                <MdDelete {...getToggleProps({onClick:clickHandler})} style={{marginRight:"1rem", color:`${isExpanded? "var(--mint)" : "white"}`, height:"2rem"}}/> DELETED
             </DeletedTitle>
             <div {...getCollapseProps()}>{deleted.map((task) => <li key={task._id}>{task.description}</li>)}</div>
         </DeletedContainer>

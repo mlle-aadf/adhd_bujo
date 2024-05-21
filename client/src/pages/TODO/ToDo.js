@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import {useCollapse} from 'react-collapsed';
-import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
+// import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 
-import {TodoTitle, TodoContainer} from "./Styles"
+import { CheckBoxIcon, TodoTitle, TodoContainer, TitleContainer} from "./Styles"
 import NewTask from "./NewTask";
 import TaskList from "./TaskList";
 
-const ToDo = ({addNewTask, tasks}) => {
+const ToDo = ({addNewTask, tasks, titleLink, cursor}) => {
     
     const [isExpanded, setExpanded] = useState(false);
     const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
@@ -17,12 +17,10 @@ const ToDo = ({addNewTask, tasks}) => {
     
     return (
         <TodoContainer>
-            {/* <TodoTitle  style={{display:"flex", alignItems:"center"}}> */}
-                <h3>
-                    <MdOutlineCheckBoxOutlineBlank style={{marginRight:"1rem", color:`${isExpanded? "var(--mint)" : "white"}`}} {...getToggleProps({onClick:clickHandler})}></MdOutlineCheckBoxOutlineBlank>
-                <TodoTitle to={"/todo"} >TO DO</TodoTitle>
-                </h3>
-            {/* </TodoTitle> */}
+            <TitleContainer>
+                    <CheckBoxIcon style={{color:`${isExpanded? "var(--mint)" : "white"}`}} {...getToggleProps({onClick:clickHandler})}/>
+                    <TodoTitle to={titleLink===false? null : "/todo"} style={{cursor: `${cursor!==false ? "pointer" : "auto"}`}}>TO DO</TodoTitle>
+            </TitleContainer>
             <div {...getCollapseProps()}>
                 <NewTask addNewTask={addNewTask}/>
                 <TaskList tasks={tasks}/>
