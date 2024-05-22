@@ -134,8 +134,9 @@ const Importance = styled.div`
   `;
 
 const ImportanceIcon = styled(FaExclamation)`
-  color: black
-  `
+  color: black;
+  padding: 0.5rem;
+`
   
   const Urgency = styled.div`
   background-color: white;
@@ -148,8 +149,9 @@ const ImportanceIcon = styled(FaExclamation)`
   justify-content: center;
 `;
 
-const UrgencyIcon = styled(FaRegClock  )`
-  color: black
+const UrgencyIcon = styled(FaRegClock)`
+  color: black;
+  padding: 0.5rem;
 `
 
 const Add = styled.button`
