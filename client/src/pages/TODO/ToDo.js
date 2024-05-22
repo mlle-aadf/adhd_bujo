@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {useCollapse} from 'react-collapsed';
-// import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 
 import { CheckBoxIcon, TodoTitle, TodoContainer, TitleContainer} from "./Styles"
 import NewTask from "./NewTask";

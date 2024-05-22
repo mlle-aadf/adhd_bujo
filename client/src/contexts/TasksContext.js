@@ -70,22 +70,20 @@ useEffect(()=> {
   
   // update existing task 
   const updateTask = async (opt, taskId) => {
-    
-    const updateInfo = {
-      option: opt,
-      taskID: taskId
-    }
-
-    const response = await fetch("/todo", {
-      method: "PATCH",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(updateInfo)
-    })
-    
-    
-    if (response.ok) {
-      setRefresh(refresh)
-    }
+      const updateInfo = {
+        option: opt,
+        taskID: taskId
+      }
+  
+      const response = await fetch("/todo", {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(updateInfo)
+      })
+      
+      if (response.ok) {
+        setRefresh(!refresh)
+      }
   }
 
 
@@ -96,9 +94,9 @@ useEffect(()=> {
 const updatePriorities = ({task}) => {
   
   
-  const updated = priorities.pop().unshift(task)
+  // const updated = priorities.pop().unshift(task)
   
-  console.log("pick me! ", updated)
+  console.log("pick me! ")
 }
 
 updatePriorities("top priority")

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom"
 import { FaRegStar } from "react-icons/fa";
 
+
 // DayLink.js
 const DayBTN = styled(Link)`
     text-decoration: none;
@@ -116,7 +117,9 @@ const PrioritiesContainer = styled.div`
 
 // TodoLink.js
 const TasksLink = styled(Link)`
-
+  text-decoration: none;
+  color: white;
+  font-size: 2rem;
 `
 
 export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, TasksLink, YearLink, PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer}

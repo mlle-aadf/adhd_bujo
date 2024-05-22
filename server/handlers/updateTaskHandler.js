@@ -35,12 +35,13 @@ const updateTaskHandler = async (req, res) =>  {
             return res.status(201).json(
                 {
                     status: 201,
-                    message: `task #${newTask._id} updated`
+                    message: `task #${taskID} updated`
                 }
             )
     
         } catch (error) {
             console.log(error.message)
+            
         } finally {
             mongoConnect(false)
         }

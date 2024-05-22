@@ -1,10 +1,10 @@
 import { TasksLink } from "./Styles";
-import check from "../icons/checkbox.png"
+import { FaRegSquare  } from "react-icons/fa6";
 
 const TodoLink = () => {
     return (
         <TasksLink to={"/todo"}>
-            <img src={check}/>
+            <FaRegSquare />
         </TasksLink>
     );
 };

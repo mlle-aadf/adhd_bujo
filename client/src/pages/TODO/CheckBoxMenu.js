@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import checkIcon from "../../icons/complete.png";
-import deleteIcon from "../../icons/delete.png";
+import { CheckMenuContainer, CompleteBTN, DeleteBTN, StarBTN } from "./Styles";
 
-const CheckBoxMenu = ({updateTask, taskId}) => {
+
+
+const CheckBoxMenu = ({updateTask, taskId, active}) => {
     
     // mark task as completed
     const completeHandler = () => {        
@@ -21,27 +21,14 @@ const CheckBoxMenu = ({updateTask, taskId}) => {
 
     
     return (
-        <CheckMenuContainer>
-            <CompleteBTN onClick={completeHandler} value={"complete"}><img src={checkIcon} alt=""/></CompleteBTN>
-            <DeleteBTN onClick={deleteHandler}><img src={deleteIcon} alt=""/></DeleteBTN>
+        
+        
+        <CheckMenuContainer active={active} >
+            <CompleteBTN onClick={completeHandler} value={"complete"}/>
+            <DeleteBTN onClick={deleteHandler}/>
+            <StarBTN/>
         </CheckMenuContainer>
     );
 };
 
 export default CheckBoxMenu;
-
-const CheckMenuContainer = styled.div`
-    background-color: var(--faded);
-    border-radius: 20px;
-`
-
-const CompleteBTN = styled.button`
-    background-color:transparent;
-    border: none;
-    `
-
-const DeleteBTN = styled.button`
-    background-color:transparent;
-    border: none;
-
-`
