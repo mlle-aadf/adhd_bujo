@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 
-import { FaStar, FaCheck, FaCircleCheck, FaCircleXmark } from "react-icons/fa6";
+import { FaStar, FaCheck, FaCircleCheck, FaCircleXmark, FaExclamation, FaRegClock, FaPlus } from "react-icons/fa6";
 import styled from "styled-components";
 // TO-DO page styled components
 
@@ -128,29 +128,49 @@ const Importance = styled.div`
   width: 8vw;
   margin: 0 0.5rem;
   border-radius: 50%;
-`;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `;
 
-const Urgency = styled.div`
+const ImportanceIcon = styled(FaExclamation)`
+  color: black
+  `
+  
+  const Urgency = styled.div`
   background-color: white;
   border: none;
   height: 8vw;
   width: 8vw;
   border-radius: 50%;
-`;
-
-const Add = styled.button`
-  /* background-color: var(--faded); */
-  color: white;
-  /* height: 4vw; */
-  height: fit-content;
-  border: none;
-  border-radius: 20px;
-  margin-left: 1rem;
-  font-size: 1.5rem;
-  /* cursor: pointer; */
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
+
+const UrgencyIcon = styled(FaRegClock  )`
+  color: black
+`
+
+const Add = styled.button`
+
+  color: white;
+
+  height: fit-content;
+  border: none;
+  border-radius: 50%;
+  margin-left: 1rem;
+  height: 1.5rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `;
+  
+const AddIcon = styled(FaPlus)`
+  font-size: 1rem;
+  padding: 0.25rem 0.1rem;
+`
 
 // TaskList.js
 const TasksContainer = styled.ul`
@@ -181,6 +201,7 @@ const Tick = styled.div`
 
 //_______________________________________________________________
 export {
+  AddIcon,
   CheckMenuContainer,
   CompleteBTN,
   DeleteBTN,
@@ -189,6 +210,7 @@ export {
   CompletedContainer,
   DeletedContainer,
   DeletedTitle,
+  ImportanceIcon,
   TodoTitle,
   TitleContainer,
   CheckBoxIcon,
@@ -203,4 +225,5 @@ export {
   TasksContainer,
   Task,
   Tick,
+  UrgencyIcon
 };
