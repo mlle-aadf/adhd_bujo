@@ -1,4 +1,4 @@
-import {NewTaskContainer, PriorityInputs, Desc, Importance, Urgency, Add} from "./Styles"
+import {NewTaskContainer, PriorityInputs, Desc, Importance, ImportanceIcon, Urgency, UrgencyIcon, Add, AddIcon  } from "./Styles"
 
 import { useState, useEffect } from "react";
 const { v4: uuidv4 } = require('uuid');
@@ -32,19 +32,16 @@ const NewTask = ({addNewTask}) => {
     // set task description
     const handleDesc =(e) => {
         setNewTask({...newTask, description: e.target.value})
-        // checkCompletion()
     }
     
     // set task importance
     const handleImportance = (e) => {
         newTask.importance !== 3 ? setNewTask({...newTask, importance: newTask.importance+1}) : setNewTask({...newTask, importance: 0})    
-        // setPriority()
     }
     
     // set task urgency
     const handleUrgency = (e) => {
         newTask.urgency !== 3 ? setNewTask({...newTask, urgency: newTask.urgency+1}) : setNewTask({...newTask, urgency: 0})
-        // setPriority()
     }
     
     // set task priority
@@ -53,7 +50,6 @@ const NewTask = ({addNewTask}) => {
             const newPriority = newTask.importance+newTask.urgency
             await setNewTask({...newTask, priority: newPriority})
 
-            // console.log("newPriority: ", newPriority, "new: ", newTask)
         }
         setPriority()
     }, [newTask.importance, newTask.urgency])
@@ -65,28 +61,21 @@ const NewTask = ({addNewTask}) => {
     // }
     
     const saveNewTask =() => {
-        // setPriority()
         setNewTask({...newTask, priority: newTask.importance+newTask.urgency})
-        
         addNewTask(newTask)
-        console.log("newTask: 2", newTask)
     }
-
 
         return (
             <NewTaskContainer>
                     <PriorityInputs id="newTaskForm">
                         <Desc type="text" name="Desc" onChange={handleDesc} />
-                        <Importance name="importance" onClick={handleImportance} style={{ backgroundColor: `var(--priority${newTask.importance})` }}/>
+                        <Importance name="importance" onClick={handleImportance} style={{ backgroundColor: `var(--priority${newTask.importance})` }}><ImportanceIcon/></Importance>
                     
-                        <Urgency name="urgency" onClick={handleUrgency} style={{ backgroundColor: `var(--priority${newTask.urgency})` }}/>
+                        <Urgency name="urgency" onClick={handleUrgency} style={{ backgroundColor: `var(--priority${newTask.urgency})` }}><UrgencyIcon/></Urgency>
                     </PriorityInputs>
-                    <Add type="submit" onClick={saveNewTask} disabled={!allCompleted} style={allCompleted? EnabledStyle : DisabledStyle}>+</Add>
-                
-            
+                    <Add type="submit" onClick={saveNewTask} disabled={!allCompleted} style={allCompleted? EnabledStyle : DisabledStyle}><AddIcon/></Add>
             </NewTaskContainer>
         );
-//     };
 }
 
 export default NewTask;
@@ -99,5 +88,6 @@ const DisabledStyle = {
 
 const EnabledStyle = {
     backgroundColor: "var(--faded)",
+    color:"var(--mint)",
     cursor: "pointer"
 }
