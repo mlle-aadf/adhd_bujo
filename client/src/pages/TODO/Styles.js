@@ -1,8 +1,38 @@
 import { Link } from "react-router-dom";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
-import { FaCheck } from "react-icons/fa";
+
+import { FaStar, FaCheck, FaCircleCheck, FaCircleXmark } from "react-icons/fa6";
 import styled from "styled-components";
 // TO-DO page styled components
+
+// CheckBoxMenu.js
+const CheckMenuContainer = styled.div`
+  background-color: var(--faded);
+  border-radius: 20px;
+  display: ${(props) => (props.active ? "inline-flex" : "none")};
+  flex-direction: column;
+  padding: 0.25rem;
+  `;
+
+const CompleteBTN = styled(FaCircleCheck)`
+  background-color: transparent;
+  border: none;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem;
+  `;
+
+const DeleteBTN = styled(FaCircleXmark)`
+  background-color: transparent;
+  border: none;
+  margin-bottom: 0.25rem;
+  padding: 0.25rem;
+  `;
+
+const StarBTN = styled(FaStar)`
+  background-color: transparent;
+  border: none;
+  padding: 0.25rem;
+`;
 
 // Completed.js
 const CompletedContainer = styled.div`
@@ -10,7 +40,7 @@ const CompletedContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 75vw;
-    margin: -1rem 0
+    margin: -1rem 0;
   }
 `;
 const CompletedTitle = styled.h3``;
@@ -26,7 +56,7 @@ const DeletedContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 75vw;
-    margin: -1rem 0
+    margin: -1rem 0;
   }
 `;
 const DeletedTitle = styled.h3``;
@@ -52,7 +82,6 @@ const TitleContainer = styled.div`
 const CheckBoxIcon = styled(MdOutlineCheckBoxOutlineBlank)`
   margin-right: 1rem;
   font-size: 2.25rem;
-  
 `;
 
 const TodoTitle = styled(Link)`
@@ -61,7 +90,6 @@ const TodoTitle = styled(Link)`
 
   @media (max-width: 500px) {
     font-size: 2rem;
-    
   }
 `;
 
@@ -153,22 +181,26 @@ const Tick = styled.div`
 
 //_______________________________________________________________
 export {
-    CheckMark,  
-    CompletedTitle,
-    CompletedContainer,
-    DeletedContainer,
-    DeletedTitle,
-    TodoTitle,
-    TitleContainer,
-    CheckBoxIcon,
-    TodoContainer,
-    NewTaskContainer,
-    PriorityInputs,
-    Desc,
-    Importance,
-    Urgency,
-    Add,
-    TasksContainer,
-    Task,
-    Tick,
+  CheckMenuContainer,
+  CompleteBTN,
+  DeleteBTN,
+  CheckMark,
+  CompletedTitle,
+  CompletedContainer,
+  DeletedContainer,
+  DeletedTitle,
+  TodoTitle,
+  TitleContainer,
+  CheckBoxIcon,
+  TodoContainer,
+  NewTaskContainer,
+  PriorityInputs,
+  Desc,
+  Importance,
+  Urgency,
+  Add,
+  StarBTN,
+  TasksContainer,
+  Task,
+  Tick,
 };
