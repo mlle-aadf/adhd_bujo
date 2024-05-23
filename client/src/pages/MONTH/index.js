@@ -5,11 +5,13 @@ import HomeLink from "../../components/HomeLink";
 
 const Month = () => {
 
+    // let chosenMonth = "2024-01"
+
     return(
         <>
             <NavBarMobile/>
-            <MonthCal/>
-            <MonthList/>
+            <MonthCal />
+            {/* <MonthList/> */}
             <HomeLink/>
         </>
 

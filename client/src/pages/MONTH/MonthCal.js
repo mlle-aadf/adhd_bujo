@@ -1,47 +1,89 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import listPlugin from "@fullcalendar/list";
-// import { months } from "../data";
-// import { DayContext } from "../contexts/DayContext";
-// import { useContext } from "react";
+// import listPlugin from "@fullcalendar/list";
+
+import { useCollapse } from 'react-collapsed';
+import { useContext, useEffect, useState } from "react";
+
+import { DayContext } from "../../contexts/DayContext";
+import { EventsContext } from "../../contexts/EventsContext";
+import { render } from "@fullcalendar/core/preact.js";
 
 const MonthCal = () => {
   
-  const events = [{
-    title: 'Event1',
-    start: '2024-05-22 09:30:00',
-    end: '2024-05-22 10:30:00'
-  },
-  {
-    title: 'Event2',
-    start: '2024-05-22 12:30:00',
-    end: '2024-05-22 13:30',
-  }]
+  // const [selectedMonth, setSelectedMonth] = useState()
+  const {thisMonth} = useContext(DayContext)
+  
+  const {displayMonth, updateMonth} = useContext(EventsContext)
+  console.log("displMonth: ", displayMonth)
+
+  // const getMonth = () => {
+  //   setSelectedMonth(chosenMonth)
+  // }
+  // const testClickhandler = (date) => {
+  //   updateMonth(date)
+  // }
+
+  // useEffect(()=> {
+
+  //   testClickhandler()
+  // }, [selectedMonth])
+
+    // console.log("chosenMonth: ", chosenMonth)
     
+    // console.log("selectedMonth: ", selectedMonth)
+    // switch (chosenMonth) {
+    //   case "JANUARY":
+    //     setSelectedMonth("2024-01")
+    //     console.log("true")
+    //   case "FEBRUARY":
+    //     setSelectedMonth("2024-02")
+    //   case "MARCH":
+    //     setSelectedMonth("2024-03")
+    //   case "APRIL":
+    //     setSelectedMonth("2024-04")
+    //   default:
+    //     selectedMonth(undefined)
+    // }
+
+    
+    // const {months} = useContext(DayContext)
+    // const {events} = useContext(EventsContext)
+    // console.log("events: ", events)
+
+    // const [isExpanded, setExpanded] = useState(false);
+    // const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
+
+    // const clickHandler = () => {
+    //     setExpanded((prevExpanded) => !prevExpanded)
+    // }
+
   return (
-    <FullCalendar
-      plugins={[dayGridPlugin, listPlugin]}
-      initialView="dayGridMonth"
-      
-      views={{
-        dayGridMonth :{buttonText: 'month'}, 
-        listMonth : {buttonText: 'list'}}}
-      
-      // headerToolbar={false}
-      headerToolbar={{
-        left: "prev",
-        center: "title",
-        right: "next",
-      }}
+    <>
+      {/* <button onClick={()=>testClickhandler("2024-08")}>click me</button> */}
+      <FullCalendar
 
-      dayHeaderFormat={{weekday:'narrow'}}
-      titleFormat={{ month: "long" }}
-      editable={true}
-      selectable={true}
-      fixedWeekCount={false}
-      contentHeight={"30vh"}
+        plugins={[dayGridPlugin]}
+        initialView="dayGridMonth"
+        initialDate={displayMonth}
+        
+        headerToolbar={false}
+        // headerToolbar={{
+        //   left: "title",
+        //   center: "",
+        //   right: "",
+        // }}
 
-    />
+        dayHeaderFormat={{weekday:'narrow'}}
+        titleFormat={{ month: "long" }}
+        editable={true}
+        selectable={true}
+        fixedWeekCount={false}
+        contentHeight={"30vh"}
+
+      />
+    
+    </>
   );
 };
 

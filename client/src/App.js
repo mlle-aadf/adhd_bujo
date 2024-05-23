@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Day from "./pages/Day";
 import Month from "./pages/MONTH";
-import Year from "./pages/Year";
+import Year from "./pages/YEAR";
 import TodoPage from "./pages/TODO/index"
 
 const App = () => {
