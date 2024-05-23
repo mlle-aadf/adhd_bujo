@@ -155,9 +155,7 @@ const UrgencyIcon = styled(FaRegClock)`
 `
 
 const Add = styled.button`
-
   color: white;
-
   height: fit-content;
   border: none;
   border-radius: 50%;

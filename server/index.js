@@ -53,6 +53,8 @@ express()
 // .. deleteMany
 
 
+  // get events from DB
+  // .get("/schedule", getEventsHandler)
 
 
 

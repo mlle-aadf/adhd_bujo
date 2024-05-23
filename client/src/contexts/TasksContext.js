@@ -96,7 +96,7 @@ const updatePriorities = ({task}) => {
   
   // const updated = priorities.pop().unshift(task)
   
-  console.log("pick me! ")
+  // console.log("pick me! ")
 }
 
 updatePriorities("top priority")

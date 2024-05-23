@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const DayContext = createContext();
 
@@ -14,7 +14,7 @@ const DayContextProvider = ({ children }) => {
     const thisYear = currentDate.getFullYear();
 
   return (
-    <DayContext.Provider value={{thisDayNum, thisDayStr, thisMonth, thisYear}}>
+    <DayContext.Provider value={{thisDayNum, thisDayStr, thisMonth, thisYear, months}}>
       {children}
     </DayContext.Provider>
   );
