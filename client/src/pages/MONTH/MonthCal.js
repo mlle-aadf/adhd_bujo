@@ -1,6 +1,6 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-// import listPlugin from "@fullcalendar/list";
+import listPlugin from "@fullcalendar/list";
 
 import { useCollapse } from 'react-collapsed';
 import { useContext, useEffect, useState } from "react";
@@ -9,70 +9,96 @@ import { DayContext } from "../../contexts/DayContext";
 import { EventsContext } from "../../contexts/EventsContext";
 import { render } from "@fullcalendar/core/preact.js";
 
+
+
 const MonthCal = () => {
   
-  // const [selectedMonth, setSelectedMonth] = useState()
-  const {thisMonth} = useContext(DayContext)
-  
-  const {displayMonth, updateMonth} = useContext(EventsContext)
-  console.log("displMonth: ", displayMonth)
+  const [localMonth, setLocalMonth] = useState()
 
+  const {events}=useContext(EventsContext)
+
+  const {monthsKeys, displayMonth, setDisplayMonth} = useContext(EventsContext)
+
+
+  // const title = document.querySelectorAll(`[title="Previous month"]`)
+  // // .addEventListener('click', function() {
+  // if (title.length) {
+
+  //   debugger
+  // }  
+    // calendar.prev();
+  // });
+
+  // const monthsKeys =  [
+  //     {str:"JANUARY", date:"2024-01"},
+  //     {str:"FEBRUARY", date:"2024-02"},
+  //     {str:"MARCH", date:"2024-03"},
+  //     {str:"APRIL", date:"2024-04"},
+  //     {str:"MAY", date:"2024-05"},
+  //     {str:"JUNE", date:"2024-06"},
+  //     {str:"JULY", date:"2024-07"},
+  //     {str:"AUGUST", date:"2024-08"},
+  //     {str:"SEPTEMBER", date:"2024-09"},
+  //     {str:"OCTOBER", date:"2024-10"},
+  //     {str:"NOVEMBER", date:"2024-11"},
+  //     {str:"DECEMBER", date:"2024-12"},
+  //   ]
+
+  // const [monthTitle, setMonthTitle] = useState()
+ 
+  // const {thisMonth} = useContext(DayContext)
+
+  // console.log("displMonth: ", displayMonth)
+
+  // useEffect(()=> {
+
+  // }, [])
   // const getMonth = () => {
   //   setSelectedMonth(chosenMonth)
   // }
   // const testClickhandler = (date) => {
-  //   updateMonth(date)
+  //   const monthKey = monthsKeys.find((m)=> m.str === date)
+
+  //   console.log("monthKey ",monthKey.date)
+
+  //   updateMonth(monthKey.date)
+  //   setMonthTitle(date)
   // }
 
-  // useEffect(()=> {
 
-  //   testClickhandler()
-  // }, [selectedMonth])
 
-    // console.log("chosenMonth: ", chosenMonth)
-    
-    // console.log("selectedMonth: ", selectedMonth)
-    // switch (chosenMonth) {
-    //   case "JANUARY":
-    //     setSelectedMonth("2024-01")
-    //     console.log("true")
-    //   case "FEBRUARY":
-    //     setSelectedMonth("2024-02")
-    //   case "MARCH":
-    //     setSelectedMonth("2024-03")
-    //   case "APRIL":
-    //     setSelectedMonth("2024-04")
-    //   default:
-    //     selectedMonth(undefined)
-    // }
-
-    
-    // const {months} = useContext(DayContext)
-    // const {events} = useContext(EventsContext)
-    // console.log("events: ", events)
-
-    // const [isExpanded, setExpanded] = useState(false);
-    // const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
-
-    // const clickHandler = () => {
-    //     setExpanded((prevExpanded) => !prevExpanded)
-    // }
 
   return (
     <>
-      {/* <button onClick={()=>testClickhandler("2024-08")}>click me</button> */}
-      <FullCalendar
+      <button onClick={()=>{
+        
+        // if localstorage.getItem(...) === 2024-01, disable prev button
+        // if localstorage.getItem(...) === 2024-12, disable next button
+        localStorage.setItem("localMonth", `${localStorage.getItem("localMonth")? monthsKeys[monthsKeys.indexOf(localStorage.getItem("localMonth"))-1] : monthsKeys[new Date().getMonth()-1]}`)
+          window.location.reload()
+       
+        }}>previous</button>
+      
+      <button onClick={()=>{
+        localStorage.setItem("localMonth", `${localStorage.getItem("localMonth")? monthsKeys[monthsKeys.indexOf(localStorage.getItem("localMonth"))+1] : monthsKeys[new Date().getMonth()+1]}`)
+        window.location.reload()
+        // setLocalMonth("2024-12")
+        }}>next</button>
 
+      
+      {/* view month calendar */}
+      <FullCalendar
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
-        initialDate={displayMonth}
+        // initialDate={undefined}
+        initialDate={localStorage.getItem("localMonth")?localStorage.getItem("localMonth"): undefined }
         
-        headerToolbar={false}
-        // headerToolbar={{
-        //   left: "title",
-        //   center: "",
-        //   right: "",
-        // }}
+        // headerToolbar={false}
+        headerToolbar={{
+          left: "title",
+          center: "",
+          right: "",
+        }}
 
         dayHeaderFormat={{weekday:'narrow'}}
         titleFormat={{ month: "long" }}
@@ -80,8 +106,18 @@ const MonthCal = () => {
         selectable={true}
         fixedWeekCount={false}
         contentHeight={"30vh"}
-
       />
+      {/* view month events as list */}
+      <FullCalendar
+        plugins={[listPlugin]}
+        initialView="listMonth"
+        initialDate={localStorage.getItem("localMonth")?localStorage.getItem("localMonth"): undefined }
+
+        headerToolbar={false}
+        events={events}
+        contentHeight={"30vh"}
+
+        />
     
     </>
   );
