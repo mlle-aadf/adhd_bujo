@@ -14,8 +14,8 @@ const ToDo = ({addNewTask, tasks, titleLink, cursor}) => {
 
     return (
         <TodoContainer>
-            <TitleContainer>
-                    <CheckBoxIcon style={{color:`${isOpened? "var(--mint)" : "white"}`}} onClick={clickHandler}/>
+            <TitleContainer onClick={clickHandler}>
+                    <CheckBoxIcon style={{color:`${isOpened? "var(--mint)" : "white"}`}} />
                     <TodoTitle to={titleLink===false? null : "/todo"} style={{cursor: `${cursor!==false ? "pointer" : "auto"}`}}>TO DO</TodoTitle>
             </TitleContainer>
             <Collapse isOpened={isOpened}>

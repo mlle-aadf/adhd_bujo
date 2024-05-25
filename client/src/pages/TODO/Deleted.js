@@ -2,24 +2,22 @@ import { DeletedContainer, DeletedTitle } from "./Styles";
 import { MdDelete } from "react-icons/md";
 
 import { useState } from "react";
-import {useCollapse} from 'react-collapsed';
+import { Collapse } from "react-collapse";
 
 const Deleted = ({deleted}) => {
     
-        
-    const [isExpanded, setExpanded] = useState(false);
-    const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
-
+    // toggle DELETED list visibility
+    const [isOpened, setIsOpened] = useState(false)
     const clickHandler = () => {
-        setExpanded((prevExpanded) => !prevExpanded)
-    }
+        setIsOpened(!isOpened)
+    }    
     
     return (
         <DeletedContainer>
-            <DeletedTitle style={{display:"flex", alignItems:"center"}}>
-                <MdDelete {...getToggleProps({onClick:clickHandler})} style={{marginRight:"1rem", color:`${isExpanded? "var(--mint)" : "white"}`, height:"2rem"}}/> DELETED
+            <DeletedTitle onClick={clickHandler} style={{display:"flex", alignItems:"center"}}>
+                <MdDelete style={{marginRight:"1rem", color:`${isOpened? "var(--mint)" : "white"}`, height:"2rem"}}/> DELETED
             </DeletedTitle>
-            <div {...getCollapseProps()}>{deleted.map((task) => <li key={task._id}>{task.description}</li>)}</div>
+            <Collapse isOpened={isOpened}>{deleted.map((task) => <li key={task._id}>{task.description}</li>)}</Collapse>
         </DeletedContainer>
     );
 };

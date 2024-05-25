@@ -10,7 +10,7 @@ import { PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer } from ".
 
 const Priorities = () => {
     
-    const [isOpened, setIsOpened] = useState(false)
+    const [isOpened, setIsOpened] = useState(true)
     const clickHandler = () => {
         setIsOpened(!isOpened)
     }
