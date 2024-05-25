@@ -7,7 +7,7 @@ const Home = () => {
     
     return (
         <div>
-            <p>hello twiggy ٩(◕‿◕)۶</p><br/>
+            <p>hello ٩(◕‿◕)۶</p><br/>
             <DayLink/>
             <TodoLink/>
         </div>

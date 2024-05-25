@@ -27,10 +27,11 @@ const DayContextProvider = ({ children }) => {
     const thisDayNum = currentDate.getDate()
     const thisDayStr = days[currentDate.getDay()]
     const thisMonth = months[currentDate.getMonth()];
+    const thisMonthNum = currentDate.getMonth();
     const thisYear = currentDate.getFullYear();
 
   return (
-    <DayContext.Provider value={{thisDayNum, thisDayStr, thisMonth, thisYear, months}}>
+    <DayContext.Provider value={{thisDayNum, thisDayStr, thisMonth, thisMonthNum, thisYear, months}}>
       {children}
     </DayContext.Provider>
   );
