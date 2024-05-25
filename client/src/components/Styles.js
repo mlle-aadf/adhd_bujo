@@ -93,14 +93,14 @@ const PrioriTitleCont = styled.div`
     display: flex;
     width: 75vw;
     align-items: center;
-    margin: 1rem 0;
+    margin: 1.5rem 0 0.5rem 0;
     font-size: 2rem;
   }
 `;
 
 const StarIcon = styled(FaRegStar)`
   margin-right: 1rem;
-  /* font-size: 2rem; */
+  font-size: 2rem;
 `;
 
 const PriorityTitle = styled.h3`
@@ -114,7 +114,7 @@ const PriorityTitle = styled.h3`
 
 const PrioritiesContainer = styled.div`
     background-color: var(--faded);
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: start;

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 import {Collapse} from 'react-collapse';
 // import { useCollapse } from 'react-collapsed';
-import { useContext, useState } from "react";
 // import { DayContext } from "../../contexts/DayContext";
+import { useContext, useState } from "react";
 import { EventsContext } from "../../contexts/EventsContext"
 
 import MonthCal from "../MONTH/MonthCal";
@@ -31,14 +31,14 @@ const YearCal = () => {
 
         <>
         <p style={{color:"black"}}>~</p>
-          {monthsKeys.map((month, i) => 
-            <MonthContainer>
-                <MonthTitle onClick={()=> collapseHandler(i)}>{month.str}</MonthTitle>
-                <Collapse isOpened={monthExpanded[i]} initialStyle={{height:"0px"}}>
-                    <MonthCal localMonth={month.date} title={""} eventList={month.events} />
-                </Collapse>
-            </MonthContainer>
-          )}
+        {monthsKeys.map((month, i) => 
+        <MonthContainer>
+            <MonthTitle onClick={()=> collapseHandler(i)}>{month.str}</MonthTitle>
+            <Collapse isOpened={monthExpanded[i]} initialStyle={{height:"0px"}}>
+                <MonthCal localMonth={month.date} title={""} eventList={month.events} />
+            </Collapse>
+        </MonthContainer>
+        )}
         </>
     )
 };

@@ -60,7 +60,7 @@ const EventsContextProvider = ({ children }) => {
       {str:"FEBRUARY", date:"2024-02", events:febEvents},
       {str:"MARCH", date:"2024-03", events:febEvents},
       {str:"APRIL", date:"2024-04", events:febEvents},
-      {str:"MAY", date:"2024-05", events:febEvents},
+      {str:"MAY", date:"2024-05", events:events},
       {str:"JUNE", date:"2024-06", events:febEvents},
       {str:"JULY", date:"2024-07", events:febEvents},
       {str:"AUGUST", date:"2024-08", events:febEvents},

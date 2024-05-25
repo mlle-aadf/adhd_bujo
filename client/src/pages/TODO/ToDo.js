@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {useCollapse} from 'react-collapsed';
+import { Collapse } from "react-collapse";
 
 import { CheckBoxIcon, TodoTitle, TodoContainer, TitleContainer} from "./Styles"
 import NewTask from "./NewTask";
@@ -7,23 +7,21 @@ import TaskList from "./TaskList";
 
 const ToDo = ({addNewTask, tasks, titleLink, cursor}) => {
     
-    const [isExpanded, setExpanded] = useState(false);
-    const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
-
+    const [isOpened, setIsOpened] = useState(false)
     const clickHandler = () => {
-        setExpanded((prevExpanded) => !prevExpanded)
+        setIsOpened(!isOpened)
     }
-    
+
     return (
         <TodoContainer>
             <TitleContainer>
-                    <CheckBoxIcon style={{color:`${isExpanded? "var(--mint)" : "white"}`}} {...getToggleProps({onClick:clickHandler})}/>
+                    <CheckBoxIcon style={{color:`${isOpened? "var(--mint)" : "white"}`}} onClick={clickHandler}/>
                     <TodoTitle to={titleLink===false? null : "/todo"} style={{cursor: `${cursor!==false ? "pointer" : "auto"}`}}>TO DO</TodoTitle>
             </TitleContainer>
-            <div {...getCollapseProps()}>
+            <Collapse isOpened={isOpened}>
                 <NewTask addNewTask={addNewTask}/>
                 <TaskList tasks={tasks}/>
-            </div>
+            </Collapse>    
         </TodoContainer>
     );
 };

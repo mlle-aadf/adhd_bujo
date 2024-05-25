@@ -1,7 +1,7 @@
 const DayList = () => {
     return (
         <div>
-            
+            DAYLIST
         </div>
     );
 };
