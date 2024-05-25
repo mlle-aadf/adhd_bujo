@@ -18,7 +18,7 @@ const YearCal = () => {
     // console.log("months: ", months)
 
 
-    const [monthExpanded, setMonthExpanded] = useState([true, true, true, true, true, true, true, true, true, true, true, true])
+    const [monthExpanded, setMonthExpanded] = useState([false, false, false, false, false, false, false, false, false, false, false, false])
 
     const collapseHandler = (i) => {
         const updated = monthExpanded.map((bool, index) => i === index ? !bool : bool )
@@ -30,57 +30,24 @@ const YearCal = () => {
 
 
         <>
+        <p style={{color:"black"}}>~</p>
           {monthsKeys.map((month, i) => 
-            <div>
-                <h2 onClick={()=> collapseHandler(i)}>{month.str}</h2>
-                <Collapse isOpened={monthExpanded[i]}>
+            <MonthContainer>
+                <MonthTitle onClick={()=> collapseHandler(i)}>{month.str}</MonthTitle>
+                <Collapse isOpened={monthExpanded[i]} initialStyle={{height:"0px"}}>
                     <MonthCal localMonth={month.date} title={""} eventList={month.events} />
                 </Collapse>
-            </div>
-          )
-          }
-            {/* {monthsKeys.map((month, i)=> {
-                <div>
-                    <h2>{month.str}</h2>
-                    <Collapse isOpened={monthExpanded[i]}>
-                        <MonthCal localMonth={month.date} title={""} eventList={events} />
-                    </Collapse>
-                </div>
-
-
-            })} */}
-
-
-            {/* <h2>{monthsKeys[0].str}</h2>
-            <Collapse isOpened={monthExpanded[0]}>
-                <MonthCal localMonth={monthsKeys[0].date} title={monthsKeys[0].str} eventList={events} />
-            </Collapse> */}
-
-            {/* <MonthCal localMonth={monthsKeys[4].date} title={monthsKeys[4].str} eventList={events} /> */}
+            </MonthContainer>
+          )}
         </>
-
-
-
-        
-        //    <div>
-        //      {months.map((month)=> 
-        //         <MonthAll>
-        //             <h3 style={{color:"white"}} {...getToggleProps({onClick:clickHandler})}>{month}</h3>
-        //             <div {...getCollapseProps()}>
-        //                 <MonthCal />
-        //             </div>
-
-        //         </MonthAll>
-                
-        //      )}
-        //    </div>
-
-
-
-    );
+    )
 };
 
 export default YearCal;
 
-const MonthAll = styled.div`
+const MonthContainer = styled.div`
+    margin: -0.5rem 0;
+`
+const MonthTitle = styled.h3`
+    margin-bottom: -0.25rem; 
 `

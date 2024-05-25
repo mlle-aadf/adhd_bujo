@@ -13,11 +13,18 @@ const DayBTN = styled(Link)`
 
 // HomeLink.js
 const HomeBTN = styled(Link)`
-    text-decoration: none;
-    color: white;
-    position: fixed;
-    bottom: 5%;
-    right: 5%
+    @media  (max-width: 500px) {
+        text-decoration: none;
+        background-color: var(--faded);
+        border-radius: 30px;
+        color: white;
+        padding: 0.25rem;
+        text-align: center;
+        position: fixed;
+        width: 20%;
+        bottom: 5%;
+        right: 40%
+    }
 `
 
 // NavBarMobile.js

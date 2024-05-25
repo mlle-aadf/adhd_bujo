@@ -21,7 +21,8 @@ const Year = () => {
     
     return (
         <>
-            <NavBarMobile/>
+            <NavBarMobile />
+            <h3 style={{fontSize:"3rem", margin:"0"}}></h3>
             <YearCal/>
             <HomeLink/>
         </>
