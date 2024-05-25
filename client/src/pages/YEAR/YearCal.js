@@ -1,45 +1,53 @@
 import styled from "styled-components";
 
-
-import { useCollapse } from 'react-collapsed';
+import {Collapse} from 'react-collapse';
+// import { useCollapse } from 'react-collapsed';
 import { useContext, useState } from "react";
-import { DayContext } from "../../contexts/DayContext";
+// import { DayContext } from "../../contexts/DayContext";
+import { EventsContext } from "../../contexts/EventsContext"
 
 import MonthCal from "../MONTH/MonthCal";
 
 const YearCal = () => {
     
-    const {months} = useContext(DayContext)
+    const {monthsKeys, events}=useContext(EventsContext)
+    // console.log("monthkeys: ", events)
+
+    
+    // const {months} = useContext(DayContext)
     // console.log("months: ", months)
 
-    const [isExpanded, setExpanded] = useState(false);
-    const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
 
-    const clickHandler = () => {
-        setExpanded((prevExpanded) => !prevExpanded)
+    const [monthExpanded, setMonthExpanded] = useState([false, false, false, false, false, false, false, false, false, false, false, false])
+
+    const collapseHandler = (i) => {
+        const updated = monthExpanded.map((bool, index) => i === index ? !bool : bool )
+        setMonthExpanded(updated)
     }
-    
+
     return (
         
-           <div>
-             {months.map((month)=> 
-                <MonthAll>
-                    <h3 style={{color:"white"}} {...getToggleProps({onClick:clickHandler})}>{month}</h3>
-                    <div {...getCollapseProps()}>
-                        <MonthCal/>
-                    </div>
-
-                </MonthAll>
-                
-             )}
-           </div>
 
 
-
-    );
+        <>
+        <p style={{color:"black"}}>~</p>
+          {monthsKeys.map((month, i) => 
+            <MonthContainer>
+                <MonthTitle onClick={()=> collapseHandler(i)}>{month.str}</MonthTitle>
+                <Collapse isOpened={monthExpanded[i]} initialStyle={{height:"0px"}}>
+                    <MonthCal localMonth={month.date} title={""} eventList={month.events} />
+                </Collapse>
+            </MonthContainer>
+          )}
+        </>
+    )
 };
 
 export default YearCal;
 
-const MonthAll = styled.div`
+const MonthContainer = styled.div`
+    margin: -0.5rem 0;
+`
+const MonthTitle = styled.h3`
+    margin-bottom: -0.25rem; 
 `

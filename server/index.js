@@ -37,7 +37,7 @@ express()
 
 
   // get tasks from DB
-  .get("/todo", getTasksHandler)
+  // .get("/todo", getTasksHandler)
   
   // get completed tasks from DB
   .get("/todo", getCompletedHandler)
