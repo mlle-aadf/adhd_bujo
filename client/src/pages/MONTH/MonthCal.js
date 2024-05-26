@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import FullCalendar from "@fullcalendar/react";
+import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 
@@ -56,7 +57,7 @@ const MonthCal = ({localMonth, eventList, title}) => {
     <div style={{marginTop:"1rem"}}>
       {/* view month calendar */}
       <FullCalendar
-        plugins={[dayGridPlugin, listPlugin]}
+        plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         ref={calendarRef}
         initialDate={localMonth}
@@ -93,6 +94,7 @@ const MonthCal = ({localMonth, eventList, title}) => {
         dayHeaderFormat={{weekday:'narrow'}}
         // editable={true}
         // selectable={true}
+        // dateClick={()=>console.log("date cliked")}
         fixedWeekCount={false}
         contentHeight={"30vh"}
         

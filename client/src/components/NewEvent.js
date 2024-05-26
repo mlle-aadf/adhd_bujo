@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaPlus } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
+
 // import Modal from "react-modal"
 import { useState, useContext } from "react";
 import { Collapse } from "react-collapse";
@@ -12,7 +13,9 @@ const NewEvent = () => {
     
     // const [isOpened, setIsOpened] = useState(false)
     const [startOpened, setStartOpened] = useState(false)
-    const [endOpened, setEndOpened] = useState(false)
+
+
+    // const [endOpened, setEndOpened] = useState(false)
 
     const [newEvent, setNewEvent] = useState({
         _id:uuidv4(),
@@ -38,8 +41,9 @@ const NewEvent = () => {
     const {addEventHandler} = useContext(EventsContext)
     
     const setStartHandler = (e) => {
+        const start = new Date(e.target.value)
         setNewEvent({...newEvent, start: e.target.value})
-        console.log("start: ", newEvent.start)
+        console.log("start: ", start, newEvent.start)
     }
 
     const saveEventHandler = () => {
@@ -74,11 +78,14 @@ const NewEvent = () => {
                         /> */}
                     {/* </Collapse> */}
                     <label onClick={()=> setStartOpened(!startOpened)}>start</label>
-                    <Start type="datetime-local" required onChange={setStartHandler}></Start>
+                    <Start type="date" required onChange={setStartHandler}/>
+                    <StartTime type="time">
+                       
+                    </StartTime>
                 </StartCont>
                 <EndCont>
                     <label onClick={()=> setStartOpened(!startOpened)}>end</label>
-                    <End type="datetime-local" onChange={(e)=>setNewEvent({...newEvent, end: e.target.value})}></End>
+                    <End type="date" onChange={(e)=>setNewEvent({...newEvent, end: e.target.value})}></End>
                 </EndCont>
                 {/* <div>
                     <label onClick={()=> setEndOpened(!endOpened)} >end</label>
@@ -174,6 +181,17 @@ const Start = styled.input`
     &:focus{
         outline: 1px solid var(--faded);
     }
+    `
+
+const StartTime = styled.input`
+    background-color: var(--faded);
+    color: white;
+    border: none;
+`
+const Time = styled.option`
+    background-color: var(--faded);
+    color: white;
+    border: none;
 `
 
 const EndCont = styled.div`
