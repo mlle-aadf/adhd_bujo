@@ -12,7 +12,7 @@ const TaskContexttProvider = ({ children }) => {
 
   const [refresh, setRefresh] = useState(false)
 
-// retrieve active tasks from db
+// retrieve tasks from db
 const getTasks = async () => {
   try{
     const res = await fetch("/todo")

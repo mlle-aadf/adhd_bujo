@@ -35,7 +35,7 @@ const YearCal = () => {
         <MonthContainer>
             <MonthTitle onClick={()=> collapseHandler(i)}>{month.str}</MonthTitle>
             <Collapse isOpened={monthExpanded[i]} initialStyle={{height:"0px"}}>
-                <MonthCal localMonth={month.date} title={""} eventList={month.events} />
+                <MonthCal localMonth={month.date} title={""} eventList={events} />
             </Collapse>
         </MonthContainer>
         )}
