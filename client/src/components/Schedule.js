@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Collapse } from "react-collapse";
 import DayList from "./DayList";
+import NewEvent from "./NewEvent";
 
 
 const Schedule = () => {
@@ -15,6 +16,7 @@ const Schedule = () => {
                 <SchedIcon onClick={()=>setIsOpened(!isOpened)} style={isOpened ? ClickedStyled : UnClickedStyled}/>
                 <ScheduleTitle>SCHEDULE</ScheduleTitle>
             </ScheduleTitleCont>
+            {/* <NewEvent/> */}
             <Collapse isOpened={isOpened}>
                 <ScheduleContainer><DayList/></ScheduleContainer>
             </Collapse>

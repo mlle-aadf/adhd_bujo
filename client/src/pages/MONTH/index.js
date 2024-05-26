@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
+
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 
+
+import { FaAngleRight, FaAngleLeft, FaBars, FaPlus } from "react-icons/fa6";
+import { Collapse } from "react-collapse";
+
 import NavBarMobile from "../../components/NavBarMobile"
-
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
-
 import MonthCal from "./MonthCal";
-import MonthList from "./MonthList";
+// import MonthList from "./MonthList";
+// import NewEvent from "../../components/NewEvent";
 import HomeLink from "../../components/HomeLink";
 
 import { useContext, useState } from "react";
@@ -21,7 +24,15 @@ const Month = () => {
     // let chosenMonth = "2024-01"
     const {thisMonthNum}= useContext(DayContext)
     const {monthsKeys, events} = useContext(EventsContext)
+    const [listOpened, setListOpened] = useState(true)
+    const [newOpened, setNewOpened] = useState(false)
 
+    console.log(events)
+
+    const toggleHandler = () => {
+            setNewOpened(!newOpened)
+            setListOpened(!listOpened)
+    }
     // console.log( thisMonthNum, monthsKeys)
 
     // const [index, setIndex] = useState(thisMonthNum)
@@ -30,17 +41,7 @@ const Month = () => {
     
     // console.log(selectedMonth)
     
-    // const navHandler = (opt) => {
-        
-    //     if (opt === "prev") {
-    //         setIndex(index-1)
-    //     } else {
-    //         setIndex(index+1)
-    //     }
-        
-    //     console.log("navHandler, index: ",index, "default: ", defaultMonth, "selected: ", selectedMonth)
-        
-    // }
+
 
     return(
         <>
@@ -88,11 +89,18 @@ const Month = () => {
                 contentHeight={"50vh"}
             /> */}
             {/* <FaAngleLeft onClick={()=>navHandler("prev")}/>{selectedMonth.str}<FaAngleRight onClick={()=>navHandler("next")}/> */}
-                <h3>THIS MONTH</h3>
-                <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={events}/>
+                {/* <h3>THIS MONTH</h3> */}
+                {/* <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={events} title={true}/> */}
                 {/* <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={monthsKeys[thisMonthNum].events}/> */}
-
-            {/* <MonthList/> */}
+                {/* <BTNcont>
+                    <NewBTN onClick={()=>toggleHandler()} style={{backgroundColor:`${newOpened === true ? "var(--faded)" : "transparent"}`}}/>
+                    <AddBTN onClick={()=>toggleHandler()} style={{backgroundColor:`${listOpened === true ? "var(--faded)" : "transparent"}`}}/>
+                </BTNcont> */}
+                <Collapse isOpened={listOpened}>
+                    <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={events} title={true}/>
+                    {/* <MonthList eventList={events}/> */}
+                </Collapse>
+                {/* <Collapse isOpened={newOpened}><NewEvent/></Collapse> */}
             <HomeLink/>
         </>
 
@@ -100,6 +108,31 @@ const Month = () => {
 }
 
 export default Month
+
+const BTNcont = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: right;
+`
+
+const NewBTN = styled(FaPlus)`
+    width: 2rem;
+    padding: 0.25rem 0;
+    border-radius: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    `
+const AddBTN = styled(FaBars)`
+    width: 2rem;
+    padding: 0.25rem 0;
+    /* font-size: 2rem; */
+    /* border: 2px solid fuchsia; */
+    border-radius: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 
 // const HeaderToolBar = styled.div`
 //     display: flex;

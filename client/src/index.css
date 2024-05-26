@@ -56,6 +56,7 @@ text-align: center;
 
 .fc-toolbar-chunk{
   /* border: 2px solid fuchsia; */
+  background-color: transparent;
 }
 
 .fc-toolbar{
@@ -64,9 +65,69 @@ text-align: center;
   /* border: 2px solid fuchsia; */
 }
 
-.fc-icon-chevron-left  {
-  /* background-color: blue; */
+.fc-button.fc-n-button{
+  background-color: transparent;
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.fc-button.fc-p-button{
+  background-color: transparent;
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fc-listViewButton-button.fc-button{
+  /* background-color: var(--faded); */
+  background-color: transparent;
+  border: none;
+  height: 1rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  &:hover{
+    border: none;
+    outline: none;
+    color: black;
+    background-color: white;
+  }
+}
+
+.fc-addEventButton-button.fc-button{
+  background-color: var(--faded);
+  border-radius: 0;
+  border: none;
+  height: 1rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover{
+    border: none;
+    outline: none;
+    color: black;
+    background-color: white;
+  }
+}
+
+/* .fc-button-primary{
+  background-color: blue;
+}
+
+.fc-icon-chevron-left  {
+   background-color: blue; 
+}*/
 
 .fc-toolbar-title{
   font-family: "Montserrat", sans-serif;
@@ -83,7 +144,8 @@ text-align: center;
 }
 
 .fc-list-empty{
-  border-radius: 15px;
+  /* border-radius: 15px; */
+  /* background-color: black; */
 }
 
 .fc-listMonth-view {
@@ -100,14 +162,3 @@ text-align: center;
   .fc-list-day{
     display: none;
   }
-
-  /* .fc-list-event-dot{
-    display: none;
-  } */
-
-
-
-  /* .fc-multimonth-month{
-    background-color: black;
-    border: 2px solid fuchsia;
-  } */
