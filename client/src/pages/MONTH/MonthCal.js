@@ -19,6 +19,8 @@ import NewEvent from "../../components/NewEvent";
 
 const MonthCal = ({localMonth, eventList, title}) => {
   
+  // console.log("eventList: ", eventList)
+
   const calendarRef = createRef()
   const calendar2Ref = createRef()
   
@@ -44,10 +46,14 @@ const MonthCal = ({localMonth, eventList, title}) => {
     calendar2Api.next()
   }
 
-
-  const addEventHandler = () => {
-    console.log("added event :)")
+  const eventClickHandler = (e) => {
+    console.log(e.event._def)
+    console.log("eventID: ", e.event._def.extendedProps._id)
   }
+
+  // const addEventHandler = () => {
+  //   console.log("added event :)")
+  // }
   // const listViewHandler = () => {
   //   console.log("list view")
   //   setIsOpened(!isOpened)
@@ -122,6 +128,11 @@ const MonthCal = ({localMonth, eventList, title}) => {
               // titleFormat={{month:"2-digit"}}
               ref={calendar2Ref}
               events={eventList}
+              eventTimeFormat={{day:"2-digit", hour:"numeric", minute:"numeric", meridiem:false}}
+              selectable={true}
+              eventClick={eventClickHandler}
+              // eventChange={}
+              displayEventEnd={false}
             >
         </FullCalendar>
         </Collapse>   

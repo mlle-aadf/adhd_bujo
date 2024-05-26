@@ -57,9 +57,21 @@ const EventsContextProvider = ({ children }) => {
       getEvents()
     }, [refresh])
 
-    const addEventHandler = async (newEvent) => {
+    // add new event to db
+    const addNewEvent = async (newEvent) => {
+      console.log("addNewEvent: ", newEvent)
 
-      console.log("addEventHandler: ", newEvent)
+      const response = await fetch("/schedule", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(newEvent)
+      })
+
+      if (response.ok) {
+        setRefresh(!refresh)
+        console.log(`event "${newEvent.title}" saved`)
+      }
+      
     }
     // const events = [{
     //     title: 'Event1',
@@ -110,7 +122,7 @@ const EventsContextProvider = ({ children }) => {
     // console.log("keys: ", monthsKeys, events )
 
     return (
-        <EventsContext.Provider value={{monthsKeys, events, addEventHandler}}>
+        <EventsContext.Provider value={{monthsKeys, events, addNewEvent}}>
         {/* <EventsContext.Provider value={{monthsKeys, events}}> */}
           {children}
         </EventsContext.Provider>

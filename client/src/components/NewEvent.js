@@ -26,30 +26,30 @@ const NewEvent = () => {
         end:""
     })
 
-    // set event title
-    const handleTitle =(e) => {
-        setNewEvent({...newEvent, title: e.target.value})
-        // console.log("title: ", newEvent)
-    }
+    // // set event title
+    // const handleTitle =(e) => {
+    //     setNewEvent({...newEvent, title: e.target.value})
+    //     // console.log("title: ", newEvent)
+    // }
     
-    // set event description
-    const handleDesc =(e) => {
-        setNewEvent({...newEvent, description: e.target.value})
-    }
+    // // set event description
+    // const handleDesc =(e) => {
+    //     setNewEvent({...newEvent, description: e.target.value})
+    // }
 
 
-    const {addEventHandler} = useContext(EventsContext)
+    const {addNewEvent} = useContext(EventsContext)
     
     const setStartHandler = (e) => {
-        const start = new Date(e.target.value)
+        // const start = new Date(e.target.value)
         setNewEvent({...newEvent, start: e.target.value})
-        console.log("start: ", start, newEvent.start)
+        console.log("start: ", newEvent.start)
     }
 
     const saveEventHandler = () => {
-        addEventHandler(newEvent)
+        addNewEvent(newEvent)
         // setIsOpen(!modalIsOpen)
-        console.log("saveEventHandler: ", newEvent)
+        // console.log("saveEventHandler: ", newEvent)
     }
 
     return (
@@ -78,14 +78,13 @@ const NewEvent = () => {
                         /> */}
                     {/* </Collapse> */}
                     <label onClick={()=> setStartOpened(!startOpened)}>start</label>
-                    <Start type="date" required onChange={setStartHandler}/>
-                    <StartTime type="time">
-                       
-                    </StartTime>
+                    <Start type="datetime-local" required onChange={setStartHandler}/>
+                    {/* <StartTime type="time"/> */}
+            
                 </StartCont>
                 <EndCont>
                     <label onClick={()=> setStartOpened(!startOpened)}>end</label>
-                    <End type="date" onChange={(e)=>setNewEvent({...newEvent, end: e.target.value})}></End>
+                    <End type="datetime-local" onChange={(e)=>setNewEvent({...newEvent, end: e.target.value})} min={new Date(newEvent.start)}></End>
                 </EndCont>
                 {/* <div>
                     <label onClick={()=> setEndOpened(!endOpened)} >end</label>
