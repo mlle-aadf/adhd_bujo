@@ -89,7 +89,8 @@ const Month = () => {
             /> */}
             {/* <FaAngleLeft onClick={()=>navHandler("prev")}/>{selectedMonth.str}<FaAngleRight onClick={()=>navHandler("next")}/> */}
                 <h3>THIS MONTH</h3>
-                <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={monthsKeys[thisMonthNum].events}/>
+                <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={events}/>
+                {/* <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={monthsKeys[thisMonthNum].events}/> */}
 
             {/* <MonthList/> */}
             <HomeLink/>
