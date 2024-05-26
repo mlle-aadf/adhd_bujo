@@ -11,10 +11,11 @@ const PORT = 4000;
 // //require the handlers
 
 const createTaskHandlder = require("./handlers/createTaskHandler")
-const getEventsHandler = require("./handlers/getEventsHandler")
 const getTasksHandler = require("./handlers/getTasksHandler")
-const getCompletedHandler = require("./handlers/getCompletedHandler")
+// const getCompletedHandler = require("./handlers/getCompletedHandler")
 const updateTaskHandler = require("./handlers/updateTaskHandler")
+const createEventHandlder = require("./handlers/createEventHandlder")
+const getEventsHandler = require("./handlers/getEventsHandler")
 
 
 express()
@@ -55,9 +56,11 @@ express()
 // .. deleteMany
 
 
-  // get events from DB
-  .get("/schedule", getEventsHandler)
+// get events from DB
+.get("/schedule", getEventsHandler)
 
+// adds new event object to DB
+.post("/schedule", createEventHandlder)
 
 
 

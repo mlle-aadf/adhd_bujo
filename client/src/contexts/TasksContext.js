@@ -52,7 +52,7 @@ useEffect(()=> {
     getTasks()
   }, [refresh])
 
-// add new task to list
+// add new task to db
   const addNewTask = async (newTask) => {
     // console.log("addNew: ", newTask)
 

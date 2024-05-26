@@ -49,7 +49,6 @@ const NewTask = ({addNewTask}) => {
         const setPriority = async () => {
             const newPriority = newTask.importance+newTask.urgency
             await setNewTask({...newTask, priority: newPriority})
-
         }
         setPriority()
     }, [newTask.importance, newTask.urgency])
