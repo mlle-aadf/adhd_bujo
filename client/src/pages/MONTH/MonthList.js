@@ -1,20 +1,16 @@
+import styled from "styled-components";
 import FullCalendar from "@fullcalendar/react";
 import listPlugin from '@fullcalendar/list'
-import { useCollapse } from 'react-collapsed';
+
 import { useContext, useState } from "react";
 import { EventsContext } from "../../contexts/EventsContext";
 
-const MonthList = () => {
+const MonthList = ({eventList}) => {
     
     const {events} = useContext(EventsContext)
     console.log("events: ", events)
 
-    const [isExpanded, setExpanded] = useState(false);
-    const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
 
-    const clickHandler = () => {
-        setExpanded((prevExpanded) => !prevExpanded)
-    }
 
     // const clickHandler = () => {
     //     console.log("event added!")
@@ -32,27 +28,31 @@ const MonthList = () => {
     //   }]
 
     return (
-        <FullCalendar
+        <MonthListContainer>
+          {/* <FullCalendar
             plugins={[listPlugin]}
-            // datesSet={}
             initialView="listMonth"
-            headerToolbar={false}
-            // headerToolbar={{left:"", right:"addEventButton"}}
-            // customButtons={{
-            //     addEventButton:{
-            //     text:"+"
-            //     },
-            //     // click: {clickHandler}
-            // }}
-            events={events}
-            eventTimeFormat={{day:'numeric'}}
-            contentHeight={"30vh"}
-            noEventsContent={""}
-            // listDayFormat={false}
-            // listDaySideFormat={false}
-            // eventAdd={}
-        />
+            headerToolbar={{
+              left:"title",
+              center:"",
+              right:""
+            }}
+            titleFormat={{month:"2-digit"}}
+            ref={calendarRef}
+          >
+
+          </FullCalendar> */}
+
+        {/* {eventList.map((event)=> <p>{event.title}</p>)} */}
+        </MonthListContainer>
     )       
 }
 
 export default MonthList
+
+const MonthListContainer = styled.div`
+  background-color: var(--faded);
+  border-radius: 10px;
+  padding: 0.1rem 0.75rem;
+  margin-top: 1rem;
+`

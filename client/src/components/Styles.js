@@ -15,15 +15,18 @@ const DayBTN = styled(Link)`
 const HomeBTN = styled(Link)`
     @media  (max-width: 500px) {
         text-decoration: none;
-        background-color: var(--faded);
+        /* background-color: var(--faded); */
         border-radius: 30px;
         color: white;
         padding: 0.25rem;
         text-align: center;
         position: fixed;
         width: 20%;
-        bottom: 5%;
-        right: 40%
+        bottom: 2%;
+        right: 40%;
+        &:hover{
+            color: var(--blue)
+        }
     }
 `
 
@@ -50,6 +53,11 @@ const DayLink = styled(Link)`
         grid-column: 1 / span 1;
         grid-row: 1 / span 2;
     } 
+
+    &:hover{
+        color: var(--blue);
+    }
+
 `
 
 const DayStr = styled.p`
@@ -72,7 +80,11 @@ const MonthLink = styled(Link)`
     text-decoration: none;
     color: white;
     font-size: 1.5rem;
-    `
+
+    &:hover{
+        color: var(--pink);
+    }
+`
 const YearLink = styled(Link)`
 
     @media  (max-width: 500px) {
@@ -81,6 +93,9 @@ const YearLink = styled(Link)`
         font-size: 1.5rem;
         margin-left: 0.5rem;
     
+    }
+    &:hover{
+        color: var(--mint);
     }
 `
 

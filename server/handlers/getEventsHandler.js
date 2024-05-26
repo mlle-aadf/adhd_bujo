@@ -10,7 +10,7 @@ const getEventsHandler = async (req, res) => {
     // return all tasks in database not marked "completed" or "deleted"
             .aggregate([
                 // {$match :  {$and: [{completed : false}, {deleted : false}] }},
-                {$sort : {start: -1}}
+                {$sort : {start: 1}}
             ], {
                 collation: {
                     locale: "en_US",
@@ -33,6 +33,6 @@ const getEventsHandler = async (req, res) => {
     }
 }
 
-// getEventsHandler()
+getEventsHandler()
 
 module.exports = getEventsHandler

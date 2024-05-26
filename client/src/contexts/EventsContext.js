@@ -56,6 +56,11 @@ const EventsContextProvider = ({ children }) => {
     useEffect(()=> {
       getEvents()
     }, [refresh])
+
+    const addEventHandler = async (newEvent) => {
+
+      console.log("addEventHandler: ", newEvent)
+    }
     // const events = [{
     //     title: 'Event1',
     //     start: '2024-05-22 09:30:00',
@@ -105,7 +110,7 @@ const EventsContextProvider = ({ children }) => {
     // console.log("keys: ", monthsKeys, events )
 
     return (
-        <EventsContext.Provider value={{monthsKeys, events}}>
+        <EventsContext.Provider value={{monthsKeys, events, addEventHandler}}>
         {/* <EventsContext.Provider value={{monthsKeys, events}}> */}
           {children}
         </EventsContext.Provider>
