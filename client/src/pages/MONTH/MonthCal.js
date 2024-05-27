@@ -1,18 +1,21 @@
 import styled from "styled-components";
+// import { EventsContext } from "../../contexts/EventsContext";
 
 import FullCalendar from "@fullcalendar/react";
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 
+import Modal from "react-modal" ;
 import { Collapse } from "react-collapse";
 // import { useCollapse } from 'react-collapsed';
-import { createRef, useRef, useState } from "react";
+import { createRef, useContext, useState } from "react";
 import MonthList from "./MonthList";
-import NewEvent from "../../components/NewEvent";
+import NewEvent from "../EVENTS/NewEvent";
+import EditEvent from "../EVENTS/EditEvent";
 
 // import { DayContext } from "../../contexts/DayContext";
-// import { EventsContext } from "../../contexts/EventsContext";
+import { EventsContext } from "../../contexts/EventsContext";
 // import { render } from "@fullcalendar/core/preact.js";
 
 
@@ -20,24 +23,46 @@ import NewEvent from "../../components/NewEvent";
 const MonthCal = ({localMonth, eventList, title}) => {
   
   // console.log("eventList: ", eventList)
+  const {findEvent, updateEvent} = useContext(EventsContext)
+
+  const [updatedEvent,setUpdatedEvent] = useState({
+    _id: "",
+    title: "title",
+    description: "description",
+    start:"YYYY-MM-DD HH:MM",
+    end:"YYYY-MM-DD HH:MM"
+  })
 
   const calendarRef = createRef()
   const calendar2Ref = createRef()
   
   const [listOpened, setListOpened] = useState(true)
   const [newOpened, setNewOpened] = useState(false)
+  // const [createOpened, setCreateOpened] = useState(false)
+  const [editOpened, setEditOpened] = useState(false)
+  // const [modalOpened, setModalOpened] = useState(false)
 
-  const toggleHandler = () => {
-    setListOpened(!listOpened)
-    setNewOpened(!newOpened)
+  const listViewHandler = () => {
+    setListOpened(true)
+    setNewOpened(false)
+    setEditOpened(false)
+    console.log("listed!")
   }
+  
+  const addEventHandler = () => {
+    setListOpened(false)
+    setNewOpened(true)
+    setEditOpened(false)
+    console.log("added!")
+  
+  }
+  
 
   const prevHandler = () => {
     let calendarApi = calendarRef.current.getApi()
     let calendar2Api = calendar2Ref.current.getApi()
     calendarApi.prev()
     calendar2Api.prev()
-    console.log("prev")
   }
   const nextHandler = () => {
     let calendarApi = calendarRef.current.getApi()
@@ -47,8 +72,46 @@ const MonthCal = ({localMonth, eventList, title}) => {
   }
 
   const eventClickHandler = (e) => {
-    console.log(e.event._def)
-    console.log("eventID: ", e.event._def.extendedProps._id)
+    setNewOpened(false)
+    setListOpened(false)
+    setEditOpened(true)
+    const {_id} = e.event._def.extendedProps
+    const {title} = e.event._def
+    const {description} = e.event._def.extendedProps
+    const {start, end} = e.event
+    console.log("event keys: ", _id, title, description, start, end)
+
+    const foundEvent = findEvent(_id)
+    
+
+    // setUpdatedEvent({...updatedEvent,
+    //   _id: _id,
+    //   title: title,
+    //   description: description,
+    //   start: start,
+    //   end: end
+    // })
+    // debugger
+    // let calendar2Api = calendar2Ref.current.getApi()
+    
+    // const event = calendar2Api.get
+
+    // const eventStart = e.event.start
+
+
+    // console.log("event: ", event)
+    // console.log("updated: ", updatedEvent)
+    // console.log(`eventClickHandler: event: ${event}, eventID: ${eventID}, eventTitle: ${eventTitle}, eventDesc: ${eventDesc}`) 
+
+    // setUpdatedEvent({
+      // ...updatedEvent, 
+      // _id: `${eventID}`,
+      // title: `${eventTitle}`,
+      // description: `${eventDesc}`,
+      // start: `${eventStart}`,
+
+  // })
+    // updateEvent(eventID, {updateEvent})
   }
 
   // const addEventHandler = () => {
@@ -73,11 +136,8 @@ const MonthCal = ({localMonth, eventList, title}) => {
           center:"title",
           right:"n"
         } : false}
-        // footerToolbar={{right:"listMonth"}}
         footerToolbar={{left:"listViewButton",right:"addEventButton"}}
-
         titleFormat={{month:"short", year:"numeric"}}
-
         customButtons={{
           p:{
             icon:"chevron-left",
@@ -89,55 +149,52 @@ const MonthCal = ({localMonth, eventList, title}) => {
           },
           listViewButton:{
             text:"EVENTS",
-            click: toggleHandler
+            click: listViewHandler
           },
           addEventButton:{
             text:"+",
-            click: toggleHandler
+            click: addEventHandler
           }
         }}
-
         dayHeaderFormat={{weekday:'narrow'}}
-        // editable={true}
-        // selectable={true}
-        // dateClick={()=>console.log("date cliked")}
         fixedWeekCount={false}
         contentHeight={"30vh"}
-        
       />
+      
+      
+      
       {/* view month events as list */}
       <Collapse isOpened={listOpened}>
         <FullCalendar
               plugins={[listPlugin]}
               initialView="listMonth"
               headerToolbar={false}
-              // headerToolbar={{
-              //   left:"listViewButton",
-              //   center:"",
-              //   right:"newEvent"
-              // }}
-              // customButtons={{
-              //   addEventButton:{
-              //     text:"list",
-              //     click: ()=>setIsOpened(!isOpened)
-              //   },
-              //   addEventButton:{
-              //     text:"new"
-              //   }
-              // }}
-              // titleFormat={{month:"2-digit"}}
               ref={calendar2Ref}
               events={eventList}
               eventTimeFormat={{day:"2-digit", hour:"numeric", minute:"numeric", meridiem:false}}
-              selectable={true}
+              // selectable={true}
               eventClick={eventClickHandler}
+              eventStartEditable={true}
+              eventDurationEditable={true}
+              defaultTimedEventDuration={'1:00:00'}
               // eventChange={}
               displayEventEnd={false}
             >
         </FullCalendar>
         </Collapse>   
-        <Collapse isOpened={newOpened}><NewEvent/></Collapse>
         
+        
+        {/* view new event form */}
+        <Collapse isOpened={newOpened}><NewEvent /></Collapse>
+        
+        {/* view update event form */}
+        <Collapse isOpened={editOpened} event={""} ><EditEvent updatedEvent={updatedEvent}setUpdatedEvent={setUpdatedEvent}/></Collapse>
+        
+        
+        
+        {/* <Modal isOpen={false}>
+
+        </Modal> */}
         {/* <MonthList ref={calendarRef}/> */}
         {/* <MonthList>
           {eventList.map((event)=> <p>{event.title}</p>)}

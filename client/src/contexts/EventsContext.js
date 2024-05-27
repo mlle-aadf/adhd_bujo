@@ -23,6 +23,22 @@ const EventsContextProvider = ({ children }) => {
 
     const [refresh, setRefresh] = useState(false)
     
+    const getEvent = async () => {
+      try{
+        const res = await fetch("/event")
+        const {eventData} = await res.json()
+       
+        setEvents(eventData)
+        console.log("getEvent: ", eventData)
+        return eventData
+    
+      } catch (err) {
+        console.log(err)
+      }
+    } 
+
+    const findEvent = () => getEvent()
+
     const getEvents = async () => {
       try{
         const res = await fetch("/schedule")
@@ -73,56 +89,29 @@ const EventsContextProvider = ({ children }) => {
       }
       
     }
-    // const events = [{
-    //     title: 'Event1',
-    //     start: '2024-05-22 09:30:00',
-    //     end: '2024-05-22 10:30:00'
-    //   },
-    //   {
-    //     title: 'Event2',
-    //     start: '2024-05-22 12:30:00',
-    //     end: '2024-05-22 13:30',
-    //   }]
-
-    // const janEvents = [{
-    //     title: 'Event1',
-    //     start: '2024-05-22 09:30:00',
-    //     end: '2024-05-22 10:30:00'
-    //   },
-    //   {
-    //     title: 'Event2',
-    //     start: '2024-05-22 12:30:00',
-    //     end: '2024-05-22 13:30',
-    //   }]
-
-
-    // const febEvents = [{
-    //     title: 'Event3',
-    //     start: '2024-05-22 09:30:00',
-    //     end: '2024-05-22 10:30:00'
-    //   },
-    //   {
-    //     title: 'Event4',
-    //     start: '2024-05-22 12:30:00',
-    //     end: '2024-05-22 13:30',
-    //   },
-    //   {
-    //     title: 'Event4',
-    //     start: '2024-05-22 12:30:00',
-    //     end: '2024-05-22 13:30',
-    //   },
-    //   {
-    //     title: 'Event4',
-    //     start: '2024-05-22 12:30:00',
-    //     end: '2024-05-22 13:30',
-    //   }]
-
-    // const monthsKeys =  ["2024-01","2024-02","2024-03","2024-04","2024-05", "2024-06","2024-07","2024-08","2024-09", "2024-10", "2024-11", "2024-12"]
     
-    // console.log("keys: ", monthsKeys, events )
+    // update existing event 
+    const updateEvent = async (eventID, update) => {
+      const updateInfo = {
+        eventID: eventID,
+        updatedEvent: update
+      }
+
+      console.log(updateInfo)
+
+      // const response = await fetch("/todo", {
+      //   method: "PATCH",
+      //   headers: {"Content-Type": "application/json"},
+      //   body: JSON.stringify(updateInfo)
+      // })
+    
+      // if (response.ok) {
+      //   setRefresh(!refresh)
+      // }
+    }
 
     return (
-        <EventsContext.Provider value={{monthsKeys, events, addNewEvent}}>
+        <EventsContext.Provider value={{monthsKeys, events, addNewEvent, updateEvent, findEvent}}>
         {/* <EventsContext.Provider value={{monthsKeys, events}}> */}
           {children}
         </EventsContext.Provider>

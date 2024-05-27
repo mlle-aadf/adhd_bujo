@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Collapse } from "react-collapse";
 import DayList from "./DayList";
-import NewEvent from "./NewEvent";
+// import NewEvent from "./NewEvent";
 
 
 const Schedule = () => {
