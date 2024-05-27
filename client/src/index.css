@@ -159,6 +159,9 @@ text-align: center;
 .fc-list-event{
   display: flex;
   justify-content: space-between;
+  &:hover{
+    background-color: var(--faded);
+  }
 }
 
 .fc-list-event-graphic{

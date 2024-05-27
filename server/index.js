@@ -12,10 +12,13 @@ const PORT = 4000;
 
 const createTaskHandlder = require("./handlers/createTaskHandler")
 const getTasksHandler = require("./handlers/getTasksHandler")
-// const getCompletedHandler = require("./handlers/getCompletedHandler")
 const updateTaskHandler = require("./handlers/updateTaskHandler")
+// const getCompletedHandler = require("./handlers/getCompletedHandler")
+
 const createEventHandlder = require("./handlers/createEventHandlder")
+const getEventHandler = require("./handlers/getEventHandler")
 const getEventsHandler = require("./handlers/getEventsHandler")
+const updateEventHandlder = require("./handlers/updateEventHandler")
 
 
 express()
@@ -53,15 +56,20 @@ express()
   
   
   // deletes all tasks marked "deleted"
-// .. deleteMany
+  // .. deleteMany
+  
+  
+  // get single event from DB
+  .get("/event", getEventHandler)
 
-
-// get events from DB
-.get("/schedule", getEventsHandler)
-
-// adds new event object to DB
-.post("/schedule", createEventHandlder)
-
+  // get all events from DB
+  .get("/schedule", getEventsHandler)
+  
+  // adds new event object to DB
+  .post("/schedule", createEventHandlder)
+  
+  // updates an event object from DB
+  .patch("/schedule", updateEventHandlder)
 
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
