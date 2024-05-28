@@ -64,6 +64,8 @@ useEffect(()=> {
       
       if (response.ok) {
       setRefresh(!refresh)
+    } else {
+      console.log("addEvent failed")
     }
   }
   

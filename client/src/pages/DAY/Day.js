@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import NavBar from "../components/NavBarMobile";
-import Priorities from "../components/Priorities";
-import Schedule from "../components/Schedule";
-import ToDo from "./TODO/ToDo";
-import HomeLink from "../components/HomeLink";
-import { TaskContext } from "../contexts/TasksContext";
+import NavBar from "../../components/NavBarMobile";
+import Priorities from "../../components/Priorities";
+import Schedule from "./Schedule";
+import ToDo from "../TODO/ToDo";
+import HomeLink from "../../components/HomeLink";
+import { TaskContext } from "../../contexts/TasksContext";
 
 const Day = () => {
     

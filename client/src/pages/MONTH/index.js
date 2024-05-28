@@ -60,30 +60,30 @@ const Month = () => {
 
 export default Month
 
-const BTNcont = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: right;
-`
+// const BTNcont = styled.div`
+//     display: flex;
+//     align-items: center;
+//     justify-content: right;
+// `
 
-const NewBTN = styled(FaPlus)`
-    width: 2rem;
-    padding: 0.25rem 0;
-    border-radius: 45%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    `
-const AddBTN = styled(FaBars)`
-    width: 2rem;
-    padding: 0.25rem 0;
-    /* font-size: 2rem; */
-    /* border: 2px solid fuchsia; */
-    border-radius: 45%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
+// const NewBTN = styled(FaPlus)`
+//     width: 2rem;
+//     padding: 0.25rem 0;
+//     border-radius: 45%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     `
+// const AddBTN = styled(FaBars)`
+//     width: 2rem;
+//     padding: 0.25rem 0;
+//     /* font-size: 2rem; */
+//     /* border: 2px solid fuchsia; */
+//     border-radius: 45%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+// `
 
 // const HeaderToolBar = styled.div`
 //     display: flex;

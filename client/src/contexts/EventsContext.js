@@ -5,18 +5,18 @@ export const EventsContext = createContext();
 
 const EventsContextProvider = ({ children }) => {
   const monthsKeys = [
-    { str: "JANUARY", date: "2024-01", events: [""] },
-    { str: "FEBRUARY", date: "2024-02", events: [""] },
-    { str: "MARCH", date: "2024-03", events: [""] },
-    { str: "APRIL", date: "2024-04", events: [""] },
-    { str: "MAY", date: "2024-05", events: [""] },
-    { str: "JUNE", date: "2024-06", events: [""] },
-    { str: "JULY", date: "2024-07", events: [""] },
-    { str: "AUGUST", date: "2024-08", events: [""] },
-    { str: "SEPTEMBER", date: "2024-09", events: [""] },
-    { str: "OCTOBER", date: "2024-10", events: [""] },
-    { str: "NOVEMBER", date: "2024-11", events: [""] },
-    { str: "DECEMBER", date: "2024-12", events: [""] },
+    { str: "JANUARY", date: "2024-01"},
+    { str: "FEBRUARY", date: "2024-02"},
+    { str: "MARCH", date: "2024-03"},
+    { str: "APRIL", date: "2024-04"},
+    { str: "MAY", date: "2024-05"},
+    { str: "JUNE", date: "2024-06"},
+    { str: "JULY", date: "2024-07"},
+    { str: "AUGUST", date: "2024-08"},
+    { str: "SEPTEMBER", date: "2024-09"},
+    { str: "OCTOBER", date: "2024-10"},
+    { str: "NOVEMBER", date: "2024-11"},
+    { str: "DECEMBER", date: "2024-12"},
   ];
 
   
@@ -86,7 +86,7 @@ const EventsContextProvider = ({ children }) => {
 
     if (response.ok) {
       setRefresh(!refresh);
-      document.getElementById("newEventForm").reset()
+      // document.getElementById("newEventForm").reset()
       console.log(`event "${newEvent.title}" saved`);
     } else {
       console.log("addEvent failed")
