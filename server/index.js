@@ -13,7 +13,6 @@ const PORT = 4000;
 const createTaskHandlder = require("./handlers/createTaskHandler")
 const getTasksHandler = require("./handlers/getTasksHandler")
 const updateTaskHandler = require("./handlers/updateTaskHandler")
-// const getCompletedHandler = require("./handlers/getCompletedHandler")
 
 const createEventHandlder = require("./handlers/createEventHandlder")
 const getEventHandler = require("./handlers/getEventHandler")
@@ -60,7 +59,6 @@ express()
   
   // get all events from DB
   .get("/events", getEventsHandler)
-  // .get("/schedule", getEventsHandler)
   
   
   // get single event from DB

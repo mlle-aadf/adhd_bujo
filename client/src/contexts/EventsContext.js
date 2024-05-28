@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const EventsContext = createContext();
 
@@ -19,21 +19,24 @@ const EventsContextProvider = ({ children }) => {
     { str: "DECEMBER", date: "2024-12", events: [""] },
   ];
 
+  
 
+  const [event, setEvent] = useState({})
   const [events, setEvents] = useState([]);
+  // const [buttonMessage, setButtonMessage] = useState("boop");
   const [refresh, setRefresh] = useState(false);
 
   // const {eventID} = useParams()
 
-  // const getEvent = async () => {
-    
+  // const getEvent = async (eventID) => {
+
   //   try {
-  //     const res = await fetch(`/events/${eventID}`);
-  //     const { eventData } = await res.json();
+  //     const response = await fetch(`/events/${eventID}`);
 
   //     // setEvents(eventData)
-  //     console.log("getEvent: ", eventData);
-  //     setSelectedEvent(eventData)
+  //     console.log("getEvent response: ", response);
+  //     // setEvent(eventData)
+  //     // return eventData
   //     // return eventData;
   //   } catch (err) {
   //     console.log(err);
@@ -41,6 +44,7 @@ const EventsContextProvider = ({ children }) => {
   // };
 
   // const findEvent = (eventID) => getEvent(eventID);
+  
 
   const getEvents = async () => {
     try {
@@ -52,6 +56,8 @@ const EventsContextProvider = ({ children }) => {
       console.log(err);
     }
   };
+
+
   // const getEvents = async () => {
   //   try {
   //     const res = await fetch("/events");
@@ -80,6 +86,7 @@ const EventsContextProvider = ({ children }) => {
 
     if (response.ok) {
       setRefresh(!refresh);
+      document.getElementById("newEventForm").reset()
       console.log(`event "${newEvent.title}" saved`);
     } else {
       console.log("addEvent failed")
@@ -110,7 +117,7 @@ const EventsContextProvider = ({ children }) => {
 
   return (
     <EventsContext.Provider
-      value={{ monthsKeys, events, addNewEvent, updateEvent }}
+      value={{ monthsKeys, events, addNewEvent, updateEvent, event}}
     >
       {/* <EventsContext.Provider value={{monthsKeys, events}}> */}
       {children}

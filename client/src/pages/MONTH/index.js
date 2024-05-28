@@ -46,56 +46,7 @@ const Month = () => {
     return(
         <>
             <NavBarMobile/>
-            {/* <HeaderToolBar>
-                <FaAngleLeft onClick={()=>setIndex(index-1)}/>
-                <h3>{monthsKeys[index].str}</h3>
-                <FaAngleRight onClick={()=>setIndex(index+1)}/>
-            </HeaderToolBar> */}
-            {/* <FullCalendar
-                plugins={[dayGridPlugin, listPlugin]}
-                initialView="dayGridMonth"
-                // initialDate={}
-                headerToolbar={{
-                    left: 'prev, next',
-                    center: 'title',
-                    // right: 'month,list'
-                    // right: 'dayGridMonth,listMonth'
-                }}
-                eventDisplay="block"
-                // views={{
-                //     month:{
-                //         type: 'dayGridMonth',
-                //         eventDisplay:"none"
-                //     },
-                //     list:{
-                //         type: 'dayGridMonth',
-                //         eventDisplay:"block"
-
-                //     }
-                // }}
-
-                titleFormat={{month:"long"}}
-                dayHeaderFormat={{weekday:'narrow'}}
-                events={events}
-                eventTimeFormat={{ // like '14:30:00'
-                    hour: "numeric",
-             
-                    hour12: false,
-                    meridiem: false
-                  }}
-                editable={true}
-                // selectable={true}
-                fixedWeekCount={false}
-                contentHeight={"50vh"}
-            /> */}
-            {/* <FaAngleLeft onClick={()=>navHandler("prev")}/>{selectedMonth.str}<FaAngleRight onClick={()=>navHandler("next")}/> */}
-                {/* <h3>THIS MONTH</h3> */}
-                {/* <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={events} title={true}/> */}
-                {/* <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={monthsKeys[thisMonthNum].events}/> */}
-                {/* <BTNcont>
-                    <NewBTN onClick={()=>toggleHandler()} style={{backgroundColor:`${newOpened === true ? "var(--faded)" : "transparent"}`}}/>
-                    <AddBTN onClick={()=>toggleHandler()} style={{backgroundColor:`${listOpened === true ? "var(--faded)" : "transparent"}`}}/>
-                </BTNcont> */}
+      
                 <Collapse isOpened={listOpened}>
                     <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={events} title={true}/>
                     {/* <MonthList eventList={events}/> */}

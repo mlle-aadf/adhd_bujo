@@ -70,16 +70,14 @@ const MonthCal = ({localMonth, eventList, title}) => {
   const eventClickHandler = (e) => {
     
     const eventID = e.event._def.extendedProps._id
-    
     navigate(`/events/${eventID}`)
-    // setNewOpened(true)
-    // setListOpened(false)
-
-
-    // findEvent(eventID)
-    // console.log(e.event._def.extendedProps._id)
 
     console.log("eventClickHandler ", eventID)
+  }
+
+  // do something when day is clicked
+  const clickDateHandler = (e) => {
+    console.log("clickDateHandler: ", e)
   }
 
 
@@ -121,6 +119,7 @@ const MonthCal = ({localMonth, eventList, title}) => {
         dayHeaderFormat={{weekday:'narrow'}}
         fixedWeekCount={false}
         contentHeight={"30vh"}
+        // dateClick={clickDateHandler}
       />
       
       
@@ -131,7 +130,9 @@ const MonthCal = ({localMonth, eventList, title}) => {
               plugins={[listPlugin]}
               initialView="listMonth"
               headerToolbar={false}
+              // contentHeight= "5000" 
               ref={calendar2Ref}
+              noEventsContent="checking calendar..."
               events={eventList}
               eventTimeFormat={{day:"2-digit", hour:"numeric", minute:"numeric", meridiem:false}}
               // selectable={true}
@@ -141,6 +142,7 @@ const MonthCal = ({localMonth, eventList, title}) => {
               defaultTimedEventDuration={'1:00:00'}
               // eventChange={}
               displayEventEnd={false}
+            
             >
         </FullCalendar>
         </Collapse>   

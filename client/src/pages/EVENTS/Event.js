@@ -2,21 +2,31 @@ import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import NavBarMobile from "../../components/NavBarMobile";
 import HomeLink from "../../components/HomeLink";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { EventsContext } from "../../contexts/EventsContext";
 
 const Event = () => {
+
     const {eventID} = useParams()
-
-    const [event, setEvent] = useState({})
-
+    // console.log("Event() eventParams: ", eventID)
+    
+    const [event, setEvent] = useState("")
+    const [refresh, setRefresh] = useState()
+    
     const getEvent = async () => {
+        console.log("getEvent ID: ", eventID)
+        
         try {
         const res = await fetch(`/events/${eventID}`);
-        const { eventData } = await res.json();
+        const {eventData} = await res.json();
 
         // setEvents(eventData)
         console.log("getEvent: ", eventData);
+        const {title, description, start, end} = eventData
+        console.log("infoss: ", title, description, start, end)
         setEvent(eventData);
+        console.log("here",event)
+        // setRefresh(!refresh)
         // return eventData;
         } catch (err) {
         console.log(err);
@@ -27,13 +37,24 @@ const Event = () => {
         getEvent()
     }, [])
 
-    console.log(event)
 
   return (
     <div>
       <NavBarMobile />
-      {/* <BackBTN to={"/month"}>back</BackBTN> */}
-      <EventCont>EVENT</EventCont>
+      <EventCont>
+        {event !== "" ? 
+            <div>
+                <h2>{event.title}</h2>
+                <p>{event.description}</p>
+                <p>{`start: ${event.start}`}</p>
+                <p>{`end: ${event.end}`}</p>
+            </div> 
+        : <p>...</p>
+        
+        }
+
+
+      </EventCont>
       <HomeLink />
     </div>
   );
