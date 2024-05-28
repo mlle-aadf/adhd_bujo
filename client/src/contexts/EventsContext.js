@@ -81,7 +81,11 @@ const EventsContextProvider = ({ children }) => {
     if (response.ok) {
       setRefresh(!refresh);
       console.log(`event "${newEvent.title}" saved`);
+    } else {
+      console.log("addEvent failed")
     }
+
+
   };
 
   // update existing event

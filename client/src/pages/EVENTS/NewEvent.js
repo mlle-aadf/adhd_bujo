@@ -22,8 +22,8 @@ const NewEvent = () => {
     // const [endOpened, setEndOpened] = useState(false)
 
     const [newEvent, setNewEvent] = useState({
-        _id:"prev id",
-        title: "prev title",
+        _id: uuidv4,
+        title: "",
         description: "",
         start: "",
         // start: "2024-05-26",

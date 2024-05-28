@@ -22,7 +22,7 @@ const createEventHandlder = async (req, res) => {
                     })
             }
     
-            console.log("event created: ", req.body)
+            console.log("event created: ", req.body.title)
             return res.status(201).json(
                 {
                     status: 201,

@@ -67,10 +67,10 @@ express()
   .get("/events/:eventID", getEventHandler)
   
   // adds new event object to DB
-  .post("/schedule", createEventHandlder)
+  .post("/events", createEventHandlder)
   
   // updates an event object from DB
-  .patch("/schedule", updateEventHandlder)
+  .patch("/events", updateEventHandlder)
 
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
