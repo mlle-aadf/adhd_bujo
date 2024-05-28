@@ -1,4 +1,4 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 // import { EventsContext } from "../../contexts/EventsContext";
 
@@ -7,16 +7,16 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 
-import Modal from "react-modal" ;
+// import Modal from "react-modal" ;
 import { Collapse } from "react-collapse";
 // import { useCollapse } from 'react-collapsed';
 import { createRef, useContext, useState } from "react";
-import MonthList from "./MonthList";
+// import MonthList from "./MonthList";
 import NewEvent from "../EVENTS/NewEvent";
-import EditEvent from "../EVENTS/EditEvent";
+// import EditEvent from "../EVENTS/EditEvent";
 
 // import { DayContext } from "../../contexts/DayContext";
-import { EventsContext } from "../../contexts/EventsContext";
+// import { EventsContext } from "../../contexts/EventsContext";
 // import { render } from "@fullcalendar/core/preact.js";
 
 
@@ -27,27 +27,22 @@ const MonthCal = ({localMonth, eventList, title}) => {
   // const {addNewEvent} = useContext(EventsContext)
   const navigate = useNavigate()
 
-  // const [selectedEvent,setSelectedEvent] = useState({})
-
   const calendarRef = createRef()
   const calendar2Ref = createRef()
   
   const [listOpened, setListOpened] = useState(true)
   const [newOpened, setNewOpened] = useState(false)
-  // const [createOpened, setCreateOpened] = useState(false)
-  // const [editOpened, setEditOpened] = useState(false)
-  // const [modalOpened, setModalOpened] = useState(false)
 
   const listViewHandler = () => {
     setListOpened(true)
-    setNewOpened(false)
+    // setNewOpened(false)
     // setEditOpened(false)
     console.log("listed!")
   }
   
   const addViewHandler = () => {
     setListOpened(false)
-    setNewOpened(true)
+    // setNewOpened(true)
     // setEditOpened(false)
     console.log("addViewHandler!")
   
@@ -55,12 +50,14 @@ const MonthCal = ({localMonth, eventList, title}) => {
   
 
   const prevHandler = () => {
+    setListOpened(true)
     let calendarApi = calendarRef.current.getApi()
     let calendar2Api = calendar2Ref.current.getApi()
     calendarApi.prev()
     calendar2Api.prev()
   }
   const nextHandler = () => {
+    setListOpened(true)
     let calendarApi = calendarRef.current.getApi()
     let calendar2Api = calendar2Ref.current.getApi()
     calendarApi.next()
@@ -72,13 +69,13 @@ const MonthCal = ({localMonth, eventList, title}) => {
     const eventID = e.event._def.extendedProps._id
     navigate(`/events/${eventID}`)
 
-    console.log("eventClickHandler ", eventID)
+    // console.log("eventClickHandler ", eventID)
   }
 
   // do something when day is clicked
-  const clickDateHandler = (e) => {
-    console.log("clickDateHandler: ", e)
-  }
+  // const clickDateHandler = (e) => {
+  //   console.log("clickDateHandler: ", e)
+  // }
 
 
 
@@ -132,12 +129,13 @@ const MonthCal = ({localMonth, eventList, title}) => {
               headerToolbar={false}
               // contentHeight= "5000" 
               ref={calendar2Ref}
-              noEventsContent="checking calendar..."
+              noEventsContent="..."
               events={eventList}
               eventTimeFormat={{day:"2-digit", hour:"numeric", minute:"numeric", meridiem:false}}
               // selectable={true}
               eventClick={eventClickHandler}
               eventStartEditable={true}
+              // allDay={false}
               eventDurationEditable={true}
               defaultTimedEventDuration={'1:00:00'}
               // eventChange={}

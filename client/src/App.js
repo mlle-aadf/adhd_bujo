@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Day from "./pages/Day";
+import Day from "./pages/DAY/Day";
 
 import Month from "./pages/MONTH";
 import Year from "./pages/YEAR";
