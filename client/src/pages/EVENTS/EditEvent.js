@@ -4,11 +4,11 @@ import Moment from 'react-moment'
 
 const EditEvent = ({updatedEvent, setUpdatedEvent}) => {
   
-    console.log("editEvent updatedEvent:", updatedEvent)
+    // console.log("editEvent updatedEvent:", updatedEvent)
 
-    const {title, description, start, end} = updatedEvent
+    // const {title, description, start, end} = updatedEvent
 
-    console.log(title, description, start, end)
+    // console.log(title, description, start, end)
 
     return (
     <EditEventCont>
@@ -21,9 +21,9 @@ const EditEvent = ({updatedEvent, setUpdatedEvent}) => {
                 > */}
       {/* <NewBTN onClick={()=>setIsOpened(!isOpened)}>+</NewBTN> */}
       {/* <Collapse isOpened={isOpened}> */}
-      <EventTitle type="text" value={title} required />
+      <EventTitle type="text" value={"e_title"} required />
       {/* <EventTitle type="text" placeholder="title" onChange={handleTitle} required/> */}
-      <EventDesc type="text" value={description} />
+      <EventDesc type="text" value={"e_description"} />
       {/* <EventDesc type="text" placeholder="description" onChange={handleDesc}/> */}
       <StartCont>
         {/* <Collapse isOpened={startOpened}> */}
