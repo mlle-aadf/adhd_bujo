@@ -58,12 +58,13 @@ express()
   // deletes all tasks marked "deleted"
   // .. deleteMany
   
+  // get all events from DB
+  .get("/events", getEventsHandler)
+  // .get("/schedule", getEventsHandler)
+  
   
   // get single event from DB
-  .get("/event", getEventHandler)
-
-  // get all events from DB
-  .get("/schedule", getEventsHandler)
+  .get("/events/:eventID", getEventHandler)
   
   // adds new event object to DB
   .post("/schedule", createEventHandlder)

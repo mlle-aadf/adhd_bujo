@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 // import { EventsContext } from "../../contexts/EventsContext";
 
 import FullCalendar from "@fullcalendar/react";
@@ -23,15 +24,10 @@ import { EventsContext } from "../../contexts/EventsContext";
 const MonthCal = ({localMonth, eventList, title}) => {
   
   // console.log("eventList: ", eventList)
-  const {findEvent, updateEvent} = useContext(EventsContext)
+  // const {addNewEvent} = useContext(EventsContext)
+  const navigate = useNavigate()
 
-  const [updatedEvent,setUpdatedEvent] = useState({
-    _id: "",
-    title: "title",
-    description: "description",
-    start:"YYYY-MM-DD HH:MM",
-    end:"YYYY-MM-DD HH:MM"
-  })
+  // const [selectedEvent,setSelectedEvent] = useState({})
 
   const calendarRef = createRef()
   const calendar2Ref = createRef()
@@ -39,21 +35,21 @@ const MonthCal = ({localMonth, eventList, title}) => {
   const [listOpened, setListOpened] = useState(true)
   const [newOpened, setNewOpened] = useState(false)
   // const [createOpened, setCreateOpened] = useState(false)
-  const [editOpened, setEditOpened] = useState(false)
+  // const [editOpened, setEditOpened] = useState(false)
   // const [modalOpened, setModalOpened] = useState(false)
 
   const listViewHandler = () => {
     setListOpened(true)
     setNewOpened(false)
-    setEditOpened(false)
+    // setEditOpened(false)
     console.log("listed!")
   }
   
-  const addEventHandler = () => {
+  const addViewHandler = () => {
     setListOpened(false)
     setNewOpened(true)
-    setEditOpened(false)
-    console.log("added!")
+    // setEditOpened(false)
+    console.log("addViewHandler!")
   
   }
   
@@ -72,59 +68,25 @@ const MonthCal = ({localMonth, eventList, title}) => {
   }
 
   const eventClickHandler = (e) => {
-    setNewOpened(false)
-    setListOpened(false)
-    setEditOpened(true)
-    const {_id} = e.event._def.extendedProps
-    const {title} = e.event._def
-    const {description} = e.event._def.extendedProps
-    const {start, end} = e.event
-    console.log("event keys: ", _id, title, description, start, end)
-
-    const foundEvent = findEvent(_id)
     
-
-    // setUpdatedEvent({...updatedEvent,
-    //   _id: _id,
-    //   title: title,
-    //   description: description,
-    //   start: start,
-    //   end: end
-    // })
-    // debugger
-    // let calendar2Api = calendar2Ref.current.getApi()
+    const eventID = e.event._def.extendedProps._id
     
-    // const event = calendar2Api.get
+    navigate(`/events/${eventID}`)
+    // setNewOpened(true)
+    // setListOpened(false)
 
-    // const eventStart = e.event.start
 
+    // findEvent(eventID)
+    // console.log(e.event._def.extendedProps._id)
 
-    // console.log("event: ", event)
-    // console.log("updated: ", updatedEvent)
-    // console.log(`eventClickHandler: event: ${event}, eventID: ${eventID}, eventTitle: ${eventTitle}, eventDesc: ${eventDesc}`) 
-
-    // setUpdatedEvent({
-      // ...updatedEvent, 
-      // _id: `${eventID}`,
-      // title: `${eventTitle}`,
-      // description: `${eventDesc}`,
-      // start: `${eventStart}`,
-
-  // })
-    // updateEvent(eventID, {updateEvent})
+    console.log("eventClickHandler ", eventID)
   }
 
-  // const addEventHandler = () => {
-  //   console.log("added event :)")
-  // }
-  // const listViewHandler = () => {
-  //   console.log("list view")
-  //   setIsOpened(!isOpened)
-  // }
+
 
   return (
     <div style={{marginTop:"1rem"}}>
-      {/* view month calendar */}
+      {/* MONTH CALENDAR VIEW */}
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
@@ -153,7 +115,7 @@ const MonthCal = ({localMonth, eventList, title}) => {
           },
           addEventButton:{
             text:"+",
-            click: addEventHandler
+            click: addViewHandler
           }
         }}
         dayHeaderFormat={{weekday:'narrow'}}
@@ -163,8 +125,8 @@ const MonthCal = ({localMonth, eventList, title}) => {
       
       
       
-      {/* view month events as list */}
-      <Collapse isOpened={listOpened}>
+      {/* MONTH LIST VIEW */}
+        <Collapse isOpened={listOpened}>
         <FullCalendar
               plugins={[listPlugin]}
               initialView="listMonth"
@@ -185,10 +147,10 @@ const MonthCal = ({localMonth, eventList, title}) => {
         
         
         {/* view new event form */}
-        <Collapse isOpened={newOpened}><NewEvent /></Collapse>
+        <Collapse isOpened={!listOpened}><NewEvent /></Collapse>
         
         {/* view update event form */}
-        <Collapse isOpened={editOpened} event={""} ><EditEvent updatedEvent={updatedEvent}setUpdatedEvent={setUpdatedEvent}/></Collapse>
+        {/* <Collapse isOpened={true} event={""} ><EditEvent/></Collapse> */}
         
         
         

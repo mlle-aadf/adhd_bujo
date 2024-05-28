@@ -2,10 +2,11 @@ const mongoConnect = require('./mongoConnect')
 
 const getEventHandler = async (req, res) => {
     
+    console.log(req.params)
     
     if (req?.body) {
-        // console.log("NEW TASK: ", req.body)
-        const {eventID, update} = req.body
+        const {eventID} = req.body
+        console.log("getEventHandler eventID: ", eventID)
 
         try{
             const db = await mongoConnect(true)
@@ -20,7 +21,7 @@ const getEventHandler = async (req, res) => {
                     })
             }
     
-            // console.log("event created: ", eventID)
+            console.log("event created: ", result.title)
             return res.status(201).json(
                 {
                     status: 201,
@@ -37,6 +38,6 @@ const getEventHandler = async (req, res) => {
     }
 }
 
-getEventHandler()
+// getEventHandler()
 
 module.exports = getEventHandler

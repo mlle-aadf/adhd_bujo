@@ -11,6 +11,10 @@ const { v4: uuidv4 } = require('uuid');
 
 const NewEvent = () => {
     
+    // input content {blank values}
+
+    // input content {clicked event object}
+
     // const [isOpened, setIsOpened] = useState(false)
     const [startOpened, setStartOpened] = useState(false)
 
@@ -49,7 +53,7 @@ const NewEvent = () => {
     const saveEventHandler = () => {
         addNewEvent(newEvent)
         // setIsOpen(!modalIsOpen)
-        // console.log("saveEventHandler: ", newEvent)
+        console.log("saveEventHandler: ", newEvent)
     }
 
 // list event onClick => toggles display NewEventCont option={"createEvent"} /  NewEventCont option={"updateEvent"}
@@ -74,44 +78,28 @@ const NewEvent = () => {
                 > */}
                 {/* <NewBTN onClick={()=>setIsOpened(!isOpened)}>+</NewBTN> */}
                 {/* <Collapse isOpened={isOpened}> */}
+            {/* SETS newEvent STATE TO USER INPUT*/}
+{/* ________________placeholder={ if (create) return "title" else return `${event.title}` }   */}
                     <EventTitle type="text" placeholder={"title"} onChange={(e)=>setNewEvent({...newEvent, title: e.target.value})} required/>
                     {/* <EventTitle type="text" placeholder="title" onChange={handleTitle} required/> */}
                     <EventDesc type="text" placeholder="description" onChange={(e)=>setNewEvent({...newEvent, description: e.target.value})}/>
                     {/* <EventDesc type="text" placeholder="description" onChange={handleDesc}/> */}
                     <StartCont>
-                        {/* <Collapse isOpened={startOpened}> */}
-                            {/* <Datetime
-                                dateFormat={"YYYY-MM-DD"}
-                                closeOnSelect={true}
-                                // input={false}
-                                timeFormat={false}
-                                inputProps={{placeholder:'start'}}
-                            /> */}
-                        {/* </Collapse> */}
                         <label onClick={()=> setStartOpened(!startOpened)}>start</label>
                         <Start type="datetime-local" required onChange={setStartHandler}/>
-                        {/* <StartTime type="time"/> */}
             
                     </StartCont>
                     <EndCont>
                         <label onClick={()=> setStartOpened(!startOpened)}>end</label>
                         <End type="datetime-local" onChange={(e)=>setNewEvent({...newEvent, end: e.target.value})} min={new Date(newEvent.start)}></End>
                     </EndCont>
-                    {/* <div>
-                        <label onClick={()=> setEndOpened(!endOpened)} >end</label>
-                        <Collapse isOpened={endOpened}>
-                            <Datetime dateFormat={"YYYY-MM-DD"}/>
-                        </Collapse>
-                    </div> */}
+             
                     <SaveBTN onClick={saveEventHandler}><SaveIcon>save</SaveIcon></SaveBTN>
-                    {/* <SaveBTN onClick={saveEventHandler}><SaveIcon/></SaveBTN> */}
-                {/* </Collapse> */}
-                {/* </Modal> */}
+          
             </NewEventCont>
-            {/* : <p>hello</p>} */}
-            {/* <EditEventCont>
+  
                 
-            </EditEventCont> */}
+          
         </>
     );
 };
