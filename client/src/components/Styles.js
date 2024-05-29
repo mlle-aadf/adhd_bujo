@@ -64,7 +64,7 @@ const DayLink = styled(Link)`
 
 const DayStr = styled.p`
     color: white;
-    font-size: 2rem;
+    font-size: 1.75rem;
     
     @media  (max-width: 500px) {
         grid-area: 1 / 2 / span 1 / span 3;
@@ -87,6 +87,7 @@ const MonthLink = styled(Link)`
         color: var(--pink);
     }
 `
+
 const YearLink = styled(Link)`
 
     @media  (max-width: 500px) {

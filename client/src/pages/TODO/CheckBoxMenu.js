@@ -26,7 +26,8 @@ const CheckBoxMenu = ({updateTask, taskId, active}) => {
         <CheckMenuContainer active={active} >
             <CompleteBTN onClick={completeHandler} value={"complete"}/>
             <DeleteBTN onClick={deleteHandler}/>
-            <StarBTN/>
+            
+            {/* <StarBTN/> */}
         </CheckMenuContainer>
     );
 };

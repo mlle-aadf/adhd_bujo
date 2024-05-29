@@ -14,6 +14,12 @@ const deleteTasksHandler = async (req, res) => {
 
         db.collection('tasks').deleteMany({"deleted": true})
 
+        return res.status(200).json( {
+                status: 200,
+                message: `deleteTasksHandler sucess`
+                // message: `task #${taskID} updated`
+            })
+
     } catch (error) {
         console.log(error.message);
     } finally {
