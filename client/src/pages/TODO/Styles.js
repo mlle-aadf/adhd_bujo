@@ -55,7 +55,7 @@ const CompletedContainer = styled.div`
 const CompletedTitleCont = styled.div`
   @media (max-width: 500px) {
     display: flex;
-    width: 75vw;
+    width: 100%;
     align-items: center;
     margin: 2rem 0 1rem 0;
     height: 2rem;
@@ -66,7 +66,7 @@ const CompletedTitleCont = styled.div`
 
 const CheckMark = styled(FaCheck)`
   margin-right: 1rem;
-  font-size: 1.75rem;
+  font-size: 2rem;
 `;
 
 // Deleted.js
@@ -83,7 +83,6 @@ const DeletedTitleCont = styled.div`
     display: flex;
     width: 100%;
     align-items: center;
-    
     margin: 2rem 0 1rem 0;
     height: 2rem;
 

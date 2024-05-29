@@ -27,7 +27,7 @@ const Deleted = ({deleted}) => {
         <DeletedContainer>
             <DeletedTitleCont>
                 <BinIcon onClick={()=> setIsOpened(!isOpened)} style={{color:`${isOpened? "var(--mint)" : "white"}`}}/>
-                 <h2  onClick={()=> setIsOpened(!isOpened)} style={{paddingRight:"4.5rem"}}> DELETED</h2>
+                 <h2  onClick={()=> setIsOpened(!isOpened)} style={{width:"80%"}}> DELETED</h2>
                  <BinDeleteBTN style={{display:`${isOpened === true ? "block" : "none"}`}} onClick={emptyBinHandler}/>
             </DeletedTitleCont>
             
