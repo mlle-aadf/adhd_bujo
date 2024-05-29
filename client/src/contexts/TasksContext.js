@@ -68,9 +68,6 @@ useEffect(()=> {
     }
   }
   
-  
-
-
 
   // update existing task(s) 
   const updateTask = async (opt, taskIDs) => {
@@ -91,30 +88,7 @@ useEffect(()=> {
       }
   }
 
-
-
-   // update existing task 
-//    const updateTask = async (opt, taskId) => {
-//     const updateInfo = {
-//       option: opt,
-//       taskID: taskId
-//     }
-
-//     const response = await fetch("/todo", {
-//       method: "PATCH",
-//       headers: {"Content-Type": "application/json"},
-//       body: JSON.stringify(updateInfo)
-//     })
-    
-//     if (response.ok) {
-//       setRefresh(!refresh)
-//     }
-// }
-
-
-
-
-  // empty DELETED bin
+// empty DELETED bin
 const emptyBin = async () => {
   const response = await fetch("/todo", {
     method: "delete",

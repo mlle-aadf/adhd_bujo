@@ -11,7 +11,7 @@ const Event = () => {
     // console.log("Event() eventParams: ", eventID)
     
     const [event, setEvent] = useState("")
-    const [refresh, setRefresh] = useState()
+
     
     const getEvent = async () => {
         console.log("getEvent ID: ", eventID)
@@ -26,8 +26,7 @@ const Event = () => {
         console.log("infoss: ", title, description, start, end)
         setEvent(eventData);
         console.log("here",event)
-        // setRefresh(!refresh)
-        // return eventData;
+      
         } catch (err) {
         console.log(err);
         }

@@ -32,6 +32,7 @@ h2 {
 
 :root{
   --pink: rgb(255, 132, 232);
+  --purple: rgb(180, 118, 255);
   --blue: rgb(123, 201, 255);
   --mint: rgb(163, 255, 214);
   --faded: rgba(255, 255, 255, 0.3);
@@ -47,13 +48,7 @@ h2 {
   --fc-list-event-hover-bg-color: transparent
 }
 
-/* td {
-text-align: center;
-} */
-/* 
-.fc{
-  height: fit-content;
-} */
+
 
 .fc-toolbar-chunk{
   /* border: 2px solid fuchsia; */
@@ -136,15 +131,23 @@ text-align: center;
   height: 20%;
 }
 
-/* .fc.fc-list-empty{
-  /* border-radius: 15px; 
-  background-color: black;
-} */
+.fc-displayList-button.fc-button.fc-button-primary{
+  background-color: transparent;
+  border: none;
+  margin-top: -3rem;
+  font-size: 1.5rem;
+}
+
 
 .fc-listMonth-view.fc-list.fc-view{
   margin-top: 1rem;
 }
 
+.fc-multiMonthYear-view.fc-view{
+  background-color: black;
+  border: 2px solid fuchsia;
+  color: aqua;
+}
 
 .fc-col-header-cell{
   font-weight: 400;
@@ -170,4 +173,123 @@ text-align: center;
 
 .fc .fc-list-day-cushion, .fc .fc-list-table td{
   padding: 0.5rem 0
+}
+
+#JANUARY{
+  &:hover{
+    color: var(--);
+  }
+  
+  &:active{
+    color: var(--);
+  }
+}
+
+#JANUARY{
+  &:hover{
+    color: var(--purple);
+  }
+  
+  &:active{
+    color: var(--purple);
+  }
+}
+#FEBRUARY{
+  &:hover{
+    color: var(--blue);
+  }
+  
+  &:active{
+    color: var(--blue);
+  }
+}
+#MARCH{
+  &:hover{
+    color: var(--mint);
+  }
+  
+  &:active{
+    color: var(--mint);
+  }
+}
+#APRIL{
+  &:hover{
+    color: var(--priority1);
+  }
+  
+  &:active{
+    color: var(--priority1);
+  }
+}
+#MAY{
+  &:hover{
+    color:var(--priority2)
+  }
+  
+  &:active{
+    color:var(--priority2)
+  }
+}
+#JUNE{
+  &:hover{
+    color:var(--priority3)
+  }
+  
+  &:active{
+    color:var(--priority3)
+  }
+}
+#JULY{
+  &:hover{
+    color:var(--pink)
+  }
+  
+  &:active{
+    color:var(--pink)
+  }
+}
+#AUGUST{
+  &:hover{
+    color:var(--purple)
+  }
+  
+  &:active{
+    color:var(--purple)
+  }
+}
+#SEPTEMBER{
+  &:hover{
+    color:var(--blue)
+  }
+  
+  &:active{
+    color:var(--blue)
+  }
+}
+#OCTOBER{
+  &:hover{
+    color:var(--mint)
+  }
+  
+  &:active{
+    color:var(--mint)
+  }
+}
+#NOVEMBER{
+  &:hover{
+    color:var(--priority1)
+  }
+  
+  &:active{
+    color:var(--priority1)
+  }
+}
+#DECEMBER{
+  &:hover{
+    color:var(--priority2)
+  }
+  
+  &:active{
+    color:var(--priority2)
+  }
 }
