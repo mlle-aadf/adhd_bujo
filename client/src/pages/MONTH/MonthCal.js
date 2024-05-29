@@ -116,9 +116,7 @@ const MonthCal = ({localMonth, eventList, title}) => {
         dayHeaderFormat={{weekday:'narrow'}}
         fixedWeekCount={false}
         contentHeight={"30vh"}
-        // dateClick={clickDateHandler}
       />
-      
       
       
       {/* MONTH LIST VIEW */}
@@ -126,8 +124,8 @@ const MonthCal = ({localMonth, eventList, title}) => {
         <FullCalendar
               plugins={[listPlugin]}
               initialView="listMonth"
+              initialDate={localMonth}
               headerToolbar={false}
-              // contentHeight= "5000" 
               ref={calendar2Ref}
               noEventsContent="..."
               events={eventList}

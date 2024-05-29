@@ -9,10 +9,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 const DayList = ({eventList}) => {
     const navigate = useNavigate()
     const eventClickHandler = (e) => {
-    
         const eventID = e.event._def.extendedProps._id
         navigate(`/events/${eventID}`)
-   
     }
     
     return (
