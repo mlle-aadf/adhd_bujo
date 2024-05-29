@@ -24,34 +24,14 @@ const Month = () => {
     // let chosenMonth = "2024-01"
     const {thisMonthNum}= useContext(DayContext)
     const {monthsKeys, events} = useContext(EventsContext)
-    const [listOpened, setListOpened] = useState(true)
-    const [newOpened, setNewOpened] = useState(false)
 
-    console.log(events)
-
-    const toggleHandler = () => {
-            setNewOpened(!newOpened)
-            setListOpened(!listOpened)
-    }
-    // console.log( thisMonthNum, monthsKeys)
-
-    // const [index, setIndex] = useState(thisMonthNum)
-    // const defaultMonth = monthsKeys[index]
-    // const [selectedMonth, setSelectedMonth] = useState(defaultMonth)
-    
-    // console.log(selectedMonth)
-    
+    console.log("month: ",events)
 
 
     return(
         <>
             <NavBarMobile/>
-      
-                <Collapse isOpened={listOpened}>
-                    <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={events} title={true}/>
-                    {/* <MonthList eventList={events}/> */}
-                </Collapse>
-                {/* <Collapse isOpened={newOpened}><NewEvent/></Collapse> */}
+            <MonthCal localMonth={monthsKeys[thisMonthNum].date} eventList={events} title={true}/>
             <HomeLink/>
         </>
 
