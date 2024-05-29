@@ -1,0 +1,25 @@
+const mongoConnect = require('./mongoConnect')
+
+const deleteTasksHandler = async (req, res) => {
+
+    // console.log("REQ: ", req)
+
+    // array of taskIDs to delete
+
+
+    
+
+    try {
+        const db = await mongoConnect(true)
+
+        db.collection('tasks').deleteMany({"deleted": true})
+
+    } catch (error) {
+        console.log(error.message);
+    } finally {
+        console.log("bin emptied")
+        await mongoConnect(false)
+    }
+}
+
+module.exports = deleteTasksHandler
