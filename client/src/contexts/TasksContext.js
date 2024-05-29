@@ -54,7 +54,6 @@ useEffect(()=> {
 
 // add new task to db
   const addNewTask = async (newTask) => {
-    // console.log("addNew: ", newTask)
 
     const response = await fetch("/todo", {
       method: "POST",
@@ -70,12 +69,16 @@ useEffect(()=> {
   }
   
   
-  // update existing task 
-  const updateTask = async (opt, taskId) => {
+
+
+
+  // update existing task(s) 
+  const updateTask = async (opt, taskIDs) => {
       const updateInfo = {
         option: opt,
-        taskID: taskId
+        taskIDs: taskIDs
       }
+      console.log("updateTask_updateInfo", updateInfo)
   
       const response = await fetch("/todo", {
         method: "PATCH",
@@ -89,6 +92,28 @@ useEffect(()=> {
   }
 
 
+
+   // update existing task 
+//    const updateTask = async (opt, taskId) => {
+//     const updateInfo = {
+//       option: opt,
+//       taskID: taskId
+//     }
+
+//     const response = await fetch("/todo", {
+//       method: "PATCH",
+//       headers: {"Content-Type": "application/json"},
+//       body: JSON.stringify(updateInfo)
+//     })
+    
+//     if (response.ok) {
+//       setRefresh(!refresh)
+//     }
+// }
+
+
+
+
   // empty DELETED bin
 const emptyBin = async () => {
   const response = await fetch("/todo", {
@@ -98,20 +123,21 @@ const emptyBin = async () => {
   
   if (response.ok) {
     setRefresh(!refresh)
-    console.log("bin emptied :)")
+    console.log("RESPONSE: ", response)
+  //   console.log("bin emptied :)")
   }
 }
 
 // update priorities
 const updatePriorities = ({task}) => {
-  
+  console.log("updatePriorities: ", task)
   
   // const updated = priorities.pop().unshift(task)
   
   // console.log("pick me! ")
 }
 
-updatePriorities("top priority")
+// updatePriorities("top priority")
 
   return (
     <TaskContext.Provider value={{tasks, completed, deleted, emptyBin, addNewTask, updateTask, priorities, updatePriorities}}>
