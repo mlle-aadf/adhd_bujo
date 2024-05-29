@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
+import { MdOutlineCheckBoxOutlineBlank, MdDelete } from "react-icons/md";
 
 import {
   FaStar,
@@ -51,7 +51,18 @@ const CompletedContainer = styled.div`
     margin: -1rem 0;
   }
 `;
-const CompletedTitle = styled.h2``;
+
+const CompletedTitleCont = styled.div`
+  @media (max-width: 500px) {
+    display: flex;
+    width: 75vw;
+    align-items: center;
+    margin: 2rem 0 1rem 0;
+    height: 2rem;
+
+    /* border: 2px solid fuchsia; */
+  }
+`
 
 const CheckMark = styled(FaCheck)`
   margin-right: 1rem;
@@ -64,10 +75,26 @@ const DeletedContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 75vw;
-    margin: -1rem 0;
   }
-`;
-const DeletedTitle = styled.h2``;
+`
+
+const DeletedTitleCont = styled.div`
+  @media (max-width: 500px) {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    
+    margin: 2rem 0 1rem 0;
+    height: 2rem;
+
+    /* border: 2px solid pink; */
+  }
+`
+
+const BinIcon = styled(MdDelete)`
+    margin-right: 1rem;
+    font-size: 2rem;
+`
 
 // ToDo.js
 const TodoContainer = styled.div`
@@ -103,7 +130,7 @@ const TodoTitle = styled(Link)`
 
 // NewTask.js
 const NewTaskContainer = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
 `;
@@ -214,10 +241,11 @@ export {
   CompleteBTN,
   DeleteBTN,
   CheckMark,
-  CompletedTitle,
+  CompletedTitleCont,
   CompletedContainer,
   DeletedContainer,
-  DeletedTitle,
+  DeletedTitleCont,
+  BinIcon,
   ImportanceIcon,
   TodoTitle,
   TitleContainer,

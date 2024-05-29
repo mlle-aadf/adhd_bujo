@@ -13,6 +13,8 @@ const PORT = 4000;
 const createTaskHandlder = require("./handlers/createTaskHandler")
 const getTasksHandler = require("./handlers/getTasksHandler")
 const updateTaskHandler = require("./handlers/updateTaskHandler")
+const deleteTasksHandler = require("./handlers/deleteTasksHandler")
+
 
 const createEventHandlder = require("./handlers/createEventHandlder")
 const getEventHandler = require("./handlers/getEventHandler")
@@ -41,12 +43,8 @@ express()
 
 
   // get tasks from DB
-  // .get("/todo", getTasksHandler)
+  .get("/todo", getTasksHandler)
   
-
-  // DON'T NEED?? // get completed tasks from DB
-  // .get("/todo", getCompletedHandler)
-
   // adds new task object to DB
   .post("/todo", createTaskHandlder)
   
@@ -56,6 +54,7 @@ express()
   
   // deletes all tasks marked "deleted"
   // .. deleteMany
+  .delete("/todo", deleteTasksHandler)
   
   // get all events from DB
   .get("/events", getEventsHandler)

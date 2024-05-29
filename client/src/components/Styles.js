@@ -34,6 +34,8 @@ const HomeBTN = styled(Link)`
 const NavContainer = styled.div`
     @media  (max-width: 500px) {
         height: 6rem;
+        width: 75vw;
+        margin: 0 auto;
         display: grid;
         grid-template: 3rem 3rem / auto auto auto auto;
         border-bottom: 2px solid white;

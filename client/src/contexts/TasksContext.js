@@ -90,7 +90,17 @@ useEffect(()=> {
 
 
   // empty DELETED bin
-
+const emptyBin = async () => {
+  const response = await fetch("/todo", {
+    method: "delete",
+    headers: {"Content-Type": "application/json"}
+  })
+  
+  if (response.ok) {
+    setRefresh(!refresh)
+    console.log("bin emptied :)")
+  }
+}
 
 // update priorities
 const updatePriorities = ({task}) => {
@@ -104,7 +114,7 @@ const updatePriorities = ({task}) => {
 updatePriorities("top priority")
 
   return (
-    <TaskContext.Provider value={{tasks, completed, deleted, addNewTask, updateTask, priorities, updatePriorities}}>
+    <TaskContext.Provider value={{tasks, completed, deleted, emptyBin, addNewTask, updateTask, priorities, updatePriorities}}>
       {children}
     </TaskContext.Provider>
   );
