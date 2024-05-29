@@ -31,7 +31,7 @@ const MonthCal = ({localMonth, eventList, title}) => {
   const calendar2Ref = createRef()
   
   const [listOpened, setListOpened] = useState(true)
-  const [newOpened, setNewOpened] = useState(false)
+  // const [newOpened, setNewOpened] = useState(false)
 
   const listViewHandler = () => {
     setListOpened(true)

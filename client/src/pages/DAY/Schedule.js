@@ -1,14 +1,16 @@
 import { FaAngleRight } from "react-icons/fa6";
 import styled from "styled-components";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Collapse } from "react-collapse";
+import { EventsContext } from "../../contexts/EventsContext";
 import DayList from "./DayList";
 // import NewEvent from "./NewEvent";
 
 
 const Schedule = () => {
     const [isOpened, setIsOpened] = useState(false)
+    const {events} = useContext(EventsContext)
     
     return (
         <div>
@@ -18,7 +20,7 @@ const Schedule = () => {
             </ScheduleTitleCont>
             {/* <NewEvent/> */}
             <Collapse isOpened={isOpened}>
-                <ScheduleContainer><DayList/></ScheduleContainer>
+                <ScheduleContainer><DayList eventList={events}/></ScheduleContainer>
             </Collapse>
         </div>
     );
@@ -37,11 +39,9 @@ const UnClickedStyled = {
 }
 
 const ScheduleTitleCont = styled.div`
-  /* text-decoration: none;
-  color: white; */
-
   @media (max-width: 500px) {
     display: flex;
+    height: fit-content;
     width: 75vw;
     align-items: center;
     margin: 1rem 0;

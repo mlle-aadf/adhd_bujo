@@ -1,41 +1,32 @@
 import styled from "styled-components";
 
-import { useContext } from "react";
-import { EventsContext } from "../../contexts/EventsContext";
+import { useNavigate } from "react-router-dom";
 
 import FullCalendar from "@fullcalendar/react";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from '@fullcalendar/interaction';
 
-const DayList = () => {
-    const {events} = useContext(EventsContext)
-
-    const today = new Date()
-
-    console.log("DAYLIST events: ", events, today)
+const DayList = ({eventList}) => {
+    const navigate = useNavigate()
+    const eventClickHandler = (e) => {
+    
+        const eventID = e.event._def.extendedProps._id
+        navigate(`/events/${eventID}`)
+   
+    }
     
     return (
         <DayListCont>
             <FullCalendar
-              plugins={[listPlugin]}
+              plugins={[listPlugin, interactionPlugin]}
               initialView="listDay"
-              initialDate={today}
-            
               headerToolbar={false}
-            //   contentHeight= "5000" 
-            //   ref={calendar2Ref}
+              height="auto"
               noEventsContent="free :)"
-              events={events}
+              events={eventList}
               eventTimeFormat={{hour:"numeric", minute:"numeric", meridiem:false}}
-              // selectable={true}
-            //   eventClick={eventClickHandler}
-              eventStartEditable={true}
-            //   allDay={false}
-            //   eventDurationEditable={true}
-            //   defaultTimedEventDuration={'1:00:00'}
-              // eventChange={}
               displayEventEnd={true}
-            
+              eventClick={eventClickHandler}
             >
         </FullCalendar>
 
@@ -46,4 +37,5 @@ const DayList = () => {
 export default DayList;
 
 const DayListCont = styled.div`
+    width: 100%;
 `
