@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FiDelete } from "react-icons/fi";
 import { MdOutlineCheckBoxOutlineBlank, MdDelete } from "react-icons/md";
 
 import {
@@ -69,6 +70,17 @@ const CheckMark = styled(FaCheck)`
   font-size: 2rem;
 `;
 
+const CompletedDeleteBTN = styled(FiDelete)`
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  
+  &:active{
+        color: var(--priority3);
+    }
+`;
+
 // Deleted.js
 const DeletedContainer = styled.div`
   @media (max-width: 500px) {
@@ -94,6 +106,17 @@ const BinIcon = styled(MdDelete)`
     margin-right: 1rem;
     font-size: 2rem;
 `
+
+const BinDeleteBTN = styled(FiDelete)`
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  
+  &:active{
+        color: var(--priority3);
+    }
+`;
 
 // ToDo.js
 const TodoContainer = styled.div`
@@ -242,9 +265,11 @@ export {
   CheckMark,
   CompletedTitleCont,
   CompletedContainer,
+  CompletedDeleteBTN,
   DeletedContainer,
   DeletedTitleCont,
   BinIcon,
+  BinDeleteBTN,
   ImportanceIcon,
   TodoTitle,
   TitleContainer,
