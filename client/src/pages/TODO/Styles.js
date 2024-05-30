@@ -151,7 +151,7 @@ const TodoTitle = styled(Link)`
 `;
 
 // NewTask.js
-const NewTaskContainer = styled.div`
+const NewTaskContainer = styled.form`
   margin-bottom: 1rem;
   display: flex;
   align-items: center;

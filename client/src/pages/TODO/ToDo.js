@@ -5,7 +5,7 @@ import { CheckBoxIcon, TodoTitle, TodoContainer, TitleContainer} from "./Styles"
 import NewTask from "./NewTask";
 import TaskList from "./TaskList";
 
-const ToDo = ({addNewTask, tasks, titleLink, cursor}) => {
+const ToDo = ({addNewTask, getTasks, tasks, titleLink, cursor}) => {
     
     const [isOpened, setIsOpened] = useState(false)
     const clickHandler = () => {
@@ -19,7 +19,7 @@ const ToDo = ({addNewTask, tasks, titleLink, cursor}) => {
                     <TodoTitle to={titleLink===false? null : "/todo"} style={{cursor: `${cursor!==false ? "pointer" : "auto"}`}}>TO DO</TodoTitle>
             </TitleContainer>
             <Collapse isOpened={isOpened}>
-                <NewTask addNewTask={addNewTask}/>
+                <NewTask addNewTask={addNewTask} getTasks={getTasks}/>
                 <TaskList tasks={tasks}/>
             </Collapse>    
         </TodoContainer>

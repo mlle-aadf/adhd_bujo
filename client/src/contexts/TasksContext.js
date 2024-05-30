@@ -114,7 +114,7 @@ const updatePriorities = ({task}) => {
 // updatePriorities("top priority")
 
   return (
-    <TaskContext.Provider value={{tasks, completed, deleted, emptyBin, addNewTask, updateTask, priorities, updatePriorities}}>
+    <TaskContext.Provider value={{tasks, getTasks, completed, deleted, emptyBin, addNewTask, updateTask, priorities, updatePriorities}}>
       {children}
     </TaskContext.Provider>
   );

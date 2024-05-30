@@ -3,9 +3,8 @@ import {NewTaskContainer, PriorityInputs, Desc, Importance, ImportanceIcon, Urge
 import { useState, useEffect } from "react";
 const { v4: uuidv4 } = require('uuid');
 
-const NewTask = ({addNewTask}) => {
+const NewTask = ({addNewTask, getTasks}) => {
     
-    // const [currentImportance, setCurrentImportance] = useState(0);
     const [newTask, setNewTask] = useState({
         _id: uuidv4(),
         description: "",
@@ -15,6 +14,10 @@ const NewTask = ({addNewTask}) => {
         completed: false,
         deleted: false
     })
+
+    const [descPlaceholder, setDescPlaceholder] = useState("...")
+
+  
     
     
     // disable Add ("+") button if new task field is empty or importance === 0 || urgency === 0 
@@ -53,21 +56,33 @@ const NewTask = ({addNewTask}) => {
         setPriority()
     }, [newTask.importance, newTask.urgency])
 
-    // const setPriority = () => {
-    //     const newPriority = newTask.importance+newTask.urgency
-    //     setNewTask({...newTask, priority: newPriority})
-    //     // console.log("newPriority: ", newPriority, "new: ", newTask)
-    // }
+
+    const resetInputs = () => {
+        setNewTask({...newTask, 
+        _id: uuidv4(),
+        description: "",
+        importance: 0,
+        urgency: 0,
+        priority: 0,
+        completed: false,
+        deleted: false})
+        setDescPlaceholder("...")
+    }
     
-    const saveNewTask =() => {
-        setNewTask({...newTask, priority: newTask.importance+newTask.urgency})
-        addNewTask(newTask)
+    const saveNewTask = async (e) => {
+        e.preventDefault()
+        document.getElementById("taskInput").value=""
+        setDescPlaceholder("saving...")
+        setNewTask({...newTask,  priority: newTask.importance+newTask.urgency})
+        await addNewTask(newTask)
+        
+        resetInputs()
     }
 
         return (
             <NewTaskContainer>
                     <PriorityInputs id="newTaskForm">
-                        <Desc type="text" name="Desc" onChange={handleDesc} />
+                        <Desc id="taskInput" type="text" name="Desc" onChange={handleDesc} placeholder={descPlaceholder}/>
                         <Importance name="importance" onClick={handleImportance} style={{ backgroundColor: `var(--priority${newTask.importance})` }}><ImportanceIcon/></Importance>
                     
                         <Urgency name="urgency" onClick={handleUrgency} style={{ backgroundColor: `var(--priority${newTask.urgency})` }}><UrgencyIcon/></Urgency>
