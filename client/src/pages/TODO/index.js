@@ -10,7 +10,7 @@ import { TaskContext } from "../../contexts/TasksContext";
 
 const TodoPage = () => {
 
-    const {tasks, completed, deleted, addNewTask} = useContext(TaskContext)
+    const {tasks, getTasks, completed, deleted, addNewTask} = useContext(TaskContext)
 
     return (
         <>
@@ -20,7 +20,7 @@ const TodoPage = () => {
                 <NewTask addNewTask={addNewTask}/>
                 <TaskList tasks={tasks}/>
             </TodoContainer> */}
-            <ToDo addNewTask={addNewTask} tasks={tasks} titleLink={false} cursor={false}/>
+            <ToDo addNewTask={addNewTask} getTasks={getTasks} tasks={tasks} titleLink={false} cursor={false}/>
             <Completed completed={completed}/>
             <Deleted deleted={deleted}/>
             <HomeLink style={{position: "fixed", bottom: "5%", right: "5%"}}/>
