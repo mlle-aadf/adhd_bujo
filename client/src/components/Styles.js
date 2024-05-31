@@ -103,15 +103,22 @@ const YearLink = styled(Link)`
 `
 
 // Priorities.js
+const PrioritiesContainer = styled.div`
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+    height: fit-content;
+    margin-top: 1rem;
+  }
+`;
+
 const PrioriTitleCont = styled.div`
-  /* text-decoration: none;
-  color: white; */
 
   @media (max-width: 500px) {
     display: flex;
     width: 75vw;
     align-items: center;
-    margin: 1.5rem 0 0.5rem 0;
     font-size: 2rem;
   }
 `;
@@ -126,18 +133,24 @@ const PriorityTitle = styled.h3`
 
   @media (max-width: 500px) {
     font-size: 2rem;
-    margin: 0.5rem 0;
+    /* margin: 0.5rem 0; */
   }
+
+  /* border: 2px solid lightblue; */
 `;
 
-const PrioritiesContainer = styled.div`
+const PrioritiesList = styled.div`
     background-color: var(--faded);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: start;
+    /* margin-top: -1rem; */
+    margin: -1rem auto 0.5rem auto;
     padding: 0.5rem 1rem;
     /* line-height: 1rem; */
+
+   
 `
 
 // TodoLink.js
@@ -147,4 +160,4 @@ const TasksLink = styled(Link)`
   font-size: 2rem;
 `
 
-export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, TasksLink, YearLink, PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer}
+export {DayBTN, HomeBTN, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, TasksLink, YearLink, PrioritiesContainer, PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesList}

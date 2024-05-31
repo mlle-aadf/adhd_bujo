@@ -13,7 +13,7 @@ const Day = () => {
     return (
         <div>
             <NavBar/>
-            <Priorities/>
+            <Priorities intialExpanded={true}/>
             <Schedule/>
             <ToDo addNewTask={addNewTask}/>
             <HomeLink/>

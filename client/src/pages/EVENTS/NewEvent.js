@@ -26,8 +26,7 @@ const NewEvent = () => {
     title: "",
     description: "",
     start: undefined,
-    // start: "2024-05-26",
-    end: "",
+    end: ""
   });
 
   // disable "save" button if no title or start date
@@ -48,10 +47,24 @@ const NewEvent = () => {
     input === "start" ? setNewEvent({ ...newEvent, start: e.target.value }) : setNewEvent({ ...newEvent, end: e.target.value });
   };
   
+  const resetForm = () => {
+    document.getElementById("newEventForm").reset()
+    setNewEvent({
+      _id: uuidv4(),
+      title: "",
+      description: "",
+      start: undefined,
+      end: ""
+    })
+  }
+
   // saves event to db
-  const saveEventHandler = () => {
+  const saveEventHandler = async (e) => {
+    e.preventDefault()
     setButtonMessage("saving...")
-    addNewEvent(newEvent);
+    await addNewEvent(newEvent);
+    resetForm()
+    setButtonMessage("save")
   };
 
 
@@ -61,7 +74,7 @@ const NewEvent = () => {
 option === "createEvent" > form to create a new event, inputs blank 
 option === "updateEvent" > form to update an event, inputs are pre-filled
 */}
-      <NewEventCont>
+      <NewEventCont   id="newEventForm">
         {/* SETS newEvent STATE TO USER INPUT*/}
         <EventTitle
           type="text"
@@ -81,6 +94,7 @@ option === "updateEvent" > form to update an event, inputs are pre-filled
         <StartCont>
           <label >start</label>
             <Start
+          
             type="datetime-local"
             onChange={(e) => setDateHandler(e, "start")}
             required

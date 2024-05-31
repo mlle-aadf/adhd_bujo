@@ -1,51 +1,36 @@
 import { useContext, useState } from "react";
 import { TaskContext } from "../contexts/TasksContext";
-// import { FaRegStar } from "react-icons/fa";
-
 import {Collapse} from 'react-collapse';
-// import {useCollapse} from 'react-collapsed';
-
-import { PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer } from "./Styles";
+import { PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer, PrioritiesList } from "./Styles";
 
 
-const Priorities = () => {
+const Priorities = ({intialExpanded}) => {
     
-    const [isOpened, setIsOpened] = useState(true)
-    const clickHandler = () => {
-        setIsOpened(!isOpened)
-    }
-    
-    // const [isExpanded, setExpanded] = useState(false);
-    // const { getCollapseProps, getToggleProps} = useCollapse({isExpanded})
-
-    // const clickHandler = () => {
-    //     setExpanded((prevExpanded) => !prevExpanded)
-    // }
+    const [isOpened, setIsOpened] = useState(intialExpanded)
 
     
     const {priorities} = useContext(TaskContext)
 
     return (
-        <>
-            <PrioriTitleCont>
-                <StarIcon onClick={clickHandler} style={{color:`${isOpened? "var(--priority1)" : "white"}`}}/>
-                {/* <StarIcon {...getToggleProps({onClick:clickHandler})} style={{color:`${isExpanded? "var(--priority1)" : "white"}`}}/> */}
+        
+        <PrioritiesContainer>
+            <PrioriTitleCont onClick={()=> setIsOpened(!isOpened)}>
+                <StarIcon style={{color:`${isOpened? "var(--priority1)" : "white"}`}}/>
                 <PriorityTitle>PRIORITIES</PriorityTitle>
             </PrioriTitleCont>
 
             <Collapse isOpened={isOpened}>
-                {/* <PrioritiesContainer {...getCollapseProps()}> */}
-                <PrioritiesContainer>
-                    {priorities.length > 0 ?
-                    <div>
-                        <p>{`${priorities[0].description}`}</p>
-                        <p>{`${priorities[1].description}`}</p>
-                        <p>{`${priorities[2].description}`}</p>
-                    </div>
-                    : <p>...</p>}
-                </PrioritiesContainer>
+                    <PrioritiesList>
+                        {priorities.length > 0 ?
+                        <div>
+                            <p>{`${priorities[0].description}`}</p>
+                            <p>{`${priorities[1].description}`}</p>
+                            <p>{`${priorities[2].description}`}</p>
+                        </div>
+                        : <p>...</p>}
+                    </PrioritiesList>
             </Collapse>
-        </>
+        </PrioritiesContainer>
     );
 };
 

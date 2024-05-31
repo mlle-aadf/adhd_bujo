@@ -36,5 +36,8 @@ const DayList = ({eventList}) => {
 export default DayList;
 
 const DayListCont = styled.div`
-    width: 100%;
+    margin-top: -1rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    background-color: var(--faded);
 `
