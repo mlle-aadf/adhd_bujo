@@ -3,7 +3,7 @@ import {NewTaskContainer, PriorityInputs, Desc, Importance, ImportanceIcon, Urge
 import { useState, useEffect } from "react";
 const { v4: uuidv4 } = require('uuid');
 
-const NewTask = ({addNewTask, getTasks}) => {
+const NewTask = ({addNewTask}) => {
     
     const [newTask, setNewTask] = useState({
         _id: uuidv4(),
@@ -16,9 +16,6 @@ const NewTask = ({addNewTask, getTasks}) => {
     })
 
     const [descPlaceholder, setDescPlaceholder] = useState("...")
-
-  
-    
     
     // disable Add ("+") button if new task field is empty or importance === 0 || urgency === 0 
     const [allCompleted, setAllCompleted] = useState(false)
@@ -29,7 +26,6 @@ const NewTask = ({addNewTask, getTasks}) => {
             const hasUrgency = newTask.urgency !== 0
             const complete = hasDescription && (hasImportance && hasUrgency)
             setAllCompleted(complete)
-            // console.log("completed? : ", complete, allCompleted)
     }, [newTask])
     
     // set task description

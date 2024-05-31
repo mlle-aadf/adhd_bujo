@@ -13,16 +13,16 @@ const Schedule = () => {
     const {events} = useContext(EventsContext)
     
     return (
-        <div>
+        <ScheduleContainer onClick={()=>setIsOpened(!isOpened)}>
             <ScheduleTitleCont>
-                <SchedIcon onClick={()=>setIsOpened(!isOpened)} style={isOpened ? ClickedStyled : UnClickedStyled}/>
+                <SchedIcon style={isOpened ? ClickedStyled : UnClickedStyled}/>
                 <ScheduleTitle>SCHEDULE</ScheduleTitle>
             </ScheduleTitleCont>
             {/* <NewEvent/> */}
             <Collapse isOpened={isOpened}>
-                <ScheduleContainer><DayList eventList={events}/></ScheduleContainer>
+              <DayList eventList={events}/>
             </Collapse>
-        </div>
+        </ScheduleContainer>
     );
 };
 
@@ -38,13 +38,19 @@ const UnClickedStyled = {
     color:"white", 
 }
 
+const ScheduleContainer = styled.div`
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    width: 75vw;
+  }
+`;
+
 const ScheduleTitleCont = styled.div`
   @media (max-width: 500px) {
     display: flex;
-    height: fit-content;
     width: 75vw;
     align-items: center;
-    margin: 1rem 0;
     font-size: 2rem;
   }
 `;
@@ -59,16 +65,6 @@ const ScheduleTitle = styled.h3`
 
   @media (max-width: 500px) {
     font-size: 2rem;
-    margin: 0.5rem 0;
   }
 `;
 
-const ScheduleContainer = styled.div`
-    background-color: var(--faded);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 0.5rem 1rem;
-    /* line-height: 1rem; */
-`

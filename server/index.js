@@ -20,6 +20,7 @@ const createEventHandlder = require("./handlers/createEventHandlder")
 const getEventHandler = require("./handlers/getEventHandler")
 const getEventsHandler = require("./handlers/getEventsHandler")
 const updateEventHandlder = require("./handlers/updateEventHandler")
+// const deleteEventHandlder = require("./handlers/updateEventHandler")
 
 
 express()

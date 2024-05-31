@@ -5,16 +5,17 @@ const updateEventHandlder = async (req, res) => {
     
     
     if (req?.body) {
-        // console.log("NEW TASK: ", req.body)
-        const {eventID, update} = req.body
+        const {eventID, updatedEvent} = req.body
+        console.log("REQBODY: ", req.body)
+        console.log(`updateEventHandlder eventID: ${eventID}, ${updatedEvent}`)
 
         try{
             const db = await mongoConnect(true)
             const allEvents = await db.collection('events')
         
-            const result = await allEvents.updateOneOne(
+            const result = await allEvents.updateOne(
                 {_id: eventID},
-                {$set: update})
+                {$set: updatedEvent})
             
             if (!result) {
                 return res.status(500).json({
@@ -22,13 +23,14 @@ const updateEventHandlder = async (req, res) => {
                         message: "failed to update event"
                     })
             }
-    
-            // console.log("event created: ", eventID)
+            
+
             return res.status(201).json(
                 {
                     status: 201,
                     message: `event ${eventID} updated`
                 }
+
             )
         } catch (error) {
             console.log(error.message)

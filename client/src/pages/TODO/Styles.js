@@ -49,7 +49,6 @@ const CompletedContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 75vw;
-    margin: -1rem 0;
   }
 `;
 
@@ -60,8 +59,6 @@ const CompletedTitleCont = styled.div`
     align-items: center;
     margin: 2rem 0 1rem 0;
     height: 2rem;
-
-    /* border: 2px solid fuchsia; */
   }
 `
 
@@ -97,8 +94,6 @@ const DeletedTitleCont = styled.div`
     align-items: center;
     margin: 2rem 0 1rem 0;
     height: 2rem;
-
-    /* border: 2px solid pink; */
   }
 `
 
@@ -132,7 +127,7 @@ const TitleContainer = styled.div`
     display: flex;
     width: 75vw;
     align-items: center;
-    margin: 2rem 0 1rem 0;
+    font-size: 2rem;
   }
 `;
 
@@ -145,8 +140,8 @@ const TodoTitle = styled(Link)`
   text-decoration: none;
   color: white;
 
+  font-size: 2rem;
   @media (max-width: 500px) {
-    font-size: 2rem;
   }
 `;
 
@@ -180,7 +175,6 @@ const Desc = styled.input`
 
 const Importance = styled.div`
   background-color: white;
-  /* height: 100%; */
   height: 8vw;
   width: 8vw;
   margin: 0 0.5rem;
