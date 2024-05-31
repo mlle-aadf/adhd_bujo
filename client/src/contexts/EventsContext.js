@@ -19,8 +19,6 @@ const EventsContextProvider = ({ children }) => {
     { str: "DECEMBER", date: "2024-12"},
   ];
 
-  
-
   const [event, setEvent] = useState({})
   const [events, setEvents] = useState([]);
   // const [buttonMessage, setButtonMessage] = useState("boop");
@@ -51,23 +49,11 @@ const EventsContextProvider = ({ children }) => {
       const res = await fetch("/events");
       const { events } = await res.json();
       setEvents(events);
-      console.log("getEvents: ", events);
+      // console.log("getEvents: ", events);
     } catch (err) {
       console.log(err);
     }
   };
-
-
-  // const getEvents = async () => {
-  //   try {
-  //     const res = await fetch("/events");
-  //     const { events } = await res.json();
-  //     setEvents(events);
-  //     console.log("getEvents: ", events);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   useEffect(() => {
     // getEvent()
@@ -101,25 +87,24 @@ const EventsContextProvider = ({ children }) => {
       eventID: eventID,
       updatedEvent: update,
     };
+  // console.log("updateEvent_updateInfo: ",updateInfo);
 
-    console.log(updateInfo);
+  const response = await fetch("/events", {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(updateInfo)
+    })
 
-    // const response = await fetch("/todo", {
-    //   method: "PATCH",
-    //   headers: {"Content-Type": "application/json"},
-    //   body: JSON.stringify(updateInfo)
-    // })
-
-    // if (response.ok) {
-    //   setRefresh(!refresh)
-    // }
+    if (response.ok) {
+      setRefresh(!refresh)
+      console.log(`updateEvent: EVENT ${eventID} updated`)
+    }
   };
 
   return (
     <EventsContext.Provider
       value={{ monthsKeys, events, addNewEvent, updateEvent, event}}
     >
-      {/* <EventsContext.Provider value={{monthsKeys, events}}> */}
       {children}
     </EventsContext.Provider>
   );

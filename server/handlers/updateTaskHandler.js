@@ -22,7 +22,6 @@ const updateTaskHandler = async (req, res) =>  {
            
            
             if (option === "deleteCompleted") {
-                console.log("DELETEMANY")
 
                 const result = await allTasks.updateMany(
                     {completed: true},

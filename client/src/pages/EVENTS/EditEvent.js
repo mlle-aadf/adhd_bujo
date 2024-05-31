@@ -1,66 +1,95 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import Moment from 'react-moment'
 
-const EditEvent = ({updatedEvent, setUpdatedEvent}) => {
+import { EventsContext } from "../../contexts/EventsContext";
+
+const EditEvent = ({event, isOpened, setIsOpened}) => {
   
-    // console.log("editEvent updatedEvent:", updatedEvent)
+    const {updateEvent} = useContext(EventsContext)
 
-    // const {title, description, start, end} = updatedEvent
+    const {_id, title, description, start, end} = event
 
-    // console.log(title, description, start, end)
+    const [buttonText, setButtonText]=useState("save")
+
+       const [eventUpdate, setEventUpdate] = useState({
+        _id: _id,
+        title: title,
+        description: description,
+        start: start,
+        end: end
+    })
+
+    const [allCompleted, setAllCompleted] = useState(false)
+    const checkCompletion = () => {
+        const hasTitle = eventUpdate.title.length > 0
+        const hasStart = eventUpdate.start.length !== 0 || eventUpdate.start === undefined
+        const complete = hasTitle && hasStart
+        setAllCompleted(complete)
+    }
+
+    useEffect(()=> {
+            checkCompletion()
+    }, [eventUpdate])
+
+    const [startValue, setStartValue]=useState(eventUpdate.start)
+    const [endValue, setEndValue]=useState(eventUpdate.end)
+    // console.log("EditEvent eventUpdate: ", eventUpdate)
+
+    const setTimeHandler = (e, opt) => {
+        if (opt === "start") {
+            setStartValue(e.target.value)
+            setEventUpdate({...eventUpdate, start: e.target.value})
+            // if (e.target.value==="") {
+            //     setAllCompleted(false)
+            // }
+        } else if (opt === "end"){
+            setEndValue(e.target.value)
+            setEventUpdate({...eventUpdate, end: e.target.value})
+        }
+        checkCompletion()
+        console.log("allCompleted: ", allCompleted)
+        // console.log("eventUpdate.start: ",eventUpdate.start)
+    }
+
+    const saveEventHandler = async (e) => {
+        e.preventDefault()
+        await checkCompletion()
+        setButtonText("saving...")
+        await updateEvent(eventUpdate._id, eventUpdate)
+        document.getElementById("editTitle").value=""
+        document.getElementById("editDesc").value=""
+        setButtonText("save")
+        setIsOpened(!isOpened)
+    }
 
     return (
     <EditEventCont>
-      {/* <Modal
-                    isOpen={modalIsOpen}
-                    style={ModalStyle}
-                    // onAfterOpen={afterOpenModal}
-                    // onRequestClose={closeModal}
-                    <NewBTN onClick={()=>setIsOpen(!modalIsOpen)}>+</NewBTN>
-                > */}
-      {/* <NewBTN onClick={()=>setIsOpened(!isOpened)}>+</NewBTN> */}
-      {/* <Collapse isOpened={isOpened}> */}
-      <EventTitle type="text" value={"e_title"} required />
-      {/* <EventTitle type="text" placeholder="title" onChange={handleTitle} required/> */}
-      <EventDesc type="text" value={"e_description"} />
-      {/* <EventDesc type="text" placeholder="description" onChange={handleDesc}/> */}
+
+      <EventTitle id="editTitle" type="text" placeholder={`${title}`} required onChange={(e)=>setEventUpdate({...eventUpdate, title: e.target.value})}/>
+
+      <EventDesc  id="editDesc" type="text" placeholder={`${description}`} required onChange={(e)=>setEventUpdate({...eventUpdate, description: e.target.value})}/>
+ 
       <StartCont>
-        {/* <Collapse isOpened={startOpened}> */}
-        {/* <Datetime
-                                dateFormat={"YYYY-MM-DD"}
-                                closeOnSelect={true}
-                                // input={false}
-                                timeFormat={false}
-                                inputProps={{placeholder:'start'}}
-                            /> */}
-        {/* </Collapse> */}
-        <label onClick={() => console.log("start label")}>start</label>
+
+        <label>start</label>
         <Start 
             id={"startInput"}
-          value="2024-05-29 10:00"
-          type="datetime-local"
-          required
-          onChange={(e) => console.log("start time: ", e.target.value)}
+            value={startValue}
+            type="datetime-local"
+            required
+            onChange={(e) => setTimeHandler(e, "start")}
         />
-        {/* <StartTime type="time"/> */}
       </StartCont>
       <EndCont>
-        <label onClick={() => console.log("end label")}>end</label>
+        <label>end</label>
         <End
           type="datetime-local"
-          onChange={(e) => console.log("end time: ", e.target.value)}
-          
+          value={endValue}
+          onChange={(e) => setTimeHandler(e, "end")}
         ></End>
       </EndCont>
-      {/* <div>
-                        <label onClick={()=> setEndOpened(!endOpened)} >end</label>
-                        <Collapse isOpened={endOpened}>
-                            <Datetime dateFormat={"YYYY-MM-DD"}/>
-                        </Collapse>
-                    </div> */}
-      <SaveBTN onClick={() => console.log("edit event save button")}>
-        <SaveIcon>save</SaveIcon>
+      <SaveBTN onClick={saveEventHandler}>
+        <SaveIcon disabled={!allCompleted} style={allCompleted ? EnabledStyle : DisabledStyle}>{buttonText}</SaveIcon>
       </SaveBTN>
     </EditEventCont>
   );
@@ -71,9 +100,7 @@ export default EditEvent;
 const EditEventCont = styled.div`
   background-color: transparent;
   border: 1px solid var(--faded);
-  /* background-color: var(--faded); */
   margin-top: 0.5rem;
-  /* border-radius: 10px; */
   width: 100%;
   height: 30vh;
   display: flex;
@@ -156,7 +183,7 @@ const End = styled.input`
   }
 `;
 
-const SaveBTN = styled.div`
+const SaveBTN = styled.button`
   width: 90%;
   border-radius: 5px;
   border: none;
@@ -170,14 +197,19 @@ const SaveBTN = styled.div`
   background-color: transparent;
 `;
 
-const SaveIcon = styled.p`
+const SaveIcon = styled.button`
     font-size: 1.25rem;
-    margin: 0.5rem 0 1rem 0;
-    &:hover{
-        color: var(--mint);
-        /* background-color: var(--faded); */
-        cursor: pointer;
-        scale: 115%;
-        }
-
+    margin: 0.25rem 0 0.5rem 0;
+    border: none;
+    background-color: transparent;
 `
+const DisabledStyle = {
+    backgroundColor: "transparent",
+    color:"var(--faded)",
+    cursor: "not-allowed",
+}
+
+const EnabledStyle = {
+    color:"var(--mint)",
+    cursor: "pointer"
+}
