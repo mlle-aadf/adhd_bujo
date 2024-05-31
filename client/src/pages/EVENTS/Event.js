@@ -17,6 +17,8 @@ const Event = () => {
     // console.log("Event() eventParams: ", eventID)
     
     const [isOpened, setIsOpened] = useState(false)
+    const [sureOpened, setSureOpened] = useState(false)
+    const [buttonOpened, setButtonOpened] = useState(true)
     const [event, setEvent] = useState("")
 
     const {months, days} = useContext(DayContext)
@@ -40,7 +42,8 @@ const Event = () => {
         const {eventData} = await res.json();
 
         const {title, description, start, end} = eventData
-        // console.log("infoss: ", title, description, start, end)
+        console.log("END: ", end)  
+
         setEvent(eventData);
 
 
@@ -54,6 +57,7 @@ const Event = () => {
           time: `${startDisplay.getHours()}:${startDisplay.getMinutes() === 0 ? "00" : startDisplay.getMinutes()}`
         })
 
+        // console.log("endDisplay: ", endDisplay)
       
         if (end !== "") {
           const endDate = new Date(end)
@@ -74,6 +78,16 @@ const Event = () => {
     }, [updateEvent])
 
 
+    const deleteBTNHandler = () => {
+      console.log("deleteHandler")
+      
+      // setSureOpened(!sureOpened)
+
+      // setButtonOpened(!buttonOpened)
+    }
+      
+
+
   return (
     <div>
       <NavBarMobile />
@@ -85,18 +99,34 @@ const Event = () => {
                   <h3 style={{paddingBottom:"1rem", textAlign:"right"}}><em>{event.description}</em></h3>
               </div>
                   <StartTimeCont>
-                    <p>FROM:</p>
+                    <p>START:</p>
                     <p>{`${display.day}, ${display.month} ${display.date}`} </p>
                     <p>{`${display.time}`}</p>
                   </StartTimeCont>
-                  <EndTimeCont>
-                    <p>TO:</p>
-                    <p>{`${endDisplay.day}, ${endDisplay.month} ${endDisplay.date}`} </p>
-                    <p>{`${endDisplay.time}`}</p>
-                  </EndTimeCont>
+                    {endDisplay !== ""?
+                    <EndTimeCont>
+                      <p>END:</p>
+                      <p>{`${endDisplay.day}, ${endDisplay.month} ${endDisplay.date}`} </p>
+                      <p>{`${endDisplay.time}`}</p>
+                    </EndTimeCont> :
+                    <p></p>
+                  }
                   <BTNCont style={{fontWeight:"300"}}>
-                    <MdDelete onClick={()=>setIsOpened(!isOpened)}/>
-                    <MdEdit onClick={()=>setIsOpened(!isOpened)} style={{marginLeft:"1rem"}}/>
+                    {/* <Collapse isOpened={sureOpened}>
+                      <SureCont>
+                        <p>are you sure?</p>
+                        <p>yes</p>
+                        <p>no</p>
+                      </SureCont>
+                    </Collapse> */}
+                    
+         
+                    
+                    <Collapse isOpened={buttonOpened}>
+                      <MdDelete onClick={deleteBTNHandler}/>
+                      <MdEdit onClick={()=>setIsOpened(!isOpened)} style={{marginLeft:"1rem"}}/>
+                    </Collapse>
+                    
                   </BTNCont>
                   <Collapse isOpened={isOpened}>
                     <EditEvent setIsOpened={setIsOpened} isOpened={isOpened} event={event}/>
@@ -132,12 +162,11 @@ const StartTimeCont = styled.div`
 const EndTimeCont = styled.div`
   display:flex;
   justify-content: space-around;
-  `;
+  margin-bottom: 1rem;
+`;
 
-// const EditCont = styled.div`
-//   width:75vw;
-//   height: 50vw;
-//   border: 2px solid lightcoral;
-// `;
-
-
+// const SureCont = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   width: 100%
+// `

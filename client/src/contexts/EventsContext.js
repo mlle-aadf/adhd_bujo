@@ -21,35 +21,14 @@ const EventsContextProvider = ({ children }) => {
 
   const [event, setEvent] = useState({})
   const [events, setEvents] = useState([]);
-  // const [buttonMessage, setButtonMessage] = useState("boop");
   const [refresh, setRefresh] = useState(false);
 
-  // const {eventID} = useParams()
-
-  // const getEvent = async (eventID) => {
-
-  //   try {
-  //     const response = await fetch(`/events/${eventID}`);
-
-  //     // setEvents(eventData)
-  //     console.log("getEvent response: ", response);
-  //     // setEvent(eventData)
-  //     // return eventData
-  //     // return eventData;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // const findEvent = (eventID) => getEvent(eventID);
-  
 
   const getEvents = async () => {
     try {
       const res = await fetch("/events");
       const { events } = await res.json();
       setEvents(events);
-      // console.log("getEvents: ", events);
     } catch (err) {
       console.log(err);
     }
@@ -87,7 +66,6 @@ const EventsContextProvider = ({ children }) => {
       eventID: eventID,
       updatedEvent: update,
     };
-  // console.log("updateEvent_updateInfo: ",updateInfo);
 
   const response = await fetch("/events", {
       method: "PATCH",
