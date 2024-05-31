@@ -81,9 +81,18 @@ const Event = () => {
     const deleteBTNHandler = () => {
       console.log("deleteHandler")
       
-      // setSureOpened(!sureOpened)
+      setIsOpened(false)
+      setSureOpened(!sureOpened)
+      setButtonOpened(!buttonOpened)
+    }
 
-      // setButtonOpened(!buttonOpened)
+    const noHandler = () => {
+      setSureOpened(!sureOpened)
+      setButtonOpened(!buttonOpened)
+    }
+  
+    const yesHandler = () => {
+      console.log("YESHANDLER")
     }
       
 
@@ -94,7 +103,7 @@ const Event = () => {
       <EventCont>
         {event !== "" ? 
             <>
-              <div style={{backgroundColor:"var(--faded)", padding:"0 0.5rem"}}>
+              <div style={{backgroundColor:"var(--faded)", padding:"0 0.5rem", marginLeft:"0.5rem", marginRight:"-0.5rem"}}>
                   <h2 style={{marginTop:"1rem", paddingTop:"0.5rem"}}>{event.title}</h2>
                   <h3 style={{paddingBottom:"1rem", textAlign:"right"}}><em>{event.description}</em></h3>
               </div>
@@ -112,13 +121,13 @@ const Event = () => {
                     <p></p>
                   }
                   <BTNCont style={{fontWeight:"300"}}>
-                    {/* <Collapse isOpened={sureOpened}>
+                    <Collapse isOpened={sureOpened}>
                       <SureCont>
                         <p>are you sure?</p>
-                        <p>yes</p>
-                        <p>no</p>
+                        <Yes onClick={yesHandler}>yes</Yes><p>|</p>
+                        <No onClick={noHandler}>no</No>
                       </SureCont>
-                    </Collapse> */}
+                    </Collapse>
                     
          
                     
@@ -165,8 +174,30 @@ const EndTimeCont = styled.div`
   margin-bottom: 1rem;
 `;
 
-// const SureCont = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100%
-// `
+const SureCont = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 70vw;
+  margin-Left:1rem;
+  /* border: 2px solid fuchsia; */
+`
+
+const Yes = styled.p`
+  cursor: pointer;
+  &:hover{
+    font-weight: 500;
+  }
+  &:active{
+    color: var(--mint);
+  }
+  `
+
+const No = styled.p`
+  cursor: pointer;
+  &:hover{
+    font-weight: 500;
+  }
+  &:active{
+    color: var(--mint);
+  }
+`

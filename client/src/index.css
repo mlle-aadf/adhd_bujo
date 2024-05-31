@@ -13,13 +13,10 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  align-items: center;
 
   @media (max-width: 500px) {
     margin: 10vw;
   }
-
 
 }
 
