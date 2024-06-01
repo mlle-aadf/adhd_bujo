@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { MdEdit, MdDelete } from "react-icons/md";
 import NavBarMobile from "../../components/NavBarMobile";
@@ -22,9 +22,9 @@ const Event = () => {
     const [event, setEvent] = useState("")
 
     const {months, days} = useContext(DayContext)
-    const {updateEvent} = useContext(EventsContext)
+    const {updateEvent, deleteEvent} = useContext(EventsContext)
 
-    
+    const [textContent, setTextContent]=useState("are you sure?")
 
     const [display, setDisplay]= useState({
       day: "",
@@ -35,19 +35,13 @@ const Event = () => {
     const [endDisplay, setEndDisplay] = useState("")
     
     const getEvent = async () => {
-        // console.log("getEvent ID: ", eventID)
-        
         try {
         const res = await fetch(`/events/${eventID}`);
         const {eventData} = await res.json();
 
-        const {title, description, start, end} = eventData
-        console.log("END: ", end)  
-
+        const {start, end} = eventData
         setEvent(eventData);
 
-
-        
         const startDisplay = new Date(start)
         
         setDisplay({
@@ -79,7 +73,7 @@ const Event = () => {
 
 
     const deleteBTNHandler = () => {
-      console.log("deleteHandler")
+      // console.log("deleteHandler")
       
       setIsOpened(false)
       setSureOpened(!sureOpened)
@@ -90,9 +84,13 @@ const Event = () => {
       setSureOpened(!sureOpened)
       setButtonOpened(!buttonOpened)
     }
-  
-    const yesHandler = () => {
-      console.log("YESHANDLER")
+    
+    const navigate = useNavigate()
+    const yesHandler = async (eventID) => {
+      setTextContent("deleting event...")
+      document.getElementById("yesNo").style.display="none"
+      await deleteEvent(eventID)
+      navigate("/month")
     }
       
 
@@ -123,9 +121,11 @@ const Event = () => {
                   <BTNCont style={{fontWeight:"300"}}>
                     <Collapse isOpened={sureOpened}>
                       <SureCont>
-                        <p>are you sure?</p>
-                        <Yes onClick={yesHandler}>yes</Yes><p>|</p>
-                        <No onClick={noHandler}>no</No>
+                        <p>{textContent}</p>
+                        <div id="yesNo" style={{display:"flex", justifyContent:"space-between"}}>
+                          <Yes onClick={()=>yesHandler(eventID)}>yes</Yes><p>|</p>
+                          <No onClick={noHandler}>no</No>
+                        </div>
                       </SureCont>
                     </Collapse>
                     

@@ -15,7 +15,7 @@ const getEventHandler = async (req, res) => {
         try{
             const db = await mongoConnect(true)
             const allEvents = await db.collection('events')
-            console.log("mongosearch allEVents: ", allEvents)
+            // console.log("mongosearch allEVents: ", allEvents)
             
             const result = await allEvents.findOne({_id: eventID})
 //             console.log("MONGOSEARCH ID: ", eventID)

@@ -28,12 +28,11 @@ const EditEvent = ({event, isOpened, setIsOpened}) => {
     }
 
     useEffect(()=> {
-            checkCompletion()
+      checkCompletion()
     }, [eventUpdate])
 
     const [startValue, setStartValue]=useState(eventUpdate.start)
     const [endValue, setEndValue]=useState(eventUpdate.end)
-    // console.log("EditEvent eventUpdate: ", eventUpdate)
 
     const setTimeHandler = (e, opt) => {
         if (opt === "start") {

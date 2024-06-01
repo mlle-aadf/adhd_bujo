@@ -19,7 +19,8 @@ const deleteTasksHandler = require("./handlers/deleteTasksHandler")
 const createEventHandlder = require("./handlers/createEventHandlder")
 const getEventHandler = require("./handlers/getEventHandler")
 const getEventsHandler = require("./handlers/getEventsHandler")
-const updateEventHandlder = require("./handlers/updateEventHandler")
+const updateEventHandlder = require("./handlers/updateEventHandler");
+const deleteEventHandler = require("./handlers/deleteEventHandler");
 // const deleteEventHandlder = require("./handlers/updateEventHandler")
 
 
@@ -69,6 +70,9 @@ express()
   
   // updates an event object from DB
   .patch("/events", updateEventHandlder)
+
+    // updates an event object from DB
+  .delete("/events", deleteEventHandler)
 
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

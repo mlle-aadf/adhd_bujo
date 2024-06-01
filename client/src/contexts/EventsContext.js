@@ -79,9 +79,33 @@ const EventsContextProvider = ({ children }) => {
     }
   };
 
+  // delete event
+  const deleteEvent = async (eventID) => {
+    console.log("deleteEvent_EVENTID: ", eventID, typeof eventID)
+    
+    const deleteEvent = {
+      eventID: eventID
+    }
+    // const ev = eventID
+    
+    const response = await fetch("/events", {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(deleteEvent),
+    })
+
+    if(response.ok) {
+      setRefresh(!refresh)
+      console.log(`deleteEvent: EVENT ${eventID} deleted`)
+    } 
+
+    
+  }
+
+
   return (
     <EventsContext.Provider
-      value={{ monthsKeys, events, addNewEvent, updateEvent, event}}
+      value={{ monthsKeys, events, addNewEvent, updateEvent, event, deleteEvent}}
     >
       {children}
     </EventsContext.Provider>
