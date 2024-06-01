@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 export const EventsContext = createContext();
 
@@ -21,35 +20,14 @@ const EventsContextProvider = ({ children }) => {
 
   const [event, setEvent] = useState({})
   const [events, setEvents] = useState([]);
-  // const [buttonMessage, setButtonMessage] = useState("boop");
   const [refresh, setRefresh] = useState(false);
 
-  // const {eventID} = useParams()
-
-  // const getEvent = async (eventID) => {
-
-  //   try {
-  //     const response = await fetch(`/events/${eventID}`);
-
-  //     // setEvents(eventData)
-  //     console.log("getEvent response: ", response);
-  //     // setEvent(eventData)
-  //     // return eventData
-  //     // return eventData;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // const findEvent = (eventID) => getEvent(eventID);
-  
 
   const getEvents = async () => {
     try {
       const res = await fetch("/events");
       const { events } = await res.json();
       setEvents(events);
-      // console.log("getEvents: ", events);
     } catch (err) {
       console.log(err);
     }
@@ -87,7 +65,6 @@ const EventsContextProvider = ({ children }) => {
       eventID: eventID,
       updatedEvent: update,
     };
-  // console.log("updateEvent_updateInfo: ",updateInfo);
 
   const response = await fetch("/events", {
       method: "PATCH",
@@ -101,9 +78,29 @@ const EventsContextProvider = ({ children }) => {
     }
   };
 
+  // delete event
+  const deleteEvent = async (eventID) => {
+    
+    const deleteEvent = {
+      eventID: eventID
+    }
+    
+    const response = await fetch("/events", {
+      method: "DELETE",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(deleteEvent),
+    })
+
+    if(response.ok) {
+      setRefresh(!refresh)
+      console.log(`deleteEvent: EVENT ${eventID} deleted`)
+    } 
+  }
+
+
   return (
     <EventsContext.Provider
-      value={{ monthsKeys, events, addNewEvent, updateEvent, event}}
+      value={{ monthsKeys, events, addNewEvent, updateEvent, event, deleteEvent}}
     >
       {children}
     </EventsContext.Provider>

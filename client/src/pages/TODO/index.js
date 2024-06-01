@@ -1,10 +1,10 @@
 // To-Do page index
-import NavBarMobile from "../../components/NavBarMobile"
-import Priorities from"../../components/Priorities"
+import NavBarMobile from "../../pages/HOME/NavBarMobile"
+import Priorities from"../../pages/HOME/Priorities"
 import ToDo from "./ToDo";
 import Completed from "./Completed";
 import Deleted from "./Deleted";
-import HomeLink from "../../components/HomeLink";
+import HomeBTN from "../HOME/HomeBTN";
 
 import { useContext } from "react";
 import { TaskContext } from "../../contexts/TasksContext";
@@ -16,16 +16,11 @@ const TodoPage = () => {
     return (
         <>
             <NavBarMobile/>
-            {/* <TodoContainer>
-                <TodoTitle>TO DO</TodoTitle>
-                <NewTask addNewTask={addNewTask}/>
-                <TaskList tasks={tasks}/>
-            </TodoContainer> */}
             <Priorities intialExpanded={false}/>
             <ToDo addNewTask={addNewTask} getTasks={getTasks} tasks={tasks} titleLink={false} cursor={false}/>
             <Completed completed={completed}/>
             <Deleted deleted={deleted}/>
-            <HomeLink style={{position: "fixed", bottom: "5%", right: "5%"}}/>
+            <HomeBTN style={{position: "fixed", bottom: "5%", right: "5%"}}/>
         </>
     );
 };

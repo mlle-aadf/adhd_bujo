@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { TaskContext } from "../contexts/TasksContext";
+import { TaskContext } from "../../contexts/TasksContext";
 import {Collapse} from 'react-collapse';
 import { PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer, PrioritiesList } from "./Styles";
 
@@ -7,8 +7,6 @@ import { PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesContainer, Prioriti
 const Priorities = ({intialExpanded}) => {
     
     const [isOpened, setIsOpened] = useState(intialExpanded)
-
-    
     const {priorities} = useContext(TaskContext)
 
     return (

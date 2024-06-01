@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { MdEdit, MdDelete } from "react-icons/md";
-import NavBarMobile from "../../components/NavBarMobile";
-import HomeLink from "../../components/HomeLink";
+import NavBarMobile from "../../pages/HOME/NavBarMobile";
+import HomeLink from "../HOME/HomeBTN";
 import { useContext, useEffect, useState } from "react";
 import { DayContext } from "../../contexts/DayContext";
 import { EventsContext } from "../../contexts/EventsContext";
@@ -14,15 +14,16 @@ import EditEvent from "./EditEvent";
 const Event = () => {
 
     const {eventID} = useParams()
-    // console.log("Event() eventParams: ", eventID)
     
     const [isOpened, setIsOpened] = useState(false)
+    const [sureOpened, setSureOpened] = useState(false)
+    const [buttonOpened, setButtonOpened] = useState(true)
     const [event, setEvent] = useState("")
 
     const {months, days} = useContext(DayContext)
-    const {updateEvent} = useContext(EventsContext)
+    const {updateEvent, deleteEvent} = useContext(EventsContext)
 
-    
+    const [textContent, setTextContent]=useState("are you sure?")
 
     const [display, setDisplay]= useState({
       day: "",
@@ -33,18 +34,13 @@ const Event = () => {
     const [endDisplay, setEndDisplay] = useState("")
     
     const getEvent = async () => {
-        // console.log("getEvent ID: ", eventID)
-        
         try {
         const res = await fetch(`/events/${eventID}`);
         const {eventData} = await res.json();
 
-        const {title, description, start, end} = eventData
-        // console.log("infoss: ", title, description, start, end)
+        const {start, end} = eventData
         setEvent(eventData);
 
-
-        
         const startDisplay = new Date(start)
         
         setDisplay({
@@ -54,6 +50,7 @@ const Event = () => {
           time: `${startDisplay.getHours()}:${startDisplay.getMinutes() === 0 ? "00" : startDisplay.getMinutes()}`
         })
 
+        // console.log("endDisplay: ", endDisplay)
       
         if (end !== "") {
           const endDate = new Date(end)
@@ -74,29 +71,72 @@ const Event = () => {
     }, [updateEvent])
 
 
+    const deleteBTNHandler = () => {
+      // console.log("deleteHandler")
+      
+      setIsOpened(false)
+      setSureOpened(!sureOpened)
+      setButtonOpened(!buttonOpened)
+    }
+
+    const noHandler = () => {
+      setSureOpened(!sureOpened)
+      setButtonOpened(!buttonOpened)
+    }
+    
+    const navigate = useNavigate()
+    const yesHandler = async (eventID) => {
+      setTextContent("deleting event...")
+      document.getElementById("yesNo").style.display="none"
+      await deleteEvent(eventID)
+      navigate("/month")
+    }
+      
+
+
   return (
     <div>
       <NavBarMobile />
       <EventCont>
         {event !== "" ? 
             <>
-              <div style={{backgroundColor:"var(--faded)", padding:"0 0.5rem"}}>
+              <div style={{backgroundColor:"var(--faded)", padding:"0 0.5rem", marginLeft:"0.5rem", marginRight:"-0.5rem"}}>
                   <h2 style={{marginTop:"1rem", paddingTop:"0.5rem"}}>{event.title}</h2>
                   <h3 style={{paddingBottom:"1rem", textAlign:"right"}}><em>{event.description}</em></h3>
               </div>
                   <StartTimeCont>
-                    <p>FROM:</p>
+                    <p>START:</p>
                     <p>{`${display.day}, ${display.month} ${display.date}`} </p>
                     <p>{`${display.time}`}</p>
                   </StartTimeCont>
-                  <EndTimeCont>
-                    <p>TO:</p>
-                    <p>{`${endDisplay.day}, ${endDisplay.month} ${endDisplay.date}`} </p>
-                    <p>{`${endDisplay.time}`}</p>
-                  </EndTimeCont>
+                    {endDisplay !== ""?
+                    <EndTimeCont>
+                      <p>END:</p>
+                      <p>{`${endDisplay.day}, ${endDisplay.month} ${endDisplay.date}`} </p>
+                      <p>{`${endDisplay.time}`}</p>
+                    </EndTimeCont> :
+                    <p></p>
+                  }
                   <BTNCont style={{fontWeight:"300"}}>
-                    <MdDelete onClick={()=>setIsOpened(!isOpened)}/>
-                    <MdEdit onClick={()=>setIsOpened(!isOpened)} style={{marginLeft:"1rem"}}/>
+                    <Collapse isOpened={sureOpened}>
+                      <SureCont>
+                        <p>{textContent}</p>
+                        <div id="yesNo" style={{display:"flex", justifyContent:"space-between"}}>
+                          <Yes onClick={()=>yesHandler(eventID)}>yes</Yes><p style={{marginLeft:"0.5rem", marginRight:"0.5rem"}}>|</p>
+                          <No onClick={noHandler}>no</No>
+                        </div>
+                      </SureCont>
+                    </Collapse>
+                    
+         
+                    
+                    <Collapse isOpened={buttonOpened}>
+                      <div style={{display:"flex"}}>
+                        <DeleteIcon onClick={deleteBTNHandler}/>
+                        <EditIcon onClick={()=>setIsOpened(!isOpened)} style={{marginLeft:"1rem"}}/>
+                      </div>
+                    </Collapse>
+                    
                   </BTNCont>
                   <Collapse isOpened={isOpened}>
                     <EditEvent setIsOpened={setIsOpened} isOpened={isOpened} event={event}/>
@@ -115,6 +155,25 @@ const Event = () => {
 
 export default Event;
 
+const DeleteIcon = styled(MdDelete)`
+    cursor: pointer;
+  &:hover{
+    font-weight: 500;
+  }
+  &:active{
+    color: var(--mint);
+  }
+`
+const EditIcon = styled(MdEdit)`
+  cursor: pointer;
+  &:hover{
+    font-weight: 500;
+  }
+  &:active{
+    color: var(--mint);
+  }
+`
+
 const BTNCont = styled.div`
   display: flex;
   align-items: center;
@@ -132,12 +191,33 @@ const StartTimeCont = styled.div`
 const EndTimeCont = styled.div`
   display:flex;
   justify-content: space-around;
-  `;
+  margin-bottom: 1rem;
+`;
 
-// const EditCont = styled.div`
-//   width:75vw;
-//   height: 50vw;
-//   border: 2px solid lightcoral;
-// `;
+const SureCont = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 70vw;
+  margin-Left:1rem;
 
+`
 
+const Yes = styled.p`
+  cursor: pointer;
+  &:hover{
+    font-weight: 500;
+  }
+  &:active{
+    color: var(--mint);
+  }
+  `
+
+const No = styled.p`
+  cursor: pointer;
+  &:hover{
+    font-weight: 500;
+  }
+  &:active{
+    color: var(--mint);
+  }
+`

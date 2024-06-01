@@ -2,13 +2,6 @@ const mongoConnect = require('./mongoConnect')
 
 const deleteTasksHandler = async (req, res) => {
 
-    // console.log("REQ: ", req)
-
-    // array of taskIDs to delete
-
-
-    
-
     try {
         const db = await mongoConnect(true)
 
@@ -17,7 +10,6 @@ const deleteTasksHandler = async (req, res) => {
         return res.status(200).json( {
                 status: 200,
                 message: `deleteTasksHandler sucess`
-                // message: `task #${taskID} updated`
             })
 
     } catch (error) {
