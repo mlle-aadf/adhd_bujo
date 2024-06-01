@@ -42,6 +42,6 @@ const createEventHandlder = async (req, res) => {
 
 }
 
-createEventHandlder()
+// createEventHandlder()
 
 module.exports = createEventHandlder

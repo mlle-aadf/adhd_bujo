@@ -2,12 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "././pages/HOME/Home";
 import Day from "./pages/DAY/Day";
-
 import Month from "./pages/MONTH";
 import Year from "./pages/YEAR";
 import TodoPage from "./pages/TODO/index"
-
 import Event from "./pages/EVENTS/Event";
+import Notes from "./pages/NOTES";
 
 const App = () => {
   return (
@@ -19,7 +18,7 @@ const App = () => {
         <Route path="/year" element={<Year />} />
         <Route path="/todo" element={<TodoPage />} />
         <Route path="/events/:eventID" element={<Event />} />
-        {/* <Route path="/notes" element={<Notes />} /> */}
+        <Route path="/notes" element={<Notes />} />
       </Routes>
     </Router>
   );

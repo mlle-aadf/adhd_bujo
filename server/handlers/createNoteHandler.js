@@ -1,30 +1,27 @@
 const mongoConnect = require('./mongoConnect')
 
-
-const updateEventHandlder = async (req, res) => {
+const createNoteHandler = async (req, res) => {
     
     if (req?.body) {
-        const {eventID, updatedEvent} = req.body
+        const newNote = req.body
 
         try{
             const db = await mongoConnect(true)
-            const allEvents = await db.collection('events')
-        
-            const result = await allEvents.updateOne(
-                {_id: eventID},
-                {$set: updatedEvent})
+            const allNotes = await db.collection('notes')
+            const result = await allNotes.insertOne(newNote)
             
             if (!result) {
                 return res.status(500).json({
                         status: 500,
-                        message: "failed to update event"
+                        message: "failed to save note"
                     })
             }
-
+    
             return res.status(201).json({
                     status: 201,
-                    message: `event ${eventID} updated`
-                })
+                    message: `note saved`
+            })
+    
         } catch (error) {
             console.log(error.message)
             
@@ -34,6 +31,6 @@ const updateEventHandlder = async (req, res) => {
     }
 }
 
-// updateEventHandlder()
 
-module.exports = updateEventHandlder
+
+module.exports = createNoteHandler

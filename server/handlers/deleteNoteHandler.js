@@ -1,29 +1,30 @@
 const mongoConnect = require('./mongoConnect')
 
-
-const updateEventHandlder = async (req, res) => {
+const deleteNoteHandler = async (req, res) => {
+        console.log("REQBODY: ", req.body)
     
     if (req?.body) {
-        const {eventID, updatedEvent} = req.body
+        const {noteID} = req.body
+        console.log(`deleteEventHandler eventID: ${noteID}`)
 
         try{
             const db = await mongoConnect(true)
-            const allEvents = await db.collection('events')
+            const allNotes = await db.collection('events')
         
-            const result = await allEvents.updateOne(
-                {_id: eventID},
-                {$set: updatedEvent})
+            const result = await allNotes.deleteOne({_id: `${noteID}`})
+            // console.log("RESULT: ", result)
             
             if (!result) {
                 return res.status(500).json({
                         status: 500,
-                        message: "failed to update event"
+                        message: "failed to delete note"
                     })
             }
+            
 
             return res.status(201).json({
                     status: 201,
-                    message: `event ${eventID} updated`
+                    message: `note ${noteID} deleted`
                 })
         } catch (error) {
             console.log(error.message)
@@ -34,6 +35,5 @@ const updateEventHandlder = async (req, res) => {
     }
 }
 
-// updateEventHandlder()
 
-module.exports = updateEventHandlder
+module.exports = deleteNoteHandler
