@@ -30,6 +30,7 @@ const NewNoteCont = styled.div`
   /* border:none; */
   width: 100%;
   margin: 0 auto;
+  position: relative;
   @media (max-width: 500px) {
       display: flex;
       flex-direction: column;
@@ -56,13 +57,16 @@ const TextArea = styled.textarea`
 `
 
 const Save = styled.p`
-    width: 100%;
-    text-align: right;
+    width: fit-content;
     margin-right: 3rem;
+    position: absolute;
+    bottom: 3%;
+    right: -3%;
+
+    cursor: pointer;
     &:active{
         font-weight: 400;
     }
- 
 `
 
 const Pinned = styled.div`

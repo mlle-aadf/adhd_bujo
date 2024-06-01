@@ -2,7 +2,6 @@
 import {NoteCont, NoteTitleCont, NoteIcon, NoteTitle, Pinned, PinIcon} from "./Styles"
 
 import NavBarMobile from "../HOME/NavBarMobile";
-import { useState } from "react";
 import NewNote from "./NewNote";
 
 import { HomeLink } from "../HOME/Styles";

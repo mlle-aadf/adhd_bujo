@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import DayContextProvider from './contexts/DayContext';
 import EventsContextProvider from './contexts/EventsContext';
 import TaskContexttProvider from './contexts/TasksContext';
+import NotesContextProvider from './contexts/NotesContext'
 
 
 
@@ -16,7 +17,9 @@ root.render(
     <DayContextProvider>
       <EventsContextProvider>
         <TaskContexttProvider>
-          <App />
+          <NotesContextProvider>
+            <App />
+          </NotesContextProvider>
         </TaskContexttProvider>
       </EventsContextProvider>
     </DayContextProvider>

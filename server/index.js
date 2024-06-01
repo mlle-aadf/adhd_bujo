@@ -22,6 +22,10 @@ const getEventsHandler = require("./handlers/getEventsHandler")
 const updateEventHandlder = require("./handlers/updateEventHandler");
 const deleteEventHandler = require("./handlers/deleteEventHandler");
 // const deleteEventHandlder = require("./handlers/updateEventHandler")
+const getNotesHandler = require("./handlers/getNotesHandler")
+const createNoteHandlder = require("./handlers/createNoteHandler")
+const updateNoteHandlder = require("./handlers/updateEventHandler");
+const deleteNoteHandler = require("./handlers/deleteNoteHandler");
 
 
 express()
@@ -70,9 +74,20 @@ express()
   
   // // updates an event object from DB
   // .patch("/events", updateEventHandlder)
-
+  
   //   // updates an event object from DB
   // .delete("/events", deleteEventHandler)
-
+  
+  // get notes from DB
+  .get("/notes", getNotesHandler)
+  
+  // // adds new note object to DB
+  .post("/notes", createNoteHandlder)
+  
+  // updates a note in DB
+  .patch("/notes", updateNoteHandlder)
+  
+  // updates an event object from DB
+  .delete("/notes", deleteNoteHandler)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
