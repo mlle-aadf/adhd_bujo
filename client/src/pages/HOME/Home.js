@@ -4,8 +4,6 @@ import { MdModeEditOutline } from "react-icons/md";
 
 import { DayCont, DayBTN, Date, MonthYearCont, MonthLink, YearLink, TasksLink, NotesLink, Hello } from "./Styles";
 
-import TodoLink from "./TodoLink";
-
 import { DayContext } from "../../contexts/DayContext";
 import { useContext } from "react";
 
@@ -21,8 +19,8 @@ const Home = () => {
                 <Date >{thisDayStr}</Date>
          
                 <MonthYearCont>
-                    <MonthLink style={{color:"var(--priority1)"}} to={'/month'}>{thisMonth}</MonthLink>
-                    <YearLink style={{color:"var(--mint)"}} to={'/year'}>{thisYear}</YearLink>
+                    <MonthLink to={'/month'}>{thisMonth}</MonthLink>
+                    <YearLink to={'/year'}>{thisYear}</YearLink>
                 </MonthYearCont>
             </DayCont>
             
@@ -32,7 +30,7 @@ const Home = () => {
                     <TasksLink style={{paddingRight:"0.5rem"}} to={"/todo"}>
                         <FaRegSquare />
                     </TasksLink>
-                    <NotesLink style={{paddingLeft:"0.5rem"}} to={"/todo"}>
+                    <NotesLink style={{paddingLeft:"0.5rem"}} to={"/notes"}>
                         <MdModeEditOutline />
                     </NotesLink>
                 </div>

@@ -23,13 +23,16 @@ const DayBTN = styled(Link)`
     text-decoration: none;
     color: white;
     font-size: 6rem;
-    color: var(--pink);
-
+    color: white;
+    
     &:active{
-        color: white;
+      color: var(--pink);
+    }
+    &:hover{
+      color: var(--pink);
     }
     /* margin-bottom: -1rem; */
-
+    
     /* text-align: ; */
     /* border: 2px solid fuchsia; */
     /* width: 100vw; */
@@ -37,11 +40,16 @@ const DayBTN = styled(Link)`
 `
 
 const Date = styled.h2`
-    color: var(--blue);
+    color: white;
     font-size: 2.25rem;
     margin-top: -0.5rem;
-    /* border: 1px solid lightpink; */
-    ` 
+    &:active{
+      color: var(--blue);
+    }
+    &:hover{
+      color: var(--blue);
+    }
+` 
 
 const MonthYearCont = styled.div`
     margin-top: -1rem;
@@ -55,19 +63,25 @@ const MonthLink = styled(Link)`
     color: white;
     font-size: 1.5rem;
 
+    &:active{
+      color: var(--priority1);
+    }
     &:hover{
-        color: var(--pink);
+      color: var(--priority1);
     }
 `
 
 const YearLink = styled(Link)`
-
+  color: white;
     @media  (max-width: 500px) {
         text-decoration: none;
-        color: white;
+        /* color: white; */
         font-size: 1.5rem;
         margin-left: 0.5rem;
     
+    }
+    &:active{
+      color: var(--mint);
     }
     &:hover{
         color: var(--mint);
@@ -93,7 +107,7 @@ const NotesLink = styled(Link)`
   font-size: 2rem;
 
   &:hover{
-    color: var(--blue);
+    color: var(--purple);
   }
   &:active{
     color: var(--purple);
