@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { MdEdit, MdDelete } from "react-icons/md";
-import NavBarMobile from "../../components/NavBarMobile";
-import HomeLink from "../../components/HomeLink";
+import NavBarMobile from "../../pages/HOME/NavBarMobile";
+import HomeLink from "../HOME/HomeBTN";
 import { useContext, useEffect, useState } from "react";
 import { DayContext } from "../../contexts/DayContext";
 import { EventsContext } from "../../contexts/EventsContext";
@@ -14,7 +14,6 @@ import EditEvent from "./EditEvent";
 const Event = () => {
 
     const {eventID} = useParams()
-    // console.log("Event() eventParams: ", eventID)
     
     const [isOpened, setIsOpened] = useState(false)
     const [sureOpened, setSureOpened] = useState(false)
@@ -123,7 +122,7 @@ const Event = () => {
                       <SureCont>
                         <p>{textContent}</p>
                         <div id="yesNo" style={{display:"flex", justifyContent:"space-between"}}>
-                          <Yes onClick={()=>yesHandler(eventID)}>yes</Yes><p>|</p>
+                          <Yes onClick={()=>yesHandler(eventID)}>yes</Yes><p style={{marginLeft:"0.5rem", marginRight:"0.5rem"}}>|</p>
                           <No onClick={noHandler}>no</No>
                         </div>
                       </SureCont>
@@ -132,8 +131,10 @@ const Event = () => {
          
                     
                     <Collapse isOpened={buttonOpened}>
-                      <MdDelete onClick={deleteBTNHandler}/>
-                      <MdEdit onClick={()=>setIsOpened(!isOpened)} style={{marginLeft:"1rem"}}/>
+                      <div style={{display:"flex"}}>
+                        <DeleteIcon onClick={deleteBTNHandler}/>
+                        <EditIcon onClick={()=>setIsOpened(!isOpened)} style={{marginLeft:"1rem"}}/>
+                      </div>
                     </Collapse>
                     
                   </BTNCont>
@@ -153,6 +154,25 @@ const Event = () => {
 };
 
 export default Event;
+
+const DeleteIcon = styled(MdDelete)`
+    cursor: pointer;
+  &:hover{
+    font-weight: 500;
+  }
+  &:active{
+    color: var(--mint);
+  }
+`
+const EditIcon = styled(MdEdit)`
+  cursor: pointer;
+  &:hover{
+    font-weight: 500;
+  }
+  &:active{
+    color: var(--mint);
+  }
+`
 
 const BTNCont = styled.div`
   display: flex;
@@ -179,7 +199,7 @@ const SureCont = styled.div`
   justify-content: space-around;
   width: 70vw;
   margin-Left:1rem;
-  /* border: 2px solid fuchsia; */
+
 `
 
 const Yes = styled.p`

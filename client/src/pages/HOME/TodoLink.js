@@ -1,4 +1,4 @@
-import { TasksLink } from "./Styles";
+import { TasksLink } from "../../pages/HOME/Styles";
 import { FaRegSquare  } from "react-icons/fa6";
 
 const TodoLink = () => {

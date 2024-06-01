@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 export const EventsContext = createContext();
 
@@ -81,12 +80,10 @@ const EventsContextProvider = ({ children }) => {
 
   // delete event
   const deleteEvent = async (eventID) => {
-    console.log("deleteEvent_EVENTID: ", eventID, typeof eventID)
     
     const deleteEvent = {
       eventID: eventID
     }
-    // const ev = eventID
     
     const response = await fetch("/events", {
       method: "DELETE",
@@ -98,8 +95,6 @@ const EventsContextProvider = ({ children }) => {
       setRefresh(!refresh)
       console.log(`deleteEvent: EVENT ${eventID} deleted`)
     } 
-
-    
   }
 
 

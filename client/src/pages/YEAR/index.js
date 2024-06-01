@@ -1,6 +1,6 @@
-import NavBarMobile from "../../components/NavBarMobile"
+import NavBarMobile from "../../pages/HOME/NavBarMobile"
 import YearCal from "./YearCal";
-import HomeLink from "../../components/HomeLink";
+import HomeLink from "../HOME/HomeBTN";
 
 const Year = () => {
 
