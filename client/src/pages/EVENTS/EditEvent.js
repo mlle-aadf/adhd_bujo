@@ -38,16 +38,12 @@ const EditEvent = ({event, isOpened, setIsOpened}) => {
         if (opt === "start") {
             setStartValue(e.target.value)
             setEventUpdate({...eventUpdate, start: e.target.value})
-            // if (e.target.value==="") {
-            //     setAllCompleted(false)
-            // }
         } else if (opt === "end"){
             setEndValue(e.target.value)
             setEventUpdate({...eventUpdate, end: e.target.value})
         }
         checkCompletion()
         console.log("allCompleted: ", allCompleted)
-        // console.log("eventUpdate.start: ",eventUpdate.start)
     }
 
     const saveEventHandler = async (e) => {

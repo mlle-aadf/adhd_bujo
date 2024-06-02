@@ -85,6 +85,7 @@ const Event = () => {
     }
     
     const navigate = useNavigate()
+    
     const yesHandler = async (eventID) => {
       setTextContent("deleting event...")
       document.getElementById("yesNo").style.display="none"
@@ -100,7 +101,7 @@ const Event = () => {
       <EventCont>
         {event !== "" ? 
             <>
-              <div style={{backgroundColor:"var(--faded)", padding:"0 0.5rem", marginLeft:"0.5rem", marginRight:"-0.5rem"}}>
+              <div style={{backgroundColor:"var(--faded)", padding:"0 0.5rem"}}>
                   <h2 style={{marginTop:"1rem", paddingTop:"0.5rem"}}>{event.title}</h2>
                   <h3 style={{paddingBottom:"1rem", textAlign:"right"}}><em>{event.description}</em></h3>
               </div>

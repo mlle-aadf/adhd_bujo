@@ -10,7 +10,7 @@ const NoteCont = styled.div`
 const NoteTitleCont = styled.div`
     display: flex;
     align-items: center;
-    margin: 2rem 0;
+    margin: 1.5rem 0 1rem 0;
     width: 100%;
     font-size: 2rem;
     height: 2rem;
@@ -43,7 +43,7 @@ const TextArea = styled.textarea`
     border:none;
     color: white;
     width: 60vw;
-    height: 20vh;
+    height: 15vh;
     background-color: transparent;
     &:focus{
         /* border: 1px solid var(--faded); */
@@ -52,15 +52,14 @@ const TextArea = styled.textarea`
         caret-color: white;
         caret-shape: bar;
     }
-    /* padding: 2rem ; */
-
+   
 `
 
 const Save = styled.p`
     width: fit-content;
     margin-right: 3rem;
     position: absolute;
-    bottom: 3%;
+    bottom: -1%;
     right: -3%;
 
     cursor: pointer;
@@ -75,7 +74,7 @@ const Pinned = styled.div`
     border-radius: 10px;
     background-color: var(--faded); 
     margin-top: 1rem;
-    margin: 1.5rem auto 0 auto;
+    margin: 1.5rem auto 0.5rem auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,4 +90,8 @@ const PinIcon = styled(TiPinOutline)`
     right: -3%;
 `
 
-export {NoteCont, NoteTitleCont, NoteIcon, NoteTitle, NewNoteCont, TextArea, Save, Pinned, PinIcon}
+const PinnedNote = styled.p`
+    font-family: monospace;
+`
+
+export {NoteCont, NoteTitleCont, NoteIcon, NoteTitle, NewNoteCont, TextArea, Save, Pinned, PinIcon, PinnedNote}

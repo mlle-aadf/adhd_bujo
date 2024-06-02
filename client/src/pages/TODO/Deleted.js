@@ -7,13 +7,20 @@ import { Collapse } from "react-collapse";
 const Deleted = ({deleted}) => {
     
     const {emptyBin} = useContext(TaskContext)
+
+    const [displayText, setDisplayText] = useState("YOUR BIN IS EMPTY")
   
     // toggle DELETED list visibility
     const [isOpened, setIsOpened] = useState(false)
+    const [deletingOpened, setDeletingOpened] = useState(false)
     
     // empty DELETED bin
-    const emptyBinHandler = () => {
-        emptyBin()
+    const emptyBinHandler = async () => {
+        setDeletingOpened(!deletingOpened)
+        await emptyBin()
+        // setDeletingOpened(false)
+        setTimeout(()=> setDeletingOpened(false), 3000)
+        
     }
 
     return (
@@ -25,10 +32,19 @@ const Deleted = ({deleted}) => {
             </DeletedTitleCont>
             
             <Collapse isOpened={isOpened}>
+                
+                
+                
                 {deleted.length===0 ? <p style={{paddingLeft:"0.5rem"}}>YOUR BIN IS EMPTY</p> :
                 deleted.map((task) => <li key={task._id} style={{paddingLeft:"0.5rem"}}>{task.description}</li>)
                 }
+
             </Collapse>        
+                
+             <Collapse isOpened={deletingOpened}>
+                <p>deleting...</p>
+                
+             </Collapse>   
         </DeletedContainer>
     );
 };

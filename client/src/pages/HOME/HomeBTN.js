@@ -1,8 +1,10 @@
-import { HomeLink } from "./Styles";
+import { HomeLink, Footer } from "./Styles";
 
 const HomeBtn = () => {
     return (
-        <HomeLink to={"/"}>٩(◕‿◕)۶</HomeLink>
+        <Footer>
+            <HomeLink to={"/"}>٩(◕‿◕)۶</HomeLink>
+        </Footer>
     );
 };
 

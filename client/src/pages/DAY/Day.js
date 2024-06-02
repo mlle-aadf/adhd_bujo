@@ -31,7 +31,7 @@ const Day = () => {
                     <NoteTitle><Link to={"/notes"} style={{textDecoration:"none", color:"white"}}>NOTES</Link></NoteTitle>
             </NoteTitleCont>
             <Collapse isOpened={isOpened}>
-                <NewNote/>
+                <NewNote style={{marginBottom:"1rem", border:"2px solid fuschia"}}/>
             </Collapse>
 
             <HomeLink/>

@@ -1,14 +1,19 @@
-
-import {NoteCont, NoteTitleCont, NoteIcon, NoteTitle, Pinned, PinIcon} from "./Styles"
+import {NoteCont, NoteTitleCont, NoteIcon, NoteTitle, Pinned, PinIcon, PinnedNote } from "./Styles"
 
 import NavBarMobile from "../HOME/NavBarMobile";
 import NewNote from "./NewNote";
+import NotesList from "./NotesList";
+import HomeBtn from "../HOME/HomeBTN";
 
 import { HomeLink } from "../HOME/Styles";
+import { useContext } from "react";
+import { NotesContext } from "../../contexts/NotesContext";
 
 const Notes = () => {
-    
-    
+
+    const {pinned} = useContext(NotesContext)
+    console.log("Notes INDEX: ", pinned)
+
 
     return (
         <NoteCont>
@@ -20,12 +25,14 @@ const Notes = () => {
 
                 <NewNote/>
 
-            <Pinned>
+            {/* <Pinned>
                 <PinIcon/>
-                <p>The rotation of Earth really makes my day.</p> 
-            </Pinned>
+                {pinned !== undefined ? <PinnedNote>{`${pinned.text}`}</PinnedNote> : <PinnedNote>...</PinnedNote>} 
+            </Pinned> */}
 
-            <HomeLink to="/">٩(◕‿◕)۶-</HomeLink>
+            <NotesList/>
+            
+            <HomeBtn to="/"/>
         </NoteCont>
     );
 };

@@ -13,7 +13,7 @@ const getNotesHandler = async (req, res) => {
             console.log("got all notes, ", allNotes)
             return res.status(200).json({
             status: 200,
-            events: allNotes,
+            notes: allNotes,
             });}
     } catch (error) {
         console.log(error.message);

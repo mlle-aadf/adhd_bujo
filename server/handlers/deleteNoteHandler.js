@@ -5,11 +5,11 @@ const deleteNoteHandler = async (req, res) => {
     
     if (req?.body) {
         const {noteID} = req.body
-        console.log(`deleteEventHandler eventID: ${noteID}`)
+        console.log(`deleteNoteHandler noteID: ${noteID}`)
 
         try{
             const db = await mongoConnect(true)
-            const allNotes = await db.collection('events')
+            const allNotes = await db.collection('notes')
         
             const result = await allNotes.deleteOne({_id: `${noteID}`})
             // console.log("RESULT: ", result)

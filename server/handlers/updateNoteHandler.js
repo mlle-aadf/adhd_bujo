@@ -2,16 +2,18 @@ const mongoConnect = require('./mongoConnect')
 
 
 const updateNoteHandlder = async (req, res) => {
-    
-    
+    // const {noteID, updatedNote} = req.body
+
+    // console.log(`updateNoteHandlder noteID: ${noteID}, ${updatedNote}`)
+
     if (req?.body) {
         const {noteID, updatedNote} = req.body
-        console.log("updatedNote: ", req.body)
-        // console.log(`updateEventHandlder noteID: ${noteID}, ${updatedEvent}`)
+
+        console.log(`updateNoteHandlder noteID: ${noteID}, ${updatedNote}`)
 
         try{
             const db = await mongoConnect(true)
-            const allNotes = await db.collection('events')
+            const allNotes = await db.collection('notes')
         
             const result = await allNotes.updateOne(
                 {_id: noteID},
