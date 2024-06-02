@@ -22,6 +22,7 @@ const getEventsHandler = require("./handlers/getEventsHandler")
 const updateEventHandlder = require("./handlers/updateEventHandler");
 const deleteEventHandler = require("./handlers/deleteEventHandler");
 // const deleteEventHandlder = require("./handlers/updateEventHandler")
+const getNoteHandler = require("./handlers/getNoteHandler")
 const getNotesHandler = require("./handlers/getNotesHandler")
 const createNoteHandlder = require("./handlers/createNoteHandler")
 const updateNoteHandlder = require("./handlers/updateEventHandler");
@@ -48,38 +49,42 @@ express()
 
 
 
-  // // get tasks from DB
-  // .get("/todo", getTasksHandler)
+  // get tasks from DB
+  .get("/todo", getTasksHandler)
   
-  // // adds new task object to DB
-  // .post("/todo", createTaskHandlder)
+  // adds new task object to DB
+  .post("/todo", createTaskHandlder)
   
-  // // updates a task object from DB
-  // .patch("/todo", updateTaskHandler)
+  // updates a task object from DB
+  .patch("/todo", updateTaskHandler)
+  
+  // deletes all tasks marked "deleted"
+  .delete("/todo", deleteTasksHandler)
+  
+
+
+  // get all events from DB
+  .get("/events", getEventsHandler)
+  
+    // get single event from DB
+  .get("/events/:eventID", getEventHandler)
+  
+  // adds new event object to DB
+  .post("/events", createEventHandlder)
+  
+  // updates an event object from DB
+  .patch("/events", updateEventHandlder)
+  
+  // updates an event object from DB
+  .delete("/events", deleteEventHandler)
   
   
-  // // deletes all tasks marked "deleted"
-  // // .. deleteMany
-  // .delete("/todo", deleteTasksHandler)
-  
-  // // get all events from DB
-  // .get("/events", getEventsHandler)
-  
-  
-  // // get single event from DB
-  // .get("/events/:eventID", getEventHandler)
-  
-  // // adds new event object to DB
-  // .post("/events", createEventHandlder)
-  
-  // // updates an event object from DB
-  // .patch("/events", updateEventHandlder)
-  
-  //   // updates an event object from DB
-  // .delete("/events", deleteEventHandler)
   
   // get notes from DB
   .get("/notes", getNotesHandler)
+
+  // get single note from DB
+  .get("/notes/:noteID", getNoteHandler)
   
   // // adds new note object to DB
   .post("/notes", createNoteHandlder)
@@ -87,7 +92,9 @@ express()
   // updates a note in DB
   .patch("/notes", updateNoteHandlder)
   
-  // updates an event object from DB
+  // deletes a note from DB
   .delete("/notes", deleteNoteHandler)
 
+
+  
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

@@ -6,6 +6,7 @@ import Month from "./pages/MONTH";
 import Year from "./pages/YEAR";
 import TodoPage from "./pages/TODO/index"
 import Event from "./pages/EVENTS/Event";
+import Note from "./pages/NOTES/Note";
 import Notes from "./pages/NOTES";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/todo" element={<TodoPage />} />
         <Route path="/events/:eventID" element={<Event />} />
         <Route path="/notes" element={<Notes />} />
+        <Route path="/notes/:noteID" element={<Note />} />
       </Routes>
     </Router>
   );

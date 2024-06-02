@@ -37,14 +37,14 @@ const MonthCal = ({localMonth, eventList, title}) => {
     setListOpened(true)
     // setNewOpened(false)
     // setEditOpened(false)
-    console.log("listed!")
+    // console.log("listed!")
   }
   
   const addViewHandler = () => {
     setListOpened(false)
     // setNewOpened(true)
     // setEditOpened(false)
-    console.log("addViewHandler!")
+    // console.log("addViewHandler!")
   
   }
   
@@ -65,11 +65,8 @@ const MonthCal = ({localMonth, eventList, title}) => {
   }
 
   const eventClickHandler = (e) => {
-    
     const eventID = e.event._def.extendedProps._id
     navigate(`/events/${eventID}`)
-
-    // console.log("eventClickHandler ", eventID)
   }
 
   // do something when day is clicked

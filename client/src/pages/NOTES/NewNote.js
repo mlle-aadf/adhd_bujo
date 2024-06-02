@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const NewNote = () => {
     
-    const {notes, addNewNote} = useContext(NotesContext)
+    const {addNewNote} = useContext(NotesContext)
 
     const [newNote, setNewNote]=useState({
         _id: uuidv4(),

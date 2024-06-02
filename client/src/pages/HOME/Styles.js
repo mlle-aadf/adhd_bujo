@@ -127,21 +127,44 @@ const Hello = styled.p`
 
 // HomeBTN.js
 const HomeLink = styled(Link)`
+  /* border: 2px solid fuchsia; */
+
     @media  (max-width: 500px) {
         text-decoration: none;
-        /* background-color: var(--faded); */
+        background-color: black;
         border-radius: 30px;
         color: white;
         padding: 0.25rem;
         text-align: center;
-        position: fixed;
-        width: 20%;
+        margin: 0 auto;
+        /* position: fixed; */
+        /* width: 100%; */
         bottom: 2%;
-        right: 40%;
+        /* right: 40%; */
         &:hover{
             color: var(--blue)
         }
     }
+`
+
+const Footer = styled.div`
+  width: 100%;
+  position: fixed;
+  bottom:0%;
+  left:0%;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.5) 75%,
+    rgba(0, 0, 0, 0.2) 90%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  /* margin-left: -2.5rem; */
+  /* border: 2px solid aqua; */
 `
 
 // NavBarMobile.js
@@ -149,7 +172,7 @@ const NavContainer = styled.div`
     @media  (max-width: 500px) {
         height: 6rem;
         width: 75vw;
-        margin: 2.5rem 0 0.5rem 0;
+        margin: 2.5rem auto 0.5rem auto;
         display: grid;
         grid-template: 3rem 3rem / auto auto auto auto;
         border-bottom: 2px solid white;
@@ -251,4 +274,4 @@ const PrioritiesList = styled.div`
 //   font-size: 2rem;
 // `
 
-export {DayCont, DayBTN, Date, MonthYearCont, HomeLink, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, TasksLink, NotesLink, YearLink, Hello, PrioritiesContainer, PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesList}
+export {DayCont, DayBTN, Date, MonthYearCont, HomeLink, Footer, NavContainer, DayLink, NavMonthYearCont, DayStr, MonthLink, TasksLink, NotesLink, YearLink, Hello, PrioritiesContainer, PrioriTitleCont, StarIcon, PriorityTitle, PrioritiesList}
