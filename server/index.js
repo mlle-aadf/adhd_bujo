@@ -47,7 +47,9 @@ const app = express()
   .use(express.urlencoded({ extended: false }))
   .use("/", express.static(__dirname + "/"))
 
-
+.get("/", (req, res) => {
+  res.send("helloMoto")
+} )
 
   // get tasks from DB
   .get("/todo", getTasksHandler)
