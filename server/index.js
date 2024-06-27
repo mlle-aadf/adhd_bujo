@@ -29,7 +29,7 @@ const updateNoteHandlder = require("./handlers/updateEventHandler");
 const deleteNoteHandler = require("./handlers/deleteNoteHandler");
 
 
-express()
+const app = express()
   .use(function (req, res, next) {
     res.header(
       "Access-Control-Allow-Methods",
@@ -98,3 +98,6 @@ express()
 
   
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
+
+  module.exports = app;
+  
