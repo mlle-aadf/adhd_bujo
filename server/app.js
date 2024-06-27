@@ -6,7 +6,7 @@ const morgan = require("morgan");
 // require('dotenv').config()
 
 
-const PORT = 80;
+const PORT = 4000;
 
 // //require the handlers
 
