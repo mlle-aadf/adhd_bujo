@@ -1,10 +1,10 @@
 TLDR: Web-dev diploma final project. A simple CRUD app for task & event management, currently for mobile only.
 
-Concept: 
-  A virtual [bullet journal](https://bulletjournal.com/) tailored to people with ADHD (or anyone who likes planning simplified)
+Concept: <br/>
+  A virtual [bullet journal](https://bulletjournal.com/) tailored to people with ADHD (or anyone who likes planning simplified)<br/>
 
-Design: 
-  Minimal, intuitive UI. No fluff, just the important stuff! 
+Design: <br/>
+  Minimal, intuitive UI. No fluff, just the important stuff! <br/>
 
 Home page;
   displays current date, which also serves as navigation to daily, monthly or yearly views
