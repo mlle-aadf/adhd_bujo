@@ -37,7 +37,5 @@ Notes page:<br/>
 Smiley friend:<br/>
   - takes you back home!<br/>
 
-![Screenshot 2024-09-04 104303](https://github.com/user-attachments/assets/4c9088ae-5ed3-47b0-98de-9eb6bfe29def)
-![Screenshot 2024-09-04 112006](https://github.com/user-attachments/assets/7996464f-fd45-4208-a03e-6e25d7c184a4)
-![Screenshot 2024-09-04 112329](https://github.com/user-attachments/assets/03b96392-547a-4379-8b23-934c7beebaf2)
+![Screenshot 2024-09-04 113528](https://github.com/user-attachments/assets/e3667ee9-2e43-46c5-a55d-d2b28ea94c28)
 
