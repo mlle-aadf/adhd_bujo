@@ -30,7 +30,7 @@ const deleteNoteHandler = require("./handlers/deleteNoteHandler");
 
 
 const app = express()
-  .use(function (req, res, next) {
+  app.use(function (req, res, next) {
     res.header(
       "Access-Control-Allow-Methods",
       "OPTIONS, HEAD, GET, PUT, POST, DELETE"
