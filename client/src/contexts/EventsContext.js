@@ -25,7 +25,7 @@ const EventsContextProvider = ({ children }) => {
 
   const getEvents = async () => {
     try {
-      const res = await fetch("/events");
+      const res = await fetch("https://adhd-bujo.vercel.app/events");
       const { events } = await res.json();
       setEvents(events);
     } catch (err) {
@@ -42,7 +42,7 @@ const EventsContextProvider = ({ children }) => {
   const addNewEvent = async (newEvent) => {
     console.log("addNewEvent: ", newEvent);
 
-    const response = await fetch("/events", {
+    const response = await fetch("https://adhd-bujo.vercel.app/events", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newEvent),
@@ -66,7 +66,7 @@ const EventsContextProvider = ({ children }) => {
       updatedEvent: update,
     };
 
-  const response = await fetch("/events", {
+  const response = await fetch("https://adhd-bujo.vercel.app/events", {
       method: "PATCH",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(updateInfo)
@@ -85,7 +85,7 @@ const EventsContextProvider = ({ children }) => {
       eventID: eventID
     }
     
-    const response = await fetch("/events", {
+    const response = await fetch("https://adhd-bujo.vercel.app/events", {
       method: "DELETE",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(deleteEvent),

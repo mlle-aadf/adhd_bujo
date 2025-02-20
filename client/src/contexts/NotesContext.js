@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 export const NotesContext = createContext();
 
 
@@ -10,7 +10,7 @@ const NotesContextProvider = ({ children }) => {
    
     const getNotes = async () => {
         try {
-          const res = await fetch("/notes");
+          const res = await fetch("https://adhd-bujo.vercel.app/notes");
           const { notes } = await res.json();
           setNotes(notes);
           const pinnedNote = notes.filter((note)=> note.pinned===true )
@@ -29,7 +29,7 @@ const NotesContextProvider = ({ children }) => {
     const addNewNote = async (newNote) => {
         console.log("addNewNote: ", newNote);
 
-        const response = await fetch("/notes", {
+        const response = await fetch("https://adhd-bujo.vercel.app/notes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNote),
@@ -54,7 +54,7 @@ const NotesContextProvider = ({ children }) => {
 
         console.log("updateNote Context:", updateInfo)
     
-      const response = await fetch("/notes", {
+      const response = await fetch("https://adhd-bujo.vercel.app/notes", {
           method: "PATCH",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(updateInfo)
@@ -78,7 +78,7 @@ const NotesContextProvider = ({ children }) => {
         noteID: noteID
     }
     
-    const response = await fetch("/notes", {
+    const response = await fetch("https://adhd-bujo.vercel.app/notes", {
         method: "DELETE",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(deleteNote),

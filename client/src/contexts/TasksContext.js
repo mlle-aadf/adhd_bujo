@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const TaskContext = createContext();
 
@@ -15,7 +15,7 @@ const TaskContexttProvider = ({ children }) => {
 // retrieve tasks from db
 const getTasks = async () => {
   try{
-    const res = await fetch("/todo")
+    const res = await fetch("https://adhd-bujo.vercel.app/todo")
     const {tasks} = await res.json()
     
     // triage tasks ->
@@ -55,7 +55,7 @@ useEffect(()=> {
 // add new task to db
   const addNewTask = async (newTask) => {
 
-    const response = await fetch("/todo", {
+    const response = await fetch("https://adhd-bujo.vercel.app/todo", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newTask)
@@ -77,7 +77,7 @@ useEffect(()=> {
       }
       console.log("updateTask_updateInfo", updateInfo)
   
-      const response = await fetch("/todo", {
+      const response = await fetch("https://adhd-bujo.vercel.app/todo", {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(updateInfo)
@@ -90,7 +90,7 @@ useEffect(()=> {
 
 // empty DELETED bin
 const emptyBin = async () => {
-  const response = await fetch("/todo", {
+  const response = await fetch("https://adhd-bujo.vercel.app/todo", {
     method: "delete",
     headers: {"Content-Type": "application/json"}
   })
