@@ -6,9 +6,9 @@ const morgan = require("morgan");
 // require('dotenv').config()
 
 
-const PORT = 1234;
+const PORT = process.env.PORT || 1234;
 
-// //require the handlers
+//require the handlers
 
 const createTaskHandlder = require("./handlers/createTaskHandler")
 const getTasksHandler = require("./handlers/getTasksHandler")
@@ -34,7 +34,7 @@ express()
   .use(express.static("./server/assets"))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use("/", express.static(__dirname + "/"))
+  // .use("/", express.static(__dirname + "/"))
 
 .get("/", (req, res) => {
   res.send("helloMoto")
