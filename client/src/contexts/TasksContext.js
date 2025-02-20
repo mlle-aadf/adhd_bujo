@@ -15,7 +15,7 @@ const TaskContexttProvider = ({ children }) => {
 // retrieve tasks from db
 const getTasks = async () => {
   try{
-    const res = await fetch("https://adhd-bujo.vercel.app/todo")
+    const res = await fetch("https://adhd-bujo-server.vercel.app/todo")
     const {tasks} = await res.json()
     
     // triage tasks ->
@@ -55,7 +55,7 @@ useEffect(()=> {
 // add new task to db
   const addNewTask = async (newTask) => {
 
-    const response = await fetch("https://adhd-bujo.vercel.app/todo", {
+    const response = await fetch("https://adhd-bujo-server.vercel.app/todo", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(newTask)
@@ -77,7 +77,7 @@ useEffect(()=> {
       }
       console.log("updateTask_updateInfo", updateInfo)
   
-      const response = await fetch("https://adhd-bujo.vercel.app/todo", {
+      const response = await fetch("https://adhd-bujo-server.vercel.app/todo", {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(updateInfo)
@@ -85,12 +85,14 @@ useEffect(()=> {
       
       if (response.ok) {
         setRefresh(!refresh)
+      } else {
+        console.log("updateTask failed")
       }
   }
 
 // empty DELETED bin
 const emptyBin = async () => {
-  const response = await fetch("https://adhd-bujo.vercel.app/todo", {
+  const response = await fetch("https://adhd-bujo-server.vercel.app/todo", {
     method: "delete",
     headers: {"Content-Type": "application/json"}
   })
